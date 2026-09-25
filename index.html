@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Faw Builder</title>
+<meta name="description" data-i18n-attr="content:meta.description" content="Faw Builder, GTK4/libadwaita ile yazılmış native bir Linux C/C++ IDE'si. LSP tabanlı düzenleme, Git, debugger, görsel arayüz tasarımcısı ve Android geliştirme desteği.">
+<meta property="og:title" content="Faw Builder">
+<meta property="og:description" data-i18n-attr="content:meta.description" content="Faw Builder, GTK4/libadwaita ile yazılmış native bir Linux C/C++ IDE'si. LSP tabanlı düzenleme, Git, debugger, görsel arayüz tasarımcısı ve Android geliştirme desteği.">
+<meta property="og:type" content="website">
+<!-- TODO: SITE_URL -->
+<meta property="og:url" content="https://example.com/">
+<!-- TODO: OG_IMAGE_URL (1200x630) -->
+<meta property="og:image" content="https://example.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="tr" href="https://example.com/">
+<link rel="alternate" hreflang="en" href="https://example.com/#en">
+<meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Faw Builder",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Linux",
+  "description": "GTK4/libadwaita ile yazılmış native Linux C/C++ ve Android IDE'si.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+/* ───────── Tokens: Varsayılan (açık) ───────── */
+:root{
+  --ground:#f6f5f4; --surface:#ffffff; --surface-2:#ebeae8; --ink:#1b1b1f; --muted:#5e5c64;
+  --line:#deddda; --accent:#1c71d8; --accent-ink:#ffffff; --accent-soft:#dbe8fb;
+  --droid:#1f8a55; --droid-soft:#dcf3e6; --warn:#9c5a00; --warn-soft:#fdeccc;
+  --code-bg:#fafafa; --code-ink:#26262b; --c-kw:#a51d2d; --c-ty:#1a5fb4; --c-fn:#613583;
+  --c-st:#26a269; --c-cm:#77767b; --c-mc:#c64600;
+  --title-fill:linear-gradient(var(--ink),var(--ink));
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Cantarell","Noto Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"DejaVu Sans Mono",monospace;
+  --radius:12px; --shadow:0 1px 2px rgb(0 0 0 / .06),0 12px 32px -12px rgb(0 0 0 / .18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#1d1d20; --surface:#26262a; --surface-2:#303035; --ink:#f2f2f3; --muted:#a3a1aa;
+    --line:#3a3a40; --accent:#78aeed; --accent-ink:#0d1b2e; --accent-soft:#1f3350;
+    --droid:#57e389; --droid-soft:#173825; --warn:#f8c46b; --warn-soft:#3b2d12;
+    --code-bg:#1b1b1e; --code-ink:#deddda; --c-kw:#ff7b72; --c-ty:#79c0ff; --c-fn:#d2a8ff;
+    --c-st:#8fe0a6; --c-cm:#8b8a92; --c-mc:#ffa657;
+    --shadow:0 1px 2px rgb(0 0 0 / .4),0 16px 40px -16px rgb(0 0 0 / .7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#1d1d20; --surface:#26262a; --surface-2:#303035; --ink:#f2f2f3; --muted:#a3a1aa;
+  --line:#3a3a40; --accent:#78aeed; --accent-ink:#0d1b2e; --accent-soft:#1f3350;
+  --droid:#57e389; --droid-soft:#173825; --warn:#f8c46b; --warn-soft:#3b2d12;
+  --code-bg:#1b1b1e; --code-ink:#deddda; --c-kw:#ff7b72; --c-ty:#79c0ff; --c-fn:#d2a8ff;
+  --c-st:#8fe0a6; --c-cm:#8b8a92; --c-mc:#ffa657;
+  --shadow:0 1px 2px rgb(0 0 0 / .4),0 16px 40px -16px rgb(0 0 0 / .7);
+}
+/* ───────── Site temaları (tema çubuğu) ───────── */
+:root[data-skin="ide"]{
+  color-scheme:dark;
+  --ground:#16161a; --surface:#1f1f24; --surface-2:#2a2a31; --ink:#e6e6ea; --muted:#9696a0;
+  --line:#2f2f37; --accent:#62a0ea; --accent-ink:#0b1626; --accent-soft:#1c2c44;
+  --droid:#57e389; --droid-soft:#15301f; --warn:#f8c46b; --warn-soft:#352812;
+  --code-bg:#111114; --code-ink:#d4d4d8; --c-kw:#ff7b72; --c-ty:#79c0ff; --c-fn:#d2a8ff;
+  --c-st:#8fe0a6; --c-cm:#6e6e78; --c-mc:#ffa657; --radius:6px;
+  --shadow:0 0 0 1px #2f2f37,0 20px 40px -20px rgb(0 0 0 / .8);
+}
+:root[data-skin="gradient"]{
+  color-scheme:dark;
+  --ground:#0e1422; --surface:#151d30; --surface-2:#1d2740; --ink:#eef2fb; --muted:#a3adc6;
+  --line:#26314d; --accent:#6fb3ff; --accent-ink:#081122; --accent-soft:#1b2c4d;
+  --droid:#5fe3a1; --droid-soft:#143326; --warn:#ffcf70; --warn-soft:#3a2d12;
+  --code-bg:#0b101c; --code-ink:#dfe6f5; --c-kw:#ff8f8f; --c-ty:#7cc4ff; --c-fn:#c9a8ff;
+  --c-st:#7ee8b0; --c-cm:#7682a0; --c-mc:#ffb86b; --radius:18px;
+  --title-fill:linear-gradient(100deg,#6fb3ff 0%,#5fe3a1 55%,#ffcf70 100%);
+  --shadow:0 24px 60px -24px rgb(40 120 255 / .45);
+}
+:root[data-skin="hacker"]{
+  color-scheme:dark;
+  --ground:#050805; --surface:#0a110a; --surface-2:#0f1a10; --ink:#b8f5c4; --muted:#5fae70;
+  --line:#153a1c; --accent:#39ff6a; --accent-ink:#031006; --accent-soft:#0f2a15;
+  --droid:#39ff6a; --droid-soft:#0f2a15; --warn:#e6ff4d; --warn-soft:#262b08;
+  --code-bg:#030603; --code-ink:#b8f5c4; --c-kw:#39ff6a; --c-ty:#9dffb2; --c-fn:#e6ff4d;
+  --c-st:#7dd99a; --c-cm:#3f7a4c; --c-mc:#e6ff4d; --radius:0px;
+  --f-display:"JetBrains Mono",ui-monospace,monospace; --f-body:"JetBrains Mono",ui-monospace,monospace;
+  --shadow:0 0 0 1px #153a1c,0 0 30px -10px rgb(57 255 106 / .35);
+}
+
+/* ───────── Temel ───────── */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 16px/1.65 var(--f-body);
+  -webkit-font-smoothing:antialiased;transition:background-color .25s,color .25s}
+img{max-width:100%}
+a{color:var(--accent);text-underline-offset:3px}
+code,kbd,pre{font-family:var(--f-mono)}
+code{font-size:.88em;background:var(--surface-2);padding:.1em .38em;border-radius:5px;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--f-display);line-height:1.12;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.8rem,1.2rem + 2.2vw,2.75rem);font-weight:800;letter-spacing:-.02em}
+h3{font-size:1.1rem;font-weight:700;letter-spacing:-.005em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1120px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
+.eyebrow{display:inline-block;font:600 .74rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.eyebrow::before{content:"// "}
+.section{padding-block:clamp(56px,8vw,104px);display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.section-head{display:grid;gap:12px;max-width:62ch}
+.section-intro{color:var(--muted);font-size:1.06rem;max-width:62ch}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* ───────── Tema çubuğu + başlık ───────── */
+.theme-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;padding:8px 16px;
+  background:var(--surface-2);border-bottom:1px solid var(--line);font-size:.78rem}
+.theme-bar-label{color:var(--muted);font-family:var(--f-mono);margin-right:4px}
+.theme-bar button{font:600 .76rem/1 var(--f-body);color:var(--muted);background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;padding:7px 13px;cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+.theme-bar button:hover{color:var(--ink);border-color:var(--muted)}
+.theme-bar button[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--ground) 86%,transparent);
+  backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:62px}
+.brand{display:flex;align-items:center;gap:10px;font:800 1.08rem var(--f-display);color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;flex:none}
+:root[data-skin="hacker"] .brand-mark{border-radius:0}
+.brand-mark svg{width:16px;height:16px}
+.site-nav{display:flex;align-items:center;gap:4px}
+.site-nav a:not(.btn){color:var(--muted);text-decoration:none;font-size:.92rem;padding:8px 10px;border-radius:8px}
+.site-nav a:not(.btn):hover{color:var(--ink);background:var(--surface-2)}
+.lang-toggle,.menu-toggle{font:700 .78rem var(--f-mono);color:var(--ink);background:transparent;border:1px solid var(--line);
+  border-radius:8px;padding:8px 10px;cursor:pointer}
+.lang-toggle:hover,.menu-toggle:hover{border-color:var(--muted)}
+.menu-toggle{display:none}
+@media (max-width:920px){
+  .menu-toggle{display:inline-block}
+  .site-nav{position:absolute;inset-inline:0;top:100%;flex-direction:column;align-items:stretch;gap:2px;padding:12px 16px 18px;
+    background:var(--ground);border-bottom:1px solid var(--line);display:none}
+  .site-nav.open{display:flex}
+  .site-nav .btn{margin-top:8px;justify-content:center}
+  .header-tools{display:flex;gap:8px}
+}
+@media (min-width:921px){.header-tools .lang-toggle{display:none}}
+@media (max-width:920px){.site-nav .lang-toggle{display:none}}
+
+/* ───────── Butonlar ───────── */
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 .95rem/1 var(--f-body);text-decoration:none;border-radius:10px;
+  padding:13px 20px;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-secondary{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.btn-secondary:hover{border-color:var(--muted)}
+.btn-sm{padding:9px 14px;font-size:.86rem}
+:root[data-skin="hacker"] .btn{border-radius:0}
+
+/* ───────── Hero ───────── */
+.hero{padding-block:clamp(48px,7vw,88px) 0;display:grid;grid-template-columns:minmax(0,1fr);gap:40px}
+.hero-copy{display:grid;gap:20px;max-width:760px}
+.hero h1{font-size:clamp(3.2rem,1.6rem + 7vw,6.6rem);font-weight:800;letter-spacing:-.045em;line-height:.95;
+  background:var(--title-fill);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-skin="hacker"] .hero h1{letter-spacing:-.06em}
+:root[data-skin="hacker"] .hero h1::after{content:"_";color:var(--accent);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.tagline{font-size:clamp(1.12rem,1rem + .6vw,1.4rem);color:var(--muted);max-width:40ch;line-height:1.45}
+.tagline strong{color:var(--ink);font-weight:700}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.chip{font:600 .78rem/1 var(--f-mono);color:var(--muted);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 11px}
+:root[data-skin="hacker"] .chip{border-radius:0}
+
+/* ───────── IDE penceresi (hero demo) ───────── */
+.ide{background:var(--surface);border:1px solid var(--line);border-radius:calc(var(--radius) + 4px);box-shadow:var(--shadow);overflow:hidden;
+  font-family:var(--f-mono);font-size:.8rem;color:var(--code-ink)}
+.ide-headerbar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:8px 10px 8px 14px;
+  background:var(--surface-2);border-bottom:1px solid var(--line)}
+.ide-actions{display:flex;gap:6px}
+.ide-actions span{font:600 .72rem var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:5px 9px}
+.ide-actions .run{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.ide-title{text-align:center;font:700 .82rem var(--f-body);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ide-title small{display:block;font-weight:400;color:var(--muted);font-size:.7rem}
+.win-ctl{display:flex;gap:8px}
+.win-ctl i{width:22px;height:22px;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;
+  font:700 .62rem var(--f-body);font-style:normal;color:var(--muted)}
+.ide-body{display:grid;grid-template-columns:190px minmax(0,1fr)}
+.ide-tree{border-right:1px solid var(--line);padding:10px 0;background:var(--surface);min-width:0}
+.ide-tree div{padding:3px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.ide-tree .d1{padding-left:24px}.ide-tree .d2{padding-left:38px}
+.ide-tree .on{background:var(--accent-soft);color:var(--ink)}
+.ide-main{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto}
+.ide-tabs{display:flex;border-bottom:1px solid var(--line);background:var(--surface);overflow-x:auto}
+.ide-tab{font:600 .76rem var(--f-mono);color:var(--muted);background:transparent;border:0;border-right:1px solid var(--line);
+  padding:9px 14px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent}
+.ide-tab[aria-selected="true"]{color:var(--ink);background:var(--code-bg);border-bottom-color:var(--accent)}
+.ide-editor{background:var(--code-bg);overflow-x:auto;position:relative}
+.ide-editor pre{margin:0;padding:12px 0;line-height:1.7;counter-reset:ln;min-width:max-content}
+.ide-editor .l{display:block;padding-right:24px}
+.ide-editor .l::before{counter-increment:ln;content:counter(ln);display:inline-block;width:4.6em;padding-right:1.2em;text-align:right;color:var(--c-cm);opacity:.7}
+.ide-editor .fold::before{content:"▾ " counter(ln)}
+.k{color:var(--c-kw);font-weight:600}.t{color:var(--c-ty)}.f{color:var(--c-fn)}.s{color:var(--c-st)}.c{color:var(--c-cm);font-style:italic}.m{color:var(--c-mc)}
+.hl{background:var(--accent-soft);border-radius:3px;outline:1px dashed var(--accent);outline-offset:1px}
+.hover-pop{position:absolute;left:clamp(90px,34%,300px);top:196px;max-width:min(360px,calc(100% - 100px));background:var(--surface);color:var(--ink);
+  border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:10px 12px;font-size:.74rem;line-height:1.5;z-index:2}
+.hover-pop b{color:var(--c-ty);font-weight:600}
+.hover-pop p{font-family:var(--f-body);color:var(--muted);margin-top:4px}
+.hover-pop .uses{display:inline-block;margin-top:6px;font-weight:600;color:var(--accent)}
+.ide-panel{border-top:1px solid var(--line);background:var(--surface)}
+.ide-panel-tabs{display:flex;gap:2px;padding:6px 10px 0;font:600 .7rem var(--f-body);color:var(--muted)}
+.ide-panel-tabs span{padding:4px 9px;border-radius:6px 6px 0 0}
+.ide-panel-tabs .on{background:var(--code-bg);color:var(--ink)}
+.ide-panel pre{margin:0;padding:8px 14px 12px;background:var(--code-bg);line-height:1.6;overflow-x:auto;font-size:.74rem}
+.ok{color:var(--droid)}.info{color:var(--c-ty)}.dim{color:var(--c-cm)}
+@media (max-width:720px){
+  .ide-body{grid-template-columns:minmax(0,1fr)}.ide-tree{display:none}
+  .ide-actions span:not(.run){display:none}
+  .hover-pop{left:auto;right:12px;top:auto;bottom:12px;max-width:calc(100% - 24px)}
+}
+
+/* ───────── Kartlar / ızgaralar ───────── */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:grid;gap:10px;align-content:start}
+.card p{color:var(--muted);font-size:.95rem}
+.glyph{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);
+  font:700 1.05rem var(--f-mono)}
+:root[data-skin="hacker"] .glyph{border-radius:0}
+.badge{justify-self:start;font:700 .66rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px}
+.badge-exp{background:var(--warn-soft);color:var(--warn)}
+.badge-droid{background:var(--droid-soft);color:var(--droid)}
+
+/* Diller */
+.lang-row{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));align-items:start}
+.lang-group{display:grid;gap:10px}
+.lang-group h3{font:600 .78rem var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+/* ───────── Android ───────── */
+.android{background:var(--surface);border-block:1px solid var(--line)}
+.android .eyebrow{color:var(--droid)}
+.android .card{background:var(--ground)}
+.android .glyph{background:var(--droid-soft);color:var(--droid)}
+.pipeline{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));counter-reset:step}
+.pipeline li{counter-increment:step;border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:var(--ground);display:grid;gap:6px}
+.pipeline li::before{content:counter(step);font:700 .72rem var(--f-mono);color:var(--droid);border:1px solid var(--droid);border-radius:999px;
+  width:24px;height:24px;display:grid;place-items:center}
+.pipeline b{font:700 .95rem var(--f-display)}
+.pipeline code{font-size:.74rem;justify-self:start}
+.pipeline-cap{color:var(--muted);font-size:.9rem}
+
+/* ───────── Faw Designer ───────── */
+.designer-split{display:grid;gap:28px;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:start}
+@media (max-width:900px){.designer-split{grid-template-columns:minmax(0,1fr)}}
+.feat-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.feat-list li{display:grid;grid-template-columns:22px 1fr;gap:10px;color:var(--muted)}
+.feat-list li::before{content:"";width:8px;height:8px;margin-top:.55em;border-radius:2px;background:var(--accent);justify-self:center}
+.feat-list b{color:var(--ink)}
+.convert{display:grid;gap:10px}
+.code-card{background:var(--code-bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.code-card header{display:flex;justify-content:space-between;gap:8px;padding:8px 14px;border-bottom:1px solid var(--line);
+  font:600 .72rem var(--f-mono);color:var(--muted);background:var(--surface)}
+.code-card pre{margin:0;padding:14px;overflow-x:auto;font-size:.78rem;line-height:1.6;color:var(--code-ink)}
+.arrow{justify-self:center;font:600 .74rem var(--f-mono);color:var(--muted)}
+
+/* ───────── Tablolar ───────── */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem}
+th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+thead th{font:700 .8rem var(--f-body);color:var(--muted);background:var(--surface-2)}
+td.v,th.v{text-align:center;width:17%}
+.col-us{background:var(--accent-soft)}
+thead th.col-us{color:var(--ink)}
+.yes{color:var(--droid);font-weight:700}.no{color:var(--muted)}.part{color:var(--warn);font-weight:700}
+.table-note{color:var(--muted);font-size:.86rem;max-width:80ch}
+.cmp-filter{display:flex;flex-wrap:wrap;gap:8px}
+.cmp-filter button{font:600 .82rem var(--f-body);color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer}
+.cmp-filter button[aria-pressed="true"]{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
+kbd{display:inline-block;min-width:1.9em;text-align:center;font-size:.78rem;padding:3px 7px;border:1px solid var(--line);border-bottom-width:2px;
+  border-radius:6px;background:var(--surface-2);color:var(--ink)}
+.shortcuts td:last-child{white-space:nowrap;text-align:right}
+.shortcuts table{min-width:0}
+
+/* ───────── Kurulum ───────── */
+.install-grid{display:grid;gap:28px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start}
+@media (max-width:900px){.install-grid{grid-template-columns:minmax(0,1fr)}}
+.req-list{margin:0;padding-left:1.2em;display:grid;gap:6px;color:var(--muted)}
+.req-list li::marker{color:var(--accent)}
+.code-block{position:relative;background:var(--code-bg);border:1px solid var(--line);border-radius:var(--radius)}
+.code-block pre{margin:0;padding:16px 92px 16px 16px;overflow-x:auto;font-size:.84rem;line-height:1.7;color:var(--code-ink)}
+.code-block pre .c{font-style:normal}
+.copy-btn{position:absolute;top:10px;right:10px;font:600 .74rem var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);
+  border-radius:7px;padding:6px 10px;cursor:pointer}
+.copy-btn:hover{border-color:var(--muted)}
+.tabs{display:grid;gap:14px}
+.tablist{display:flex;flex-wrap:wrap;gap:6px}
+.tablist button{font:700 .86rem var(--f-mono);color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:9px 14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.tablist button[aria-selected="true"]{color:var(--ink);border-color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+.tabpanel{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.tabpanel p{color:var(--muted);font-size:.95rem}
+.note{font-size:.88rem;color:var(--muted);border-left:3px solid var(--warn);padding:4px 0 4px 12px}
+
+/* ───────── SSS + değişiklikler ───────── */
+.stack{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+.two-col{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:start}
+.faq-list{display:grid;gap:8px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+summary{cursor:pointer;padding:15px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:600 1.1rem/1 var(--f-mono);color:var(--accent);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 18px 16px;color:var(--muted)}
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.timeline li{position:relative;padding:0 0 22px 22px;display:grid;gap:4px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--ground);border:2px solid var(--accent)}
+.timeline time{font:600 .76rem var(--f-mono);color:var(--accent);font-variant-numeric:tabular-nums}
+.timeline span{color:var(--muted);font-size:.95rem}
+
+/* ───────── Felsefe / erişilebilirlik / katkı ───────── */
+.values{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.values .card{padding:28px}
+.cta-band{background:var(--ink);color:var(--ground);border-radius:calc(var(--radius) + 8px);padding:clamp(28px,5vw,56px);display:grid;gap:18px;justify-items:start}
+.cta-band h2{color:var(--ground)}
+.cta-band p{color:color-mix(in srgb,var(--ground) 72%,var(--ink));max-width:56ch}
+.cta-band .btn-primary{background:var(--ground);color:var(--ink)}
+.cta-band .btn-secondary{background:transparent;color:var(--ground);border-color:color-mix(in srgb,var(--ground) 40%,var(--ink))}
+.cta-links{display:flex;flex-wrap:wrap;gap:18px;font-size:.92rem}
+.cta-links a{color:var(--ground)}
+.donate-grid .card{grid-template-rows:auto auto 1fr auto}
+.donate-grid .btn{justify-self:start}
+
+/* ───────── Alt bilgi ───────── */
+.site-footer{border-top:1px solid var(--line);padding-block:48px 32px;margin-top:40px}
+.footer-grid{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr))}
+.footer-col{display:grid;gap:8px;align-content:start;font-size:.92rem}
+.footer-col a{color:var(--muted);text-decoration:none}
+.footer-col a:hover{color:var(--ink)}
+.footer-heading{font:700 .72rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.footer-bottom{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+/* ───────── Yan içindekiler ───────── */
+.side-toc{position:fixed;left:18px;top:50%;transform:translateY(-50%);display:none;flex-direction:column;gap:2px;z-index:40;
+  font:600 .72rem var(--f-mono)}
+.side-toc a{color:var(--muted);text-decoration:none;padding:4px 8px 4px 14px;border-left:2px solid var(--line)}
+.side-toc a:hover{color:var(--ink)}
+.side-toc a.active{color:var(--accent);border-left-color:var(--accent)}
+@media (min-width:1400px){.side-toc{display:flex}}
+</style>
+</head>
+<body>
+
+<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+  <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
+  <button type="button" data-skin="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
+  <button type="button" data-skin="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
+  <button type="button" data-skin="gradient" aria-pressed="false">Gradient</button>
+  <button type="button" data-skin="hacker" aria-pressed="false">Hacker</button>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5h10v3H6.5v2.5H12v3H6.5v4.5H3z" style="fill:var(--accent-ink)"/></svg></span>
+      Faw Builder
+    </a>
+    <div class="header-tools">
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Ana menü">
+      <a href="#ozellikler" data-i18n="nav.features">Özellikler</a>
+      <a href="#android">Android</a>
+      <a href="#designer">Designer</a>
+      <a href="#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
+      <a href="#kurulum" data-i18n="nav.install">Kurulum</a>
+      <a href="#sss" data-i18n="nav.faq">SSS</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <a href="#kurulum" class="btn btn-primary btn-sm" data-i18n="hero.download">İndir</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="side-toc" aria-label="Bölümler">
+  <a href="#ozellikler" data-i18n="nav.features">Özellikler</a>
+  <a href="#diller" data-i18n="nav.languages">Diller</a>
+  <a href="#android">Android</a>
+  <a href="#designer">Designer</a>
+  <a href="#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
+  <a href="#kisayollar" data-i18n="nav.shortcuts">Kısayollar</a>
+  <a href="#kurulum" data-i18n="nav.install">Kurulum</a>
+  <a href="#sss" data-i18n="nav.faq">SSS</a>
+  <a href="#felsefe" data-i18n="nav.philosophy">Felsefe</a>
+  <a href="#destek" data-i18n="nav.support">Destek</a>
+</nav>
+
+<main id="top">
+
+  <!-- ───────── Hero ───────── -->
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <span class="eyebrow" data-i18n="hero.eyebrow">Açık kaynak · Linux <span lang="en">native</span></span>
+      <h1 id="hero-title">Faw Builder</h1>
+      <p class="tagline" data-i18n="hero.tagline">Linux için native <strong>C/C++ ve Android</strong> geliştirme ortamı. Electron değil, GTK4 ve libadwaita.</p>
+      <div class="cta-row">
+        <a href="#kurulum" class="btn btn-primary" data-i18n="hero.download">İndir</a>
+        <!-- TODO: GITHUB_URL -->
+        <a href="#" class="btn btn-secondary" data-i18n="hero.source">Kaynak kodu</a>
+      </div>
+      <ul class="chips" aria-label="Teknolojiler">
+        <li class="chip">GTK4</li><li class="chip">libadwaita</li><li class="chip">GtkSourceView 5</li>
+        <li class="chip">C11</li><li class="chip">Meson</li><li class="chip">clangd</li>
+      </ul>
+    </div>
+
+    <div class="ide" role="figure" aria-label="Faw Builder editör penceresinin canlandırması" data-i18n-attr="aria-label:hero.ideLabel">
+      <div class="ide-headerbar">
+        <div class="ide-actions" aria-hidden="true"><span class="run" data-i18n="ide.build">▶ Derle</span><span data-i18n="ide.debug">Hata ayıkla</span></div>
+        <div class="ide-title"><span id="ide-proj">hello-gtk</span><small id="ide-path">~/Projeler/hello-gtk</small></div>
+        <div class="win-ctl" aria-hidden="true"><i>–</i><i>□</i><i>✕</i></div>
+      </div>
+      <div class="ide-body">
+        <div class="ide-tree" aria-hidden="true" id="ide-tree"></div>
+        <div class="ide-main">
+          <div class="ide-tabs" role="tablist" aria-label="Açık dosyalar">
+            <button class="ide-tab" role="tab" aria-selected="true" data-demo="c" id="demo-tab-c" aria-controls="ide-editor">main.c</button>
+            <button class="ide-tab" role="tab" aria-selected="false" data-demo="kt" id="demo-tab-kt" aria-controls="ide-editor" tabindex="-1">MainActivity.kt</button>
+          </div>
+          <div class="ide-editor" id="ide-editor" role="tabpanel" aria-labelledby="demo-tab-c"></div>
+          <div class="ide-panel">
+            <div class="ide-panel-tabs" id="ide-panel-tabs" aria-hidden="true"></div>
+            <pre id="ide-panel-out"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── Özellikler ───────── -->
+  <section id="ozellikler" class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="nav.features">Özellikler</span>
+      <h2 data-i18n="features.title">Yazmak için gereken her şey</h2>
+      <p class="section-intro" data-i18n="features.intro">C ve GTK projeleri için tasarlandı. clangd ile anlayan, GtkSourceView ile hızlı açılan bir editör.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <span class="glyph" aria-hidden="true">F12</span>
+        <h3 data-i18n="features.lsp.title">LSP tabanlı akıllı düzenleme</h3>
+        <p data-i18n="features.lsp.body">Tanıma git, yeniden adlandırma (F2), dokümantasyon ve "N kullanım" gösteren hover penceresi, call hierarchy, sembol tarayıcı.</p>
+      </article>
+      <article class="card">
+        <span class="glyph" aria-hidden="true">▾</span>
+        <h3 data-i18n="features.folding.title">Kod katlama</h3>
+        <p data-i18n="features.folding.body">C/C++'ta süslü parantez, Python, Kotlin, Vala ve YAML'da girinti tabanlı katlama.</p>
+      </article>
+      <article class="card">
+        <span class="glyph" aria-hidden="true">.*</span>
+        <h3 data-i18n="features.search.title">Proje geneli arama</h3>
+        <p data-i18n="features.search.body">Regex destekli arama ve geri alınabilir "tümünü değiştir". Komut paleti kayıtlı her komutu listeler.</p>
+      </article>
+      <article class="card">
+        <span class="glyph" aria-hidden="true">gdb</span>
+        <h3 data-i18n="features.debug.title">Git, GDB ve LLDB</h3>
+        <p data-i18n="features.debug.body">Git durum ve diff paneli, patch inceleme aracı. GDB (MI) ve LLDB için ayrı hata ayıklama panelleri, VTE terminal.</p>
+      </article>
+      <article class="card">
+        <span class="glyph" aria-hidden="true">:w</span>
+        <h3 data-i18n="features.editor.title">Split view, Vim modu, snippet'ler</h3>
+        <p data-i18n="features.editor.body">Çoklu imleç, Vim modu, snippet GUI editörü, Custom Tools menüsü, yazdırma/PDF, oturum yönetimi.</p>
+      </article>
+      <article class="card">
+        <span class="glyph" aria-hidden="true">⚙</span>
+        <h3 data-i18n="features.build.title">Meson, Make, CMake, Flatpak</h3>
+        <p data-i18n="features.build.body">Çoklu çalıştırma hedefi, kaydedince derleme, tıklanabilir Sorunlar paneli, Sysprof profil entegrasyonu, GModule tabanlı eklenti API'si.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───────── Diller ───────── -->
+  <section id="diller" class="wrap section" style="padding-top:0">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="nav.languages">Diller</span>
+      <h2 data-i18n="languages.title">Desteklenen diller ve araçlar</h2>
+    </div>
+    <div class="lang-row">
+      <div class="lang-group">
+        <h3 data-i18n="languages.lsp">Tam LSP desteği</h3>
+        <ul class="chips"><li class="chip">C</li><li class="chip">C++</li><li class="chip">Kotlin</li></ul>
+      </div>
+      <div class="lang-group">
+        <h3 data-i18n="languages.edit">Vurgulama ve katlama</h3>
+        <ul class="chips"><li class="chip">Python</li><li class="chip">Vala</li><li class="chip">YAML</li><li class="chip">XML</li></ul>
+      </div>
+      <div class="lang-group">
+        <h3 data-i18n="languages.ui">Arayüz dosyaları</h3>
+        <ul class="chips"><li class="chip">.ui</li><li class="chip">.blp</li><li class="chip">layout/*.xml</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── Android ───────── -->
+  <section id="android" class="android">
+    <div class="wrap section">
+      <div class="section-head">
+        <span class="eyebrow">Android</span>
+        <h2 data-i18n="android.title">Ayrıca Android Studio kurmadan Kotlin</h2>
+        <p class="section-intro" data-i18n="android.intro">Şablondan telefona kadar tüm zincir IDE'nin içinde. <code>adb</code>, <code>java</code> ya da SDK yoksa ilgili panel pasif kalır ve ne eksik olduğunu söyler.</p>
+      </div>
+      <ol class="pipeline" aria-label="Android iş akışı">
+        <li><b data-i18n="android.p1">Şablon</b><span class="pipeline-cap" data-i18n="android.p1c">XML View ya da Compose</span></li>
+        <li><b data-i18n="android.p2">SDK kontrolü</b><code>sdkmanager</code></li>
+        <li><b data-i18n="android.p3">Derle</b><code>assembleDebug</code></li>
+        <li><b data-i18n="android.p4">Yükle</b><code>adb install -r</code></li>
+        <li><b data-i18n="android.p5">Başlat</b><code>am start</code></li>
+        <li><b>Logcat</b><span class="pipeline-cap" data-i18n="android.p6c">paket ve seviye filtresi</span></li>
+      </ol>
+      <div class="grid">
+        <article class="card">
+          <span class="glyph" aria-hidden="true">⇄</span>
+          <h3 data-i18n="android.c1.title">Gradle, SDK, cihazlar</h3>
+          <p data-i18n="android.c1.body">Gradle Wrapper, SDK Yönetimi penceresi, USB ve kablosuz ADB, AVD ve emülatör, Maven Central kütüphane arama.</p>
+        </article>
+        <article class="card">
+          <span class="glyph" aria-hidden="true">jdb</span>
+          <h3 data-i18n="android.c2.title">Hata ayıklama ve paketleme</h3>
+          <p data-i18n="android.c2.body">Oluk kesme noktalarıyla JDWP debugger, Gradle sync hatalarının Sorunlar paneline düşmesi, keystore sihirbazıyla release imzalama, .aab ve APK analizi.</p>
+        </article>
+        <article class="card">
+          <span class="glyph" aria-hidden="true">▣</span>
+          <h3 data-i18n="android.c3.title">İnceleme araçları</h3>
+          <p data-i18n="android.c3.body">CPU/bellek profiler, bounds kaplamalı Layout Inspector, Database Inspector, Lint, Resource Manager, Vector Asset Studio, scrcpy ile ekran yansıtma.</p>
+        </article>
+        <article class="card">
+          <span class="badge badge-exp" data-i18n="badge.exp">Deneysel</span>
+          <h3>Network Inspector</h3>
+          <p data-i18n="android.c4.body">mitmdump üzerinden HTTP trafiği izleme. Otomatik <code>adb reverse</code> ve cihaz proxy'si. Henüz gerçek mitmproxy ile uçtan uca denenmedi.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── Faw Designer ───────── -->
+  <section id="designer" class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow">Faw Designer</span>
+      <h2 data-i18n="designer.title">Arayüzü sürükle bırak, .ui ve .blp olarak kaydet</h2>
+      <p class="section-intro" data-i18n="designer.intro">Faw Builder'dan <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd> ile açılan ayrı bir GTK4 ve Android arayüz tasarımcısı.</p>
+    </div>
+    <div class="designer-split">
+      <ul class="feat-list">
+        <li><span data-i18n="designer.f1"><b>GIR'den üretilen palet.</b> Gtk4 ve Adwaita'dan 151 sınıf, arama kutusuyla. Elle seçilmiş liste yok.</span></li>
+        <li><span data-i18n="designer.f2"><b>Yer tutuculu canvas.</b> GtkBox ve GtkGrid'e bırak, GtkFixed'te serbest konumla, kenarlara yapıştır.</span></li>
+        <li><span data-i18n="designer.f3"><b>Denetçi.</b> Özellikler, yerleşim, sinyaller, erişilebilirlik etiketleri, çeviri işareti ve sıfırlama.</span></li>
+        <li><span data-i18n="designer.f4"><b>Modern libadwaita.</b> Template widget'lar, GMenu editörü, Adw.Breakpoint, hedef GTK sürümüne göre deprecation uyarısı.</span></li>
+        <li><span data-i18n="designer.f5"><b>Canlı önizleme.</b> Tasarım gerçek GtkBuilder ile ayrı bir pencerede açılır. Undo/redo 100 adım.</span></li>
+        <li><span data-i18n="designer.f6"><b>Android tarafı.</b> Layout XML ağaç ve attribute editörü, Compose tasarımcı (tek yönlü kod üretimi).</span></li>
+      </ul>
+      <div class="convert">
+        <div class="code-card">
+          <header><span>main-window.ui</span><span data-i18n="designer.canon">kanonik</span></header>
+<pre><span class="t">&lt;object</span> <span class="f">class</span>=<span class="s">"GtkBox"</span> <span class="f">id</span>=<span class="s">"box1"</span><span class="t">&gt;</span>
+  <span class="t">&lt;property</span> <span class="f">name</span>=<span class="s">"orientation"</span><span class="t">&gt;</span>vertical<span class="t">&lt;/property&gt;</span>
+  <span class="t">&lt;child&gt;</span>
+    <span class="t">&lt;object</span> <span class="f">class</span>=<span class="s">"GtkButton"</span> <span class="f">id</span>=<span class="s">"button1"</span><span class="t">&gt;</span>
+      <span class="t">&lt;property</span> <span class="f">name</span>=<span class="s">"label"</span> <span class="f">translatable</span>=<span class="s">"yes"</span><span class="t">&gt;</span>Kaydet<span class="t">&lt;/property&gt;</span>
+      <span class="t">&lt;signal</span> <span class="f">name</span>=<span class="s">"clicked"</span> <span class="f">handler</span>=<span class="s">"on_save"</span><span class="t">/&gt;</span>
+    <span class="t">&lt;/object&gt;</span>
+  <span class="t">&lt;/child&gt;</span>
+<span class="t">&lt;/object&gt;</span></pre>
+        </div>
+        <span class="arrow" aria-hidden="true">↓ tools/ui-to-blueprint.py</span>
+        <div class="code-card">
+          <header><span>main-window.blp</span><span data-i18n="designer.auto">her kayıtta üretilir</span></header>
+<pre><span class="t">Gtk.Box</span> box1 {
+  <span class="f">orientation</span>: vertical;
+
+  <span class="t">Gtk.Button</span> button1 {
+    <span class="f">label</span>: <span class="k">_</span>(<span class="s">"Kaydet"</span>);
+    <span class="f">clicked</span> =&gt; <span class="m">$on_save</span>();
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only" data-i18n="designer.cmpCap">Faw Designer, Cambalache ve Glade karşılaştırması</caption>
+        <thead><tr><th data-i18n="designer.cmpFeature">Özellik</th><th class="v col-us">Faw Designer</th><th class="v">Cambalache</th><th class="v">Glade</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="designer.r1">GIR'den otomatik palet</td><td class="v col-us yes">✓</td><td class="v yes">✓</td><td class="v part">◐</td></tr>
+          <tr><td data-i18n="designer.r2">Placeholder ile container doldurma</td><td class="v col-us yes">✓</td><td class="v no">—</td><td class="v yes">✓</td></tr>
+          <tr><td data-i18n="designer.r3">Blueprint (.blp) çıktısı</td><td class="v col-us yes">✓</td><td class="v no">—</td><td class="v no">—</td></tr>
+          <tr><td data-i18n="designer.r4">Adw.Breakpoint düzenleme</td><td class="v col-us yes">✓</td><td class="v yes">✓</td><td class="v no">—</td></tr>
+          <tr><td data-i18n="designer.r5">Android layout XML</td><td class="v col-us yes">✓</td><td class="v no">—</td><td class="v no">—</td></tr>
+          <tr><td data-i18n="designer.r6">Sandbox'lı render süreci</td><td class="v col-us no">—</td><td class="v yes">✓</td><td class="v no">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ───────── Karşılaştırma ───────── -->
+  <section id="karsilastirma" class="wrap section" style="padding-top:0">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="compare.eyebrow">Neden Faw Builder</span>
+      <h2 data-i18n="compare.title">Alternatiflere karşı</h2>
+    </div>
+    <div class="cmp-filter" role="group" aria-label="Karşılaştır" data-i18n-attr="aria-label:compare.filterLabel">
+      <button type="button" aria-pressed="true" data-cmp="all" data-i18n="compare.all">Hepsi</button>
+      <button type="button" aria-pressed="false" data-cmp="vscode">VS Code + clangd</button>
+      <button type="button" aria-pressed="false" data-cmp="as">Android Studio</button>
+    </div>
+    <div class="table-wrap">
+      <table id="cmp-table">
+        <thead><tr><th></th><th class="v col-us">Faw Builder</th><th class="v" data-col="vscode">VS Code + clangd</th><th class="v" data-col="as">Android Studio</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="compare.r1">Native (Electron değil)</td><td class="v col-us yes">✓</td><td class="v no" data-col="vscode">✗</td><td class="v no" data-col="as">✗</td></tr>
+          <tr><td data-i18n="compare.r2">C/C++ LSP (tanıma git, rename, hover)</td><td class="v col-us yes">✓</td><td class="v yes" data-col="vscode">✓</td><td class="v part" data-col="as">◐</td></tr>
+          <tr><td data-i18n="compare.r3">Android derleme, debug ve profiler</td><td class="v col-us yes">✓</td><td class="v no" data-col="vscode">✗</td><td class="v yes" data-col="as">✓</td></tr>
+          <tr><td data-i18n="compare.r4">GTK4 görsel arayüz tasarımcısı</td><td class="v col-us yes">✓</td><td class="v no" data-col="vscode">✗</td><td class="v no" data-col="as">✗</td></tr>
+          <tr><td data-i18n="compare.r5">Tek uygulamada C/C++ ve Android</td><td class="v col-us yes">✓</td><td class="v no" data-col="vscode">✗</td><td class="v part" data-col="as">◐</td></tr>
+          <tr><td data-i18n="compare.r6">Play Console entegrasyonu</td><td class="v col-us no">✗</td><td class="v no" data-col="vscode">✗</td><td class="v yes" data-col="as">✓</td></tr>
+          <tr><td data-i18n="compare.r7">Açık kaynak</td><td class="v col-us yes">✓</td><td class="v part" data-col="vscode">◐</td><td class="v no" data-col="as">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note" data-i18n="compare.note">◐ kısmi ya da eklentiyle. Android Studio NDK ile C/C++ destekler ama odağı Android'dir. VS Code'un çekirdeği MIT lisanslıdır, dağıtılan derleme kapalı kaynak bileşenler içerir.</p>
+  </section>
+
+  <!-- ───────── Kısayollar ───────── -->
+  <section id="kisayollar" class="wrap section" style="padding-top:0">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="nav.shortcuts">Kısayollar</span>
+      <h2 data-i18n="shortcuts.title">Ellerin klavyede kalsın</h2>
+    </div>
+    <div class="table-wrap shortcuts">
+      <table>
+        <caption class="sr-only" data-i18n="nav.shortcuts">Kısayollar</caption>
+        <tbody>
+          <tr><td data-i18n="sc.save">Kaydet</td><td><kbd>Ctrl</kbd> <kbd>S</kbd></td></tr>
+          <tr><td data-i18n="sc.palette">Komut paleti</td><td><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>P</kbd></td></tr>
+          <tr><td data-i18n="sc.quick">Hızlı aç</td><td><kbd>Ctrl</kbd> <kbd>P</kbd></td></tr>
+          <tr><td data-i18n="sc.search">Proje genelinde ara</td><td><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>F</kbd></td></tr>
+          <tr><td data-i18n="sc.goto">Tanıma git</td><td><kbd>F12</kbd></td></tr>
+          <tr><td data-i18n="sc.rename">Sembolü yeniden adlandır</td><td><kbd>F2</kbd></td></tr>
+          <tr><td data-i18n="sc.format">Belgeyi biçimlendir</td><td><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>F</kbd></td></tr>
+          <tr><td data-i18n="sc.doc">Dokümantasyonu göster</td><td><kbd>Ctrl</kbd> <kbd>Q</kbd></td></tr>
+          <tr><td data-i18n="sc.next">Sonraki eşleşmeyi seç</td><td><kbd>Ctrl</kbd> <kbd>D</kbd></td></tr>
+          <tr><td data-i18n="sc.designer">Faw Designer'ı aç</td><td><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>U</kbd></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ───────── Kurulum ───────── -->
+  <section id="kurulum" class="wrap section" style="padding-top:0">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="nav.install">Kurulum</span>
+      <h2 data-i18n="install.title">Kaynaktan derle ya da paketle</h2>
+    </div>
+    <div class="install-grid">
+      <div class="stack">
+        <h3 data-i18n="install.req">Sistem gereksinimleri</h3>
+        <ul class="req-list">
+          <li>Linux</li>
+          <li>GTK4 ≥ 4.14, libadwaita ≥ 1.5, libpanel ≥ 1.6</li>
+          <li data-i18n="install.meson">Meson ≥ 1.3.0, Ninja ve blueprint-compiler</li>
+          <li data-i18n="install.cc">C11 uyumlu bir C derleyicisi</li>
+          <li data-i18n="install.opt">İsteğe bağlı: clangd, VTE, gdb, lldb, adb, java, jdb</li>
+        </ul>
+        <p class="section-intro" style="font-size:.95rem" data-i18n="install.check">Makinende neyin derlenebileceğini görmek için önce <code>packaging/check-env.sh</code> çalıştır.</p>
+        <h3 data-i18n="install.build">Kaynaktan derleme</h3>
+        <div class="code-block">
+<pre id="cmd-src">meson setup build
+meson compile -C build
+meson install -C build</pre>
+          <button type="button" class="copy-btn" data-copy="cmd-src" data-i18n="install.copy">Kopyala</button>
+        </div>
+      </div>
+      <div class="tabs stack">
+        <h3 data-i18n="install.pkg">Paket formatları</h3>
+        <div class="tablist" role="tablist" aria-label="Paket formatları">
+          <button role="tab" id="t-deb" aria-selected="true" aria-controls="p-deb">.deb</button>
+          <button role="tab" id="t-app" aria-selected="false" aria-controls="p-app" tabindex="-1">AppImage</button>
+          <button role="tab" id="t-flat" aria-selected="false" aria-controls="p-flat" tabindex="-1">Flatpak</button>
+          <button role="tab" id="t-win" aria-selected="false" aria-controls="p-win" tabindex="-1">Windows</button>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="p-deb" aria-labelledby="t-deb">
+          <p data-i18n="install.deb">Debian ve Ubuntu için. meson, ninja, dpkg-deb ve GTK4/libadwaita/libpanel geliştirme paketleri gerekir. Zaman damgaları yeniden üretilebilirlik için sabitlenir.</p>
+          <div class="code-block"><pre id="cmd-deb">packaging/deb/build-deb.sh
+<span class="c"># → packaging/deb/out/faw-builder_&lt;sürüm&gt;_&lt;arch&gt;.deb</span></pre>
+            <button type="button" class="copy-btn" data-copy="cmd-deb" data-i18n="install.copy">Kopyala</button></div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="p-app" aria-labelledby="t-app" hidden>
+          <p data-i18n="install.app">Dağıtımdan bağımsız tek dosya. <code>linuxdeploy</code> ve <code>appimagetool</code> PATH'te olmalı. Betik bunları kendisi indirmez. <code>linuxdeploy-plugin-gtk</code> önerilir.</p>
+          <div class="code-block"><pre id="cmd-app">packaging/appimage/build-appimage.sh
+<span class="c"># → FawBuilder-&lt;sürüm&gt;-x86_64.AppImage</span></pre>
+            <button type="button" class="copy-btn" data-copy="cmd-app" data-i18n="install.copy">Kopyala</button></div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="p-flat" aria-labelledby="t-flat" hidden>
+          <p data-i18n="install.flat">GNOME 46 runtime ve SDK gerekir. Manifest sırasıyla blueprint-compiler, libpanel ve faw-builder'ı derler.</p>
+          <div class="code-block"><pre id="cmd-flat">flatpak install flathub org.gnome.Platform//46 org.gnome.Sdk//46
+packaging/flatpak/build-flatpak.sh</pre>
+            <button type="button" class="copy-btn" data-copy="cmd-flat" data-i18n="install.copy">Kopyala</button></div>
+        </div>
+        <div class="tabpanel" role="tabpanel" id="p-win" aria-labelledby="t-win" hidden>
+          <span class="badge badge-exp" data-i18n="badge.exp">Deneysel</span>
+          <p data-i18n="install.win">MinGW-w64 ile çapraz derleme. 417 hedefin tamamı derleniyor ve .exe Wine altında çalışıyor. GTK DLL'lerini yanına elle koymak gerekir.</p>
+          <div class="code-block"><pre id="cmd-win">packaging/windows/fetch-mingw-gtk4-stack.py
+packaging/windows/build-mingw.sh</pre>
+            <button type="button" class="copy-btn" data-copy="cmd-win" data-i18n="install.copy">Kopyala</button></div>
+        </div>
+        <p class="note" data-i18n="install.note">Bunlar kaynaktan paket üreten betiklerdir, hazır ikili dosya değildir. Hiçbiri örtük olarak bir şey indirmez.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── SSS + değişiklikler ───────── -->
+  <section id="sss" class="wrap section" style="padding-top:0">
+    <div class="two-col">
+      <div class="stack">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="nav.faq">SSS</span>
+          <h2 data-i18n="faq.title">Sık sorulan sorular</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary data-i18n="faq.q1">Neden Electron yerine GTK4?</summary>
+            <p data-i18n="faq.a1">Native GTK4 ve libadwaita daha az bellek ve CPU kullanır, GNOME masaüstüyle görsel ve işlevsel olarak uyumlu çalışır. Yanında ayrı bir Chromium taşımaz.</p></details>
+          <details><summary data-i18n="faq.q2">Windows veya macOS desteği var mı?</summary>
+            <p data-i18n="faq.a2">Hedef platform Linux. macOS desteği yok. Windows için deneysel bir MinGW-w64 çapraz derleme betiği var. Çıkan .exe GTK DLL'leri elle eklenmeden çalışmaz.</p></details>
+          <details><summary data-i18n="faq.q3">Android için ayrıca Android Studio kurmam gerekir mi?</summary>
+            <p data-i18n="faq.a3">Hayır. Gradle, SDK/AVD yönetimi, ADB, JDWP debugger ve profiler IDE'nin içinde. SDK yoksa "SDK Kur" düğmesi cmdline-tools'u indirip temel paketleri kurar.</p></details>
+          <details><summary data-i18n="faq.q4">Hangi lisansla dağıtılıyor?</summary>
+            <p data-i18n="faq.a4">Lisans bilgisi yakında burada olacak.</p><!-- TODO: LICENSE --></details>
+          <details><summary data-i18n="faq.q5">Nasıl katkı sağlayabilirim?</summary>
+            <p data-i18n="faq.a5">GitHub'da issue açabilir ya da pull request gönderebilirsin. Aşağıdaki bağlantılar oraya gider.</p></details>
+        </div>
+      </div>
+      <div id="changelog" class="stack">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="changelog.eyebrow">Değişiklikler</span>
+          <h2 data-i18n="changelog.title">Son eklenenler</h2>
+        </div>
+        <ol class="timeline" reversed>
+          <li><time datetime="2026-09-20">2026-09-20</time><span data-i18n="log.5">SDK Yönetimi penceresi: tüm sdkmanager paketlerini kur ve kaldır. Windows çapraz derlemesi 417 hedefle doğrulandı.</span></li>
+          <li><time datetime="2026-09-19">2026-09-19</time><span data-i18n="log.4">Deneysel Network Inspector paneli (mitmdump).</span></li>
+          <li><time datetime="2026-09-17">2026-09-17</time><span data-i18n="log.3">GDB'nin yanına ayrı LLDB paneli.</span></li>
+          <li><time datetime="2026-09-12">2026-09-12</time><span data-i18n="log.2">Faw Designer'a Android XML ve Compose tasarımcıları. Maven Central kütüphane arama.</span></li>
+          <li><time datetime="2026-09-10">2026-09-10</time><span data-i18n="log.1">Faw Designer: template widget'lar, çeviri işareti, Adw.Breakpoint ve hedef sürüm uyarıları.</span></li>
+          <li><time datetime="2026-09-09">2026-09-09</time><span data-i18n="log.0">Kod katlama, hover bilgi penceresi, native dosya G/Ç ve proje geneli regex arama.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── Felsefe + erişilebilirlik ───────── -->
+  <section id="felsefe" class="wrap section" style="padding-top:0">
+    <div class="values">
+      <article class="card">
+        <span class="eyebrow" data-i18n="nav.philosophy">Felsefe</span>
+        <h3 style="font-size:1.5rem" data-i18n="philo.title">Neden açık kaynak?</h3>
+        <p data-i18n="philo.body">Geliştirici araçları şeffaf olmalı. Nasıl çalıştığını görebilmeli, ihtiyacına göre değiştirebilmeli, güvenip güvenmeyeceğine kendin karar verebilmelisin. Faw Builder'ın tüm kaynak kodu açık.</p>
+      </article>
+      <article class="card" id="erisilebilirlik">
+        <span class="eyebrow" data-i18n="a11y.eyebrow">Erişilebilirlik</span>
+        <h3 style="font-size:1.5rem" data-i18n="a11y.title">Toolkit seviyesinde ekran okuyucu</h3>
+        <p data-i18n="a11y.body">Standart GTK4 bileşenleri AT-SPI desteğini miras alır. Faw Designer'ın erişilebilirlik bölümü kendi arayüzlerine etiket ve açıklama eklemeni sağlar. Katlama oluğu gibi özel çizilen bileşenler henüz ayrıca denetlenmedi.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───────── Katkı ───────── -->
+  <section class="wrap section" style="padding-top:0">
+    <div class="cta-band">
+      <h2 data-i18n="gh.title">Projeye katkı sağla</h2>
+      <p data-i18n="gh.body">Hata bildir, özellik öner ya da doğrudan kod gönder. Her yeni komut komut paletinde, bir menüde ya da tercihlerde görünür olmadan tamamlanmış sayılmaz.</p>
+      <div class="cta-row">
+        <!-- TODO: GITHUB_URL -->
+        <a href="#" class="btn btn-primary" data-i18n="gh.star">GitHub'da yıldızla</a>
+        <!-- TODO: GITHUB_ISSUES_URL -->
+        <a href="#" class="btn btn-secondary" data-i18n="gh.issue">Sorun bildir</a>
+      </div>
+      <div class="cta-links">
+        <!-- TODO: GITHUB_DISCUSSIONS_URL --><a href="#">GitHub Discussions</a>
+        <!-- TODO: MATRIX_URL --><a href="#">Matrix</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── Destek ───────── -->
+  <section id="destek" class="wrap section" style="padding-top:0">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="nav.support">Destek</span>
+      <h2 data-i18n="donate.title">Projeyi destekle</h2>
+      <p class="section-intro" data-i18n="donate.intro">Faw Builder gönüllü emekle geliştiriliyor. Bağışlar geliştirmeye ayrılan zamanı sürdürülebilir kılar.</p>
+    </div>
+    <div class="grid donate-grid">
+      <article class="card"><span class="glyph" aria-hidden="true">♥</span><h3>GitHub Sponsors</h3>
+        <p data-i18n="donate.gh">Aylık ya da tek seferlik destek.</p>
+        <!-- TODO: GITHUB_SPONSORS_URL --><a href="#" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
+      <article class="card"><span class="glyph" aria-hidden="true">◈</span><h3>Open Collective</h3>
+        <p data-i18n="donate.oc">Şeffaf bütçe, kurumsal bağışa uygun.</p>
+        <!-- TODO: OPENCOLLECTIVE_URL --><a href="#" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
+      <article class="card"><span class="glyph" aria-hidden="true">☕</span><h3>Ko-fi</h3>
+        <p data-i18n="donate.kofi">Tek seferlik küçük bir destek.</p>
+        <!-- TODO: KOFI_URL --><a href="#" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.product">Ürün</span>
+      <a href="#ozellikler" data-i18n="nav.features">Özellikler</a><a href="#android">Android</a><a href="#designer">Faw Designer</a><a href="#kisayollar" data-i18n="nav.shortcuts">Kısayollar</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.res">Kaynaklar</span>
+      <a href="#kurulum" data-i18n="nav.install">Kurulum</a><a href="#sss" data-i18n="nav.faq">SSS</a><a href="#changelog" data-i18n="changelog.eyebrow">Değişiklikler</a>
+      <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
+      <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
+      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
+      <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>
+    <span data-i18n="footer.made">GTK4 ile, Linux için yapıldı.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+
+  /* ── Editör demosu ── */
+  var demos = {
+    c: {
+      proj:"hello-gtk", path:"~/Projeler/hello-gtk",
+      tree:[["d0","▾ hello-gtk"],["d1","▾ src"],["d2 on","main.c"],["d2","meson.build"],["d1","meson.build"],["d1","README.md"]],
+      code:[
+        '<span class="m">#include</span> <span class="s">&lt;adwaita.h&gt;</span>',
+        '',
+        '<span class="k">static void</span>',
+        '<span class="f">on_activate</span> (<span class="t">AdwApplication</span> *app)',
+        '{',
+        '  <span class="t">GtkWidget</span> *win = <span class="f">adw_application_window_new</span> (<span class="m">GTK_APPLICATION</span> (app));',
+        '  <span class="f">gtk_window_set_title</span> (<span class="m">GTK_WINDOW</span> (win), <span class="s">"Merhaba"</span>);',
+        '  <span class="f hl">gtk_window_present</span> (<span class="m">GTK_WINDOW</span> (win));',
+        '}',
+        '',
+        '<span class="k">int</span>',
+        '<span class="f">main</span> (<span class="k">int</span> argc, <span class="k">char</span> *argv[])',
+        '{',
+        '  <span class="m">g_autoptr</span> (<span class="t">AdwApplication</span>) app =',
+        '    <span class="f">adw_application_new</span> (<span class="s">"org.example.Hello"</span>, <span class="m">G_APPLICATION_DEFAULT_FLAGS</span>);',
+        '  <span class="f">g_signal_connect</span> (app, <span class="s">"activate"</span>, <span class="m">G_CALLBACK</span> (on_activate), <span class="m">NULL</span>);',
+        '  <span class="k">return</span> <span class="f">g_application_run</span> (<span class="m">G_APPLICATION</span> (app), argc, argv);',
+        '}'
+      ],
+      folds:[4,12],
+      pop:'<b>void</b> gtk_window_present (<b>GtkWindow</b> *window)<p data-i18n="ide.popDoc">Pencereyi kullanıcıya gösterir ve öne getirir.</p><span class="uses" data-i18n="ide.uses">3 kullanım</span>',
+      panelTabs:["Derleme","Sorunlar","Terminal"],
+      out:'<span class="dim">$ meson compile -C build</span>\n[1/3] Compiling C object src/hello.p/main.c.o\n[2/3] Linking target src/hello\n<span class="ok">✓ Derleme başarılı · 0 hata · 0 uyarı</span>'
+    },
+    kt: {
+      proj:"MyApp", path:"~/Projeler/MyApp · Pixel 7 (USB)",
+      tree:[["d0","▾ MyApp"],["d1","▾ app/src/main"],["d2 on","MainActivity.kt"],["d2","AndroidManifest.xml"],["d1","build.gradle.kts"],["d1","gradle/libs.versions.toml"]],
+      code:[
+        '<span class="k">package</span> org.example.myapp',
+        '',
+        '<span class="k">import</span> android.os.<span class="t">Bundle</span>',
+        '<span class="k">import</span> androidx.activity.<span class="t">ComponentActivity</span>',
+        '<span class="k">import</span> androidx.activity.compose.<span class="f">setContent</span>',
+        '<span class="k">import</span> androidx.compose.material3.<span class="f">Text</span>',
+        '',
+        '<span class="k">class</span> <span class="t">MainActivity</span> : <span class="t">ComponentActivity</span>() {',
+        '    <span class="k">override fun</span> <span class="f">onCreate</span>(savedInstanceState: <span class="t">Bundle</span>?) {',
+        '        <span class="k">super</span>.<span class="f">onCreate</span>(savedInstanceState)',
+        '        <span class="f">setContent</span> {',
+        '            <span class="f">Text</span>(<span class="s">"Merhaba, Faw!"</span>)',
+        '        }',
+        '    }',
+        '}'
+      ],
+      folds:[8,9,11],
+      pop:null,
+      panelTabs:["Logcat","Cihazlar","Gradle"],
+      out:'<span class="dim">$ ./gradlew assembleDebug · adb install -r · am start</span>\n<span class="info">I</span>/ActivityManager: Start proc org.example.myapp\n<span class="info">D</span>/MainActivity: onCreate()\n<span class="ok">✓ Pixel 7 üzerinde çalışıyor</span>'
+    }
+  };
+  var editor = document.getElementById("ide-editor");
+  function renderDemo(key){
+    var d = demos[key];
+    document.getElementById("ide-proj").textContent = d.proj;
+    document.getElementById("ide-path").textContent = d.path;
+    document.getElementById("ide-tree").innerHTML = d.tree.map(function(r){return '<div class="'+r[0]+'">'+r[1]+'</div>'}).join("");
+    editor.innerHTML = '<pre>' + d.code.map(function(l,i){
+      return '<span class="l'+(d.folds.indexOf(i+1)>-1?' fold':'')+'">'+(l||' ')+'</span>';
+    }).join("") + '</pre>' + (d.pop ? '<div class="hover-pop" role="note">'+d.pop+'</div>' : '');
+    document.getElementById("ide-panel-tabs").innerHTML = d.panelTabs.map(function(t,i){return '<span'+(i===0?' class="on"':'')+'>'+t+'</span>'}).join("");
+    document.getElementById("ide-panel-out").innerHTML = d.out;
+    editor.setAttribute("aria-labelledby","demo-tab-"+key);
+    applyLang(editor);
+  }
+  function setupTabs(tabs, onSelect){
+    tabs.forEach(function(tab,i){
+      tab.addEventListener("click", function(){ select(i); });
+      tab.addEventListener("keydown", function(e){
+        var n = e.key==="ArrowRight" ? 1 : e.key==="ArrowLeft" ? -1 : 0;
+        if(!n) return; e.preventDefault(); var j=(i+n+tabs.length)%tabs.length; select(j); tabs[j].focus();
+      });
+    });
+    function select(i){
+      tabs.forEach(function(t,k){ t.setAttribute("aria-selected", k===i); t.tabIndex = k===i?0:-1; });
+      onSelect(tabs[i]);
+    }
+  }
+  setupTabs([].slice.call(document.querySelectorAll(".ide-tab")), function(t){ renderDemo(t.dataset.demo); });
+
+  /* ── Paket sekmeleri ── */
+  setupTabs([].slice.call(document.querySelectorAll(".tablist [role=tab]")), function(t){
+    document.querySelectorAll(".tabs [role=tabpanel]").forEach(function(p){ p.hidden = p.id !== t.getAttribute("aria-controls"); });
+  });
+
+  /* ── Karşılaştırma filtresi ── */
+  var cmpBtns = document.querySelectorAll("[data-cmp]");
+  cmpBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      cmpBtns.forEach(function(x){ x.setAttribute("aria-pressed", x===b); });
+      var v = b.dataset.cmp;
+      document.querySelectorAll("#cmp-table [data-col]").forEach(function(c){ c.hidden = v!=="all" && c.dataset.col!==v; });
+    });
+  });
+
+  /* ── Kopyala ── */
+  document.querySelectorAll("[data-copy]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var el = document.getElementById(btn.dataset.copy);
+      var text = el.innerText.split("\n").filter(function(l){return l.trim().charAt(0)!=="#"}).join("\n").trim();
+      var done = function(){ var o=btn.textContent; btn.textContent = lang==="en"?"Copied":"Kopyalandı"; setTimeout(function(){btn.textContent=o},1500); };
+      var fallback = function(){ var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); } else fallback();
+    });
+  });
+
+  /* ── Mobil menü ── */
+  var menuBtn = document.getElementById("menu-toggle"), nav = document.getElementById("site-nav");
+  menuBtn.addEventListener("click", function(){ var o = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); });
+  nav.addEventListener("click", function(e){ if(e.target.closest("a")){ nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false);} });
+
+  /* ── Site teması ── */
+  var skinBtns = document.querySelectorAll("[data-skin]");
+  function setSkin(s){
+    if(s) root.setAttribute("data-skin", s); else root.removeAttribute("data-skin");
+    skinBtns.forEach(function(b){ b.setAttribute("aria-pressed", (b.dataset.skin||"")===(s||"")); });
+    store("faw-skin", s||"");
+  }
+  skinBtns.forEach(function(b){ b.addEventListener("click", function(){ setSkin(b.dataset.skin); }); });
+  var savedSkin = store("faw-skin"); if(savedSkin) setSkin(savedSkin);
+
+  /* ── Yan içindekiler ── */
+  var tocLinks = [].slice.call(document.querySelectorAll(".side-toc a"));
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){
+        tocLinks.forEach(function(a){ a.classList.toggle("active", a.getAttribute("href")==="#"+en.target.id); });
+      }});
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    tocLinks.forEach(function(a){ var t=document.querySelector(a.getAttribute("href")); if(t) io.observe(t); });
+  }
+
+  /* ── Dil (TR/EN) ── */
+  var EN = {
+    "meta.description":"Faw Builder is a native Linux C/C++ IDE built with GTK4/libadwaita, with LSP editing, Git, debuggers, a visual UI designer and Android development.",
+    "theme.label":"Site theme","theme.default":"Default","theme.ide":"Dark IDE",
+    "nav.menu":"Menu","nav.features":"Features","nav.languages":"Languages","nav.compare":"Compare","nav.install":"Install","nav.faq":"FAQ",
+    "nav.shortcuts":"Shortcuts","nav.philosophy":"Philosophy","nav.support":"Support",
+    "hero.eyebrow":"Open source · Linux native","hero.tagline":"A native <strong>C/C++ and Android</strong> development environment for Linux. Not Electron: GTK4 and libadwaita.",
+    "hero.download":"Download","hero.source":"Source code","hero.ideLabel":"Illustration of the Faw Builder editor window",
+    "ide.build":"▶ Build","ide.debug":"Debug","ide.popDoc":"Shows the window to the user and brings it to the front.","ide.uses":"3 usages",
+    "features.title":"Everything you need to write code","features.intro":"Built for C and GTK projects. An editor that understands your code through clangd and opens fast with GtkSourceView.",
+    "features.lsp.title":"LSP-powered editing","features.lsp.body":"Go to definition, rename (F2), a hover window with docs and \"N usages\", call hierarchy, symbol browser.",
+    "features.folding.title":"Code folding","features.folding.body":"Brace-based folding for C/C++, indentation-based folding for Python, Kotlin, Vala and YAML.",
+    "features.search.title":"Project-wide search","features.search.body":"Regex search and an undoable \"replace all\". The command palette lists every registered command.",
+    "features.debug.title":"Git, GDB and LLDB","features.debug.body":"Git status and diff panel, a patch review tool. Separate debugger panels for GDB (MI) and LLDB, plus a VTE terminal.",
+    "features.editor.title":"Split view, Vim mode, snippets","features.editor.body":"Multiple cursors, Vim mode, a snippet editor, a Custom Tools menu, print/PDF, session management.",
+    "features.build.title":"Meson, Make, CMake, Flatpak","features.build.body":"Multiple run targets, build on save, a clickable Problems panel, Sysprof profiling, a GModule-based plugin API.",
+    "languages.title":"Supported languages and tools","languages.lsp":"Full LSP support","languages.edit":"Highlighting and folding","languages.ui":"UI files",
+    "android.title":"Kotlin without installing Android Studio","android.intro":"The whole chain from template to phone lives inside the IDE. If <code>adb</code>, <code>java</code> or the SDK is missing, the panel stays inactive and tells you what is missing.",
+    "android.p1":"Template","android.p1c":"XML View or Compose","android.p2":"SDK check","android.p3":"Build","android.p4":"Install","android.p5":"Launch","android.p6c":"package and level filters",
+    "android.c1.title":"Gradle, SDK, devices","android.c1.body":"Gradle Wrapper, an SDK Manager window, USB and wireless ADB, AVDs and the emulator, Maven Central library search.",
+    "android.c2.title":"Debugging and packaging","android.c2.body":"A JDWP debugger with gutter breakpoints, Gradle sync errors in the Problems panel, release signing with a keystore wizard, .aab and APK analysis.",
+    "android.c3.title":"Inspection tools","android.c3.body":"CPU/memory profiler, Layout Inspector with bounds overlay, Database Inspector, Lint, Resource Manager, Vector Asset Studio, screen mirroring with scrcpy.",
+    "android.c4.body":"HTTP traffic inspection through mitmdump, with automatic <code>adb reverse</code> and device proxy. Not yet tested end to end with a real mitmproxy.",
+    "badge.exp":"Experimental",
+    "designer.title":"Drag and drop your UI, save it as .ui and .blp","designer.intro":"A separate GTK4 and Android UI designer, opened from Faw Builder with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd>.",
+    "designer.f1":"<b>Palette generated from GIR.</b> 151 classes from Gtk4 and Adwaita, with a search box. No hand-picked list.",
+    "designer.f2":"<b>Canvas with placeholders.</b> Drop into GtkBox and GtkGrid, place freely in GtkFixed, snap to edges.",
+    "designer.f3":"<b>Inspector.</b> Properties, layout, signals, accessibility labels, translatable flags and reset.",
+    "designer.f4":"<b>Modern libadwaita.</b> Template widgets, a GMenu editor, Adw.Breakpoint, deprecation warnings for your target GTK version.",
+    "designer.f5":"<b>Live preview.</b> The design opens in a separate window through the real GtkBuilder. 100 steps of undo/redo.",
+    "designer.f6":"<b>Android side.</b> Layout XML tree and attribute editor, a Compose designer (one-way code generation).",
+    "designer.canon":"canonical","designer.auto":"generated on every save","designer.cmpCap":"Faw Designer compared with Cambalache and Glade","designer.cmpFeature":"Feature",
+    "designer.r1":"Palette generated from GIR","designer.r2":"Filling containers with placeholders","designer.r3":"Blueprint (.blp) output","designer.r4":"Adw.Breakpoint editing","designer.r5":"Android layout XML","designer.r6":"Sandboxed render process",
+    "compare.eyebrow":"Why Faw Builder","compare.title":"Against the alternatives","compare.filterLabel":"Compare with","compare.all":"All",
+    "compare.r1":"Native (not Electron)","compare.r2":"C/C++ LSP (go to definition, rename, hover)","compare.r3":"Android build, debug and profiler","compare.r4":"Visual GTK4 UI designer","compare.r5":"C/C++ and Android in one app","compare.r6":"Play Console integration","compare.r7":"Open source",
+    "compare.note":"◐ partial or through extensions. Android Studio supports C/C++ through the NDK, but its focus is Android. VS Code's core is MIT licensed; the distributed build includes closed-source components.",
+    "shortcuts.title":"Keep your hands on the keyboard",
+    "sc.save":"Save","sc.palette":"Command palette","sc.quick":"Quick open","sc.search":"Search the project","sc.goto":"Go to definition","sc.rename":"Rename symbol","sc.format":"Format document","sc.doc":"Show documentation","sc.next":"Select next match","sc.designer":"Open Faw Designer",
+    "install.title":"Build from source or package it","install.req":"System requirements","install.meson":"Meson ≥ 1.3.0, Ninja and blueprint-compiler","install.cc":"A C11 compiler","install.opt":"Optional: clangd, VTE, gdb, lldb, adb, java, jdb",
+    "install.check":"Run <code>packaging/check-env.sh</code> first to see what your machine can build.","install.build":"Build from source","install.copy":"Copy","install.pkg":"Package formats",
+    "install.deb":"For Debian and Ubuntu. Needs meson, ninja, dpkg-deb and the GTK4/libadwaita/libpanel development packages. Timestamps are pinned for reproducible builds.",
+    "install.app":"A single distro-independent file. <code>linuxdeploy</code> and <code>appimagetool</code> must be on PATH; the script never downloads them. <code>linuxdeploy-plugin-gtk</code> is recommended.",
+    "install.flat":"Needs the GNOME 46 runtime and SDK. The manifest builds blueprint-compiler, libpanel and faw-builder in that order.",
+    "install.win":"Cross-compiled with MinGW-w64. All 417 targets build and the .exe runs under Wine. You still need to place the GTK DLLs next to it by hand.",
+    "install.note":"These are scripts that build packages from source, not prebuilt binaries. None of them download anything implicitly.",
+    "faq.title":"Frequently asked questions",
+    "faq.q1":"Why GTK4 instead of Electron?","faq.a1":"Native GTK4 and libadwaita use less memory and CPU and fit the GNOME desktop visually and functionally. No bundled Chromium.",
+    "faq.q2":"Is there Windows or macOS support?","faq.a2":"The target platform is Linux. There is no macOS support. An experimental MinGW-w64 cross-build script exists for Windows; the resulting .exe needs the GTK DLLs added by hand.",
+    "faq.q3":"Do I need Android Studio for Android work?","faq.a3":"No. Gradle, SDK/AVD management, ADB, the JDWP debugger and the profiler are built in. If you have no SDK, \"Install SDK\" downloads cmdline-tools and the essential packages.",
+    "faq.q4":"What license is it released under?","faq.a4":"License details will be posted here soon.",
+    "faq.q5":"How can I contribute?","faq.a5":"Open an issue or send a pull request on GitHub. The links below take you there.",
+    "changelog.eyebrow":"Changelog","changelog.title":"Recently added",
+    "log.5":"SDK Manager window: install and remove any sdkmanager package. The Windows cross-build was verified with 417 targets.",
+    "log.4":"Experimental Network Inspector panel (mitmdump).","log.3":"A separate LLDB panel next to GDB.",
+    "log.2":"Android XML and Compose designers in Faw Designer. Maven Central library search.",
+    "log.1":"Faw Designer: template widgets, translatable flags, Adw.Breakpoint and target version warnings.",
+    "log.0":"Code folding, hover window, native file I/O and project-wide regex search.",
+    "philo.title":"Why open source?","philo.body":"Developer tools should be transparent. You should be able to see how they work, change them to fit your needs and decide for yourself whether to trust them. All of Faw Builder's source code is open.",
+    "a11y.eyebrow":"Accessibility","a11y.title":"Screen reader support at the toolkit level","a11y.body":"Standard GTK4 widgets inherit AT-SPI support. Faw Designer's accessibility section lets you add labels and descriptions to your own interfaces. Custom-drawn parts such as the folding gutter have not been audited separately yet.",
+    "gh.title":"Contribute to the project","gh.body":"Report a bug, suggest a feature or send code. No new command counts as done until it shows up in the command palette, a menu or the preferences.",
+    "gh.star":"Star on GitHub","gh.issue":"Report an issue",
+    "donate.title":"Support the project","donate.intro":"Faw Builder is built by volunteers. Donations make the time spent on development sustainable.",
+    "donate.gh":"Monthly or one-time support.","donate.oc":"Transparent budget, suited to company donations.","donate.kofi":"A small one-time tip.","donate.cta":"Donate",
+    "footer.product":"Product","footer.res":"Resources","footer.legal":"Legal","footer.license":"License: to be decided","footer.privacy":"Privacy policy","footer.contact":"Contact","footer.made":"Made with GTK4, for Linux."
+  };
+  var lang = "tr";
+  function applyLang(scope){
+    (scope||document).querySelectorAll("[data-i18n]").forEach(function(el){
+      if(el.dataset.tr === undefined) el.dataset.tr = el.innerHTML;
+      var k = el.dataset.i18n;
+      el.innerHTML = (lang==="en" && EN[k]) ? EN[k] : el.dataset.tr;
+    });
+    (scope||document).querySelectorAll("[data-i18n-attr]").forEach(function(el){
+      var parts = el.dataset.i18nAttr.split(":"), attr = parts[0], k = parts[1];
+      if(el.dataset.trAttr === undefined) el.dataset.trAttr = el.getAttribute(attr) || "";
+      el.setAttribute(attr, (lang==="en" && EN[k]) ? EN[k] : el.dataset.trAttr);
+    });
+  }
+  function setLang(l){
+    lang = l; root.lang = l; applyLang();
+    document.querySelectorAll("[data-lang-toggle]").forEach(function(b){ b.textContent = l==="en" ? "TR" : "EN"; });
+    store("faw-lang", l);
+  }
+  document.querySelectorAll("[data-lang-toggle]").forEach(function(b){ b.addEventListener("click", function(){ setLang(lang==="en"?"tr":"en"); }); });
+
+  renderDemo("c");
+  var savedLang = location.hash === "#en" ? "en" : store("faw-lang");
+  if(savedLang === "en") setLang("en");
+})();
+</script>
+</body>
+</html>
