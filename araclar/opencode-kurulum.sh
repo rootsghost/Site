@@ -158,7 +158,8 @@ kur_nvidia() {
     || { uyari "NVIDIA anahtarı doğrulanamadı, atlanıyor."; return; }
   listeden_sec "NVIDIA'da kod için aday modeller" 40 < <(
     jq -r '.data[].id' <<<"$yanit" | sort \
-      | grep -Ei 'coder|qwen3|kimi|glm|minimax|deepseek|gpt-oss|devstral|codestral|nemotron' || true)
+      | grep -Ei 'coder|qwen3|kimi|glm|minimax|deepseek|gpt-oss|devstral|codestral|nemotron' \
+      | grep -Eiv 'embed|safety|guard|reward|parse|rerank|starcoder' || true)
   ((${#SECILEN[@]})) || return
   config_saglayici nvidia "$(jq -n --arg u "$url" --argjson m "$(printf '%s\n' "${SECILEN[@]}" | modeller_json)" \
     '{"npm": "@ai-sdk/openai-compatible", "name": "NVIDIA NIM", "options": {"baseURL": $u}, "models": $m}')"
