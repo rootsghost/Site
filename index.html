@@ -8,13 +8,12 @@
 <meta property="og:title" content="Faw Builder">
 <meta property="og:description" data-i18n-attr="content:meta.description" content="Faw Builder, GTK4/libadwaita ile yazılmış native bir Linux C/C++ IDE'si. LSP tabanlı düzenleme, Git, debugger, görsel arayüz tasarımcısı ve Android geliştirme desteği.">
 <meta property="og:type" content="website">
-<!-- TODO: SITE_URL -->
-<meta property="og:url" content="https://example.com/">
-<!-- TODO: OG_IMAGE_URL (1200x630) -->
-<meta property="og:image" content="https://example.com/og-image.png">
+<meta property="og:url" content="https://fawlibs.org/">
+<!-- TODO: og-image.png (1200x630) fawlibs.org'a yüklenmeli -->
+<meta property="og:image" content="https://fawlibs.org/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" hreflang="tr" href="https://example.com/">
-<link rel="alternate" hreflang="en" href="https://example.com/#en">
+<link rel="alternate" hreflang="tr" href="https://fawlibs.org/">
+<link rel="alternate" hreflang="en" href="https://fawlibs.org/#en">
 <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
@@ -306,6 +305,10 @@ kbd{display:inline-block;min-width:1.9em;text-align:center;font-size:.78rem;padd
 .tablist button[aria-selected="true"]{color:var(--ink);border-color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
 .tabpanel{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
 .tabpanel p{color:var(--muted);font-size:.95rem}
+.dl-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.dl-row .btn{font-family:var(--f-mono);font-size:.8rem;overflow-wrap:anywhere}
+.dl-meta{font-size:.84rem;color:var(--muted)}
+.dl-all{font-size:.9rem;color:var(--muted)}
 .note{font-size:.88rem;color:var(--muted);border-left:3px solid var(--warn);padding:4px 0 4px 12px}
 
 /* ───────── SSS + değişiklikler ───────── */
@@ -697,18 +700,30 @@ meson install -C build</pre>
           <div class="code-block"><pre id="cmd-deb">packaging/deb/build-deb.sh
 <span class="c"># → packaging/deb/out/faw-builder_&lt;sürüm&gt;_&lt;arch&gt;.deb</span></pre>
             <button type="button" class="copy-btn" data-copy="cmd-deb" data-i18n="install.copy">Kopyala</button></div>
+          <div class="dl-row">
+            <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/faw-builder_0.1.0_amd64.deb"><span aria-hidden="true">↓</span> faw-builder_0.1.0_amd64.deb</a>
+            <span class="dl-meta">Debian / Ubuntu · amd64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+          </div>
         </div>
         <div class="tabpanel" role="tabpanel" id="p-app" aria-labelledby="t-app" hidden>
           <p data-i18n="install.app">Dağıtımdan bağımsız tek dosya. <code>linuxdeploy</code> ve <code>appimagetool</code> PATH'te olmalı. Betik bunları kendisi indirmez. <code>linuxdeploy-plugin-gtk</code> önerilir.</p>
           <div class="code-block"><pre id="cmd-app">packaging/appimage/build-appimage.sh
 <span class="c"># → FawBuilder-&lt;sürüm&gt;-x86_64.AppImage</span></pre>
             <button type="button" class="copy-btn" data-copy="cmd-app" data-i18n="install.copy">Kopyala</button></div>
+          <div class="dl-row">
+            <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/FawBuilder-0.1.0-x86_64.AppImage"><span aria-hidden="true">↓</span> FawBuilder-0.1.0-x86_64.AppImage</a>
+            <span class="dl-meta">x86_64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+          </div>
         </div>
         <div class="tabpanel" role="tabpanel" id="p-flat" aria-labelledby="t-flat" hidden>
           <p data-i18n="install.flat">GNOME 46 runtime ve SDK gerekir. Manifest sırasıyla blueprint-compiler, libpanel ve faw-builder'ı derler.</p>
           <div class="code-block"><pre id="cmd-flat">flatpak install flathub org.gnome.Platform//46 org.gnome.Sdk//46
 packaging/flatpak/build-flatpak.sh</pre>
             <button type="button" class="copy-btn" data-copy="cmd-flat" data-i18n="install.copy">Kopyala</button></div>
+          <div class="dl-row">
+            <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/org.fawlibs.builder.flatpak"><span aria-hidden="true">↓</span> org.fawlibs.builder.flatpak</a>
+            <span class="dl-meta">GNOME 46 runtime · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+          </div>
         </div>
         <div class="tabpanel" role="tabpanel" id="p-win" aria-labelledby="t-win" hidden>
           <span class="badge badge-exp" data-i18n="badge.exp">Deneysel</span>
@@ -716,8 +731,14 @@ packaging/flatpak/build-flatpak.sh</pre>
           <div class="code-block"><pre id="cmd-win">packaging/windows/fetch-mingw-gtk4-stack.py
 packaging/windows/build-mingw.sh</pre>
             <button type="button" class="copy-btn" data-copy="cmd-win" data-i18n="install.copy">Kopyala</button></div>
+          <div class="dl-row">
+            <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/faw-builder-0.1.0-win64.zip"><span aria-hidden="true">↓</span> faw-builder-0.1.0-win64.zip</a>
+            <span class="dl-meta">Windows 10+ · x64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+          </div>
         </div>
-        <p class="note" data-i18n="install.note">Bunlar kaynaktan paket üreten betiklerdir, hazır ikili dosya değildir. Hiçbiri örtük olarak bir şey indirmez.</p>
+        <!-- TODO: Örnek indirme linkleri. Gerçek sürüm yayımlanınca dosya adlarını ve sürüm numarasını güncelle. -->
+        <p class="dl-all"><a href="https://fawlibs.org/download/" data-i18n="install.all">Tüm sürümler</a> · <a href="https://fawlibs.org/download/SHA256SUMS">SHA256SUMS</a></p>
+        <p class="note" data-i18n="install.note">Betikler paketi kaynaktan üretir ve hiçbiri örtük olarak bir şey indirmez. İndirme bağlantıları şimdilik örnektir.</p>
       </div>
     </div>
   </section>
@@ -1021,7 +1042,7 @@ packaging/windows/build-mingw.sh</pre>
     "install.app":"A single distro-independent file. <code>linuxdeploy</code> and <code>appimagetool</code> must be on PATH; the script never downloads them. <code>linuxdeploy-plugin-gtk</code> is recommended.",
     "install.flat":"Needs the GNOME 46 runtime and SDK. The manifest builds blueprint-compiler, libpanel and faw-builder in that order.",
     "install.win":"Cross-compiled with MinGW-w64. All 417 targets build and the .exe runs under Wine. You still need to place the GTK DLLs next to it by hand.",
-    "install.note":"These are scripts that build packages from source, not prebuilt binaries. None of them download anything implicitly.",
+    "install.note":"The scripts build packages from source and none of them download anything implicitly. The download links are examples for now.","install.sample":"sample version","install.all":"All releases",
     "faq.title":"Frequently asked questions",
     "faq.q1":"Why GTK4 instead of Electron?","faq.a1":"Native GTK4 and libadwaita use less memory and CPU and fit the GNOME desktop visually and functionally. No bundled Chromium.",
     "faq.q2":"Is there Windows or macOS support?","faq.a2":"The target platform is Linux. There is no macOS support. An experimental MinGW-w64 cross-build script exists for Windows; the resulting .exe needs the GTK DLLs added by hand.",
