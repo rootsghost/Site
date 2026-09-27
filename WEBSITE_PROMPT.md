@@ -170,7 +170,7 @@ Erişilebilirlik → Katkı → Destek → Footer.
 
 ## LİSANS VE ÖRNEK BAĞLANTILAR
 
-- Lisans: **GPL-3.0** (footer, SSS, `kullanim-sartlari.html`, JSON-LD `license`).
+- Lisans: **GPL-3.0-or-later** (footer, SSS, `kullanim-sartlari.html`, JSON-LD `license`).
 - GitHub (`github.com/fawlibs/faw-builder` + issues/discussions), Matrix, Weblate,
   bağış (Sponsors, Open Collective, Ko-fi) ve `iletisim@fawlibs.org` **örnek** adreslerdir;
   her birinin önünde `<!-- ÖRNEK: … -->` var. Gerçekleri gelince değiştir, uydurma.
@@ -197,8 +197,7 @@ Erişilebilirlik → Katkı → Destek → Footer.
 
 ## BAŞLAMADAN SOR
 
-1. Lisans GPL-3.0; "or later" mı yoksa yalnız sürüm 3 mü?
-2. Örnek GitHub, Matrix, bağış ve e-posta adreslerinin gerçekleri neler?
-3. Gerçek bir sürüm yayımlandı mı? Dosya adları ve sürüm numarası ne?
-4. Ekran görüntüleri/GIF'ler hazır mı?
-5. Fontlar Google Fonts'tan mı gelsin, yerel mi barındırılsın?
+1. Örnek GitHub, Matrix, bağış ve e-posta adreslerinin gerçekleri neler?
+2. Gerçek bir sürüm yayımlandı mı? Dosya adları ve sürüm numarası ne?
+3. Ekran görüntüleri/GIF'ler hazır mı?
+4. Fontlar Google Fonts'tan mı gelsin, yerel mi barındırılsın?

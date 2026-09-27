@@ -44,7 +44,7 @@ Sonra tarayıcıda <http://localhost:8000/> aç. Karşılaştırma tabloları `d
 
 ## Lisans
 
-Faw Builder GNU GPL sürüm 3 (GPL-3.0) ile dağıtılır. Sitedeki lisans bağlantıları
+Faw Builder GNU GPL sürüm 3 ya da daha sonraki bir sürümü (GPL-3.0-or-later) ile dağıtılır. Sitedeki lisans bağlantıları
 <https://www.gnu.org/licenses/gpl-3.0.html> adresine, tam metin bağlantısı depodaki `COPYING` dosyasına gider.
 
 ## Örnek bağlantılar

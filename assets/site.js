@@ -105,7 +105,7 @@
     "faq.q1":"Why GTK4 instead of Electron?","faq.a1":"Native GTK4 and libadwaita use less memory and CPU and fit the GNOME desktop visually and functionally. No bundled Chromium.",
     "faq.q2":"Is there Windows or macOS support?","faq.a2":"The target platform is Linux. There is no macOS support. An experimental MinGW-w64 cross-build script exists for Windows; the resulting .exe needs the GTK DLLs added by hand.",
     "faq.q3":"Do I need Android Studio for Android work?","faq.a3":"No. Gradle, SDK/AVD management, ADB, the JDWP debugger and the profiler are built in. If you have no SDK, \"Install SDK\" downloads cmdline-tools and the essential packages.",
-    "faq.q4":"What license is it released under?","faq.a4":"Faw Builder is free software distributed under the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\" rel=\"license noopener\">GNU General Public License version 3</a> (GPL-3.0). You can use it, study its source code, modify and share it; if you distribute a modified version, you must share its source code under the same license.",
+    "faq.q4":"What license is it released under?","faq.a4":"Faw Builder is free software distributed under the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\" rel=\"license noopener\">GNU General Public License version 3</a> or (at your option) any later version (GPL-3.0-or-later). You can use it, study its source code, modify and share it; if you distribute a modified version, you must share its source code under the same license.",
     "faq.q5":"How can I contribute?","faq.a5":"Open an issue or send a pull request on GitHub. The links below take you there.",
     "changelog.eyebrow":"Changelog","changelog.title":"Recently added",
     "log.5":"SDK Manager window: install and remove any sdkmanager package. The Windows cross-build was verified with 417 targets.",
@@ -119,7 +119,7 @@
     "gh.star":"Star on GitHub","gh.issue":"Report an issue",
     "donate.title":"Support the project","donate.intro":"Faw Builder is built by volunteers. Donations make the time spent on development sustainable.",
     "donate.gh":"Monthly or one-time support.","donate.oc":"Transparent budget, suited to company donations.","donate.kofi":"A small one-time tip.","donate.cta":"Donate",
-    "footer.product":"Product","footer.res":"Resources","footer.legal":"Legal","footer.license":"License: GPL-3.0","footer.privacy":"Privacy policy","footer.contact":"Contact","footer.made":"Made with GTK4, for Linux."
+    "footer.product":"Product","footer.res":"Resources","footer.legal":"Legal","footer.license":"License: GPL-3.0-or-later","footer.privacy":"Privacy policy","footer.contact":"Contact","footer.made":"Made with GTK4, for Linux."
   };  Object.assign(EN, {
     "theme.mode":"Appearance","theme.system":"System","theme.light":"Light","theme.dark":"Dark",
     "hero.tests":"103/103 tests passing (GLib GTest, 2026-09-26)",
