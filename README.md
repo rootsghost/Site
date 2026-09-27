@@ -41,12 +41,30 @@ Sonra tarayıcıda <http://localhost:8000/> aç. Karşılaştırma tabloları `d
   kaynaksız rakip bilgisi eklenmez; emin olunmayan şey "doğrulanmadı" diye işaretlenir.
   Ayrıntılar: `WEBSITE_PROMPT.md`.
 
+## Lisans
+
+Faw Builder GNU GPL sürüm 3 (GPL-3.0) ile dağıtılır. Sitedeki lisans bağlantıları
+<https://www.gnu.org/licenses/gpl-3.0.html> adresine, tam metin bağlantısı depodaki `COPYING` dosyasına gider.
+
+## Örnek bağlantılar
+
+Gerçek adresler belli olana kadar aşağıdaki **örnek** adresler kullanılıyor. Hepsinin önünde
+`<!-- ÖRNEK: … -->` yorumu var; `ÖRNEK` diye aratıp gerçekleriyle değiştir.
+
+| Ne | Örnek adres |
+|---|---|
+| Kaynak kodu | `https://github.com/fawlibs/faw-builder` |
+| Sorun bildir / açık işler / test listesi | `…/issues/new/choose`, `…/issues?q=…good first issue`, `…/issues?q=…needs-testing` |
+| Tartışma | `…/discussions` |
+| Matrix | `https://matrix.to/#/#faw-builder:matrix.org` |
+| Çeviri | `https://hosted.weblate.org/projects/faw-builder/` |
+| Bağış | `https://github.com/sponsors/fawlibs`, `https://opencollective.com/fawlibs`, `https://ko-fi.com/fawlibs` |
+| İletişim e-postası | `iletisim@fawlibs.org` |
+| İndirme dosyaları | `https://fawlibs.org/download/…` ve Flathub sayfası |
+
 ## Açık yer tutucular
 
-`TODO` diye aratınca hepsi çıkar. Özetle:
+`TODO` diye aratınca çıkar:
 
-- GitHub deposu, Issues, Discussions, Matrix ve çeviri platformu adresleri
-- Bağış bağlantıları (GitHub Sponsors, Open Collective, Ko-fi)
-- Lisans ve iletişim adresi; barındırma sağlayıcısı ve sunucu kaydı süresi (`gizlilik.html`)
 - Galeri görselleri (`assets/shots/`) ve performans ölçümleri
-- İndirme dosyaları (`https://fawlibs.org/download/…`) şimdilik örnek adres
+- Barındırma sağlayıcısı ve sunucu kaydı süresi (`gizlilik.html`)

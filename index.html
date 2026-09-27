@@ -30,6 +30,8 @@
   "operatingSystem": "Linux",
   "description": "GTK4/libadwaita ile yazılmış native Linux C/C++ ve Android IDE'si.",
   "url": "https://fawlibs.org/",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/fawlibs/faw-builder",
   "softwareRequirements": "GTK4 >= 4.14, libadwaita >= 1.5, libpanel >= 1.6",
   "releaseNotes": "https://fawlibs.org/surumler.html",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -104,8 +106,8 @@
         <div class="cta-row">
           <!-- İşletim sistemine göre site.js değiştirir; JS yoksa #kurulum'a gider -->
           <a href="#kurulum" class="btn btn-primary" id="os-download">İndir</a>
-          <!-- TODO: GITHUB_URL -->
-          <a href="#" class="btn btn-secondary" data-i18n="hero.source">Kaynak kodu</a>
+          <!-- ÖRNEK: GITHUB_URL -->
+          <a href="https://github.com/fawlibs/faw-builder" rel="noopener" class="btn btn-secondary" data-i18n="hero.source">Kaynak kodu</a>
           <!-- TODO: Örnek Flathub adresi; uygulama Flathub'a gönderilince doğrula -->
           <a class="flathub" href="https://flathub.org/apps/org.fawlibs.builder">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2 3 7v10l9 5 9-5V7zm0 2.3 6.8 3.8L12 11.9 5.2 8.1zM5 9.8l6 3.4v6.6l-6-3.4zm8 10v-6.6l6-3.4v6.6z"/></svg>
@@ -536,7 +538,7 @@ packaging/windows/build-mingw.sh</pre>
           <details><summary data-i18n="faq.q6">Zed ya da Geany'den farkı ne?</summary>
             <p data-i18n="faq.a6">Zed ve Geany hızlı, hafif editörler. Faw Builder bir IDE: derleme sistemleri, debugger, Android araç zinciri ve görsel arayüz tasarımcısı içinde gelir. Yalnız dosya düzenleyeceksen onlar daha hafif kalır.</p></details>
           <details><summary data-i18n="faq.q4">Hangi lisansla dağıtılıyor?</summary>
-            <p data-i18n="faq.a4">Lisans bilgisi yakında burada olacak.</p><!-- TODO: LICENSE --></details>
+            <p data-i18n="faq.a4">Faw Builder, <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener">GNU Genel Kamu Lisansı sürüm 3</a> (GPL-3.0) ile dağıtılan özgür yazılım. Kullanabilir, kaynak kodunu inceleyebilir, değiştirebilir ve dağıtabilirsin; değiştirilmiş bir sürümü dağıtırsan kaynak kodunu da aynı lisansla paylaşman gerekir.</p></details>
           <details><summary data-i18n="faq.q5">Nasıl katkı sağlayabilirim?</summary>
             <p data-i18n="faq.a5">GitHub'da issue açabilir ya da pull request gönderebilirsin. Aşağıdaki bağlantılar oraya gider.</p></details>
         </div>
@@ -583,18 +585,18 @@ packaging/windows/build-mingw.sh</pre>
       <p data-i18n="contrib.intro">Kod yazmasan da yardım edebilirsin. Dört yol:</p>
       <div class="contrib-grid">
         <div class="contrib"><h3 data-i18n="contrib.code.t">Kod</h3><p data-i18n="contrib.code.b">Pull request gönder. Her yeni komut komut paletinde, bir menüde ya da tercihlerde görünür olmalı.</p>
-          <!-- TODO: GITHUB_URL/pulls --><a href="#" data-i18n="contrib.code.a">Açık işler</a></div>
+          <!-- ÖRNEK: GITHUB_URL/issues --><a href="https://github.com/fawlibs/faw-builder/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" rel="noopener" data-i18n="contrib.code.a">Açık işler</a></div>
         <div class="contrib"><h3 data-i18n="contrib.tr.t">Çeviri</h3><p data-i18n="contrib.tr.b">Arayüz Türkçe ve İngilizce. Yeni bir dil eklemek ya da mevcut çevirileri düzeltmek.</p>
-          <!-- TODO: çeviri platformu URL --><a href="#" data-i18n="contrib.tr.a">Çeviriye katıl</a></div>
+          <!-- ÖRNEK: çeviri platformu URL --><a href="https://hosted.weblate.org/projects/faw-builder/" rel="noopener" data-i18n="contrib.tr.a">Çeviriye katıl</a></div>
         <div class="contrib"><h3 data-i18n="contrib.bug.t">Hata bildir</h3><p data-i18n="contrib.bug.b">Çökme, yanlış davranış ya da eksik belge. Adımları ve sürümü yaz.</p>
-          <!-- TODO: GITHUB_ISSUES_URL --><a href="#" data-i18n="gh.issue">Sorun bildir</a></div>
+          <!-- ÖRNEK: GITHUB_ISSUES_URL --><a href="https://github.com/fawlibs/faw-builder/issues/new/choose" rel="noopener" data-i18n="gh.issue">Sorun bildir</a></div>
         <div class="contrib"><h3 data-i18n="contrib.test.t">Gerçek cihazda test et</h3><p data-i18n="contrib.test.b">Network Inspector, Flatpak derleme ve bazı fare etkileşimleri henüz yalnız programatik olarak test edildi. Kendi makinende dene, sonucu bildir.</p>
-          <!-- TODO: test issue şablonu URL --><a href="#" data-i18n="contrib.test.a">Test listesi</a></div>
+          <!-- ÖRNEK: test etiketi URL --><a href="https://github.com/fawlibs/faw-builder/issues?q=is%3Aissue+is%3Aopen+label%3Aneeds-testing" rel="noopener" data-i18n="contrib.test.a">Test listesi</a></div>
       </div>
       <div class="cta-links">
-        <!-- TODO: GITHUB_URL --><a href="#" data-i18n="gh.star">GitHub'da yıldızla</a>
-        <!-- TODO: GITHUB_DISCUSSIONS_URL --><a href="#">GitHub Discussions</a>
-        <!-- TODO: MATRIX_URL --><a href="#">Matrix</a>
+        <!-- ÖRNEK: GITHUB_URL --><a href="https://github.com/fawlibs/faw-builder" rel="noopener" data-i18n="gh.star">GitHub'da yıldızla</a>
+        <!-- ÖRNEK: GITHUB_DISCUSSIONS_URL --><a href="https://github.com/fawlibs/faw-builder/discussions" rel="noopener">GitHub Discussions</a>
+        <!-- ÖRNEK: MATRIX_URL --><a href="https://matrix.to/#/#faw-builder:matrix.org" rel="noopener">Matrix</a>
       </div>
     </div>
   </section>
@@ -609,13 +611,13 @@ packaging/windows/build-mingw.sh</pre>
     <div class="grid donate-grid">
       <article class="card"><span class="glyph" aria-hidden="true">♥</span><h3>GitHub Sponsors</h3>
         <p data-i18n="donate.gh">Aylık ya da tek seferlik destek.</p>
-        <!-- TODO: GITHUB_SPONSORS_URL --><a href="#" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
+        <!-- ÖRNEK: GITHUB_SPONSORS_URL --><a href="https://github.com/sponsors/fawlibs" rel="noopener" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
       <article class="card"><span class="glyph" aria-hidden="true">◈</span><h3>Open Collective</h3>
         <p data-i18n="donate.oc">Şeffaf bütçe, kurumsal bağışa uygun.</p>
-        <!-- TODO: OPENCOLLECTIVE_URL --><a href="#" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
+        <!-- ÖRNEK: OPENCOLLECTIVE_URL --><a href="https://opencollective.com/fawlibs" rel="noopener" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
       <article class="card"><span class="glyph" aria-hidden="true">☕</span><h3>Ko-fi</h3>
         <p data-i18n="donate.kofi">Tek seferlik küçük bir destek.</p>
-        <!-- TODO: KOFI_URL --><a href="#" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
+        <!-- ÖRNEK: KOFI_URL --><a href="https://ko-fi.com/fawlibs" rel="noopener" class="btn btn-secondary btn-sm" data-i18n="donate.cta">Bağış yap</a></article>
     </div>
   </section>
 </main>
@@ -626,9 +628,9 @@ packaging/windows/build-mingw.sh</pre>
       <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a><a href="android.html">Android</a><a href="designer.html">Faw Designer</a><a href="debugger.html" data-i18n="nav.debugger">Hata ayıklama</a></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.res">Kaynaklar</span>
       <a href="baslangic.html" data-i18n="nav.guide">Rehber</a><a href="surumler.html" data-i18n="nav.releases">Sürümler</a><a href="index.html#sss" data-i18n="nav.faq">SSS</a><a href="feed.xml">RSS</a>
-      <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
+      <!-- ÖRNEK: GITHUB_URL --><a href="https://github.com/fawlibs/faw-builder" rel="noopener" data-i18n="hero.source">Kaynak kodu</a></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
-      <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" data-i18n="footer.license">Lisans: GPL-3.0</a>
       <a href="gizlilik.html" data-i18n="footer.privacy">Gizlilik politikası</a>
       <a href="kullanim-sartlari.html" data-i18n="footer.terms">Kullanım şartları</a></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.eco">Ekosistem</span>
@@ -637,7 +639,7 @@ packaging/windows/build-mingw.sh</pre>
       <span class="footer-muted">Faw Voice Assistant <small data-i18n="footer.voice">· çevrimdışı ses asistanı</small></span>
       <span class="footer-muted" data-i18n="footer.planned">Planlanan: Proje Takip, Not Alma, Görev Takip, Sağlıklı Beslenme</span></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
-      <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
+      <!-- ÖRNEK: CONTACT --><a href="mailto:iletisim@fawlibs.org">iletisim@fawlibs.org</a><a href="https://github.com/fawlibs/faw-builder/issues" rel="noopener">GitHub Issues</a><a href="https://matrix.to/#/#faw-builder:matrix.org" rel="noopener">Matrix</a></div>
   </div>
   <div class="wrap footer-bottom">
     <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>

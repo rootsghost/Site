@@ -166,14 +166,19 @@ Erişilebilirlik → Katkı → Destek → Footer.
    politikası (`gizlilik.html`) bunu belirtiyor. Fontlar `assets/fonts/`
    altına alınırsa o paragrafı güncelle (karar bana ait).
 
-## AÇIK YER TUTUCULAR (`TODO` araması: index'te 21, alt sayfalarda 4'er)
+## LİSANS VE ÖRNEK BAĞLANTILAR
 
-- GitHub, Issues, Discussions, Matrix, çeviri platformu adresleri
-- Bağış linkleri (GitHub Sponsors, Open Collective, Ko-fi)
-- Lisans, iletişim adresi; barındırma sağlayıcısı ve sunucu kaydı süresi (`gizlilik.html`)
+- Lisans: **GPL-3.0** (footer, SSS, `kullanim-sartlari.html`, JSON-LD `license`).
+- GitHub (`github.com/fawlibs/faw-builder` + issues/discussions), Matrix, Weblate,
+  bağış (Sponsors, Open Collective, Ko-fi) ve `iletisim@fawlibs.org` **örnek** adreslerdir;
+  her birinin önünde `<!-- ÖRNEK: … -->` var. Gerçekleri gelince değiştir, uydurma.
+
+## AÇIK YER TUTUCULAR (`TODO` araması)
+
 - Galeri görselleri: `assets/shots/{editor.webp, android.webm, designer.webm, debugger.webp, git.webp}`
 - İndirme dosyaları `https://fawlibs.org/download/…` ve Flathub sayfası: şimdilik örnek
 - Performans ölçümü (yöntem sayfada yazılı: hyperfine, 10 tekrar ortancası, 60 sn sonra VmRSS)
+- Barındırma sağlayıcısı ve sunucu kaydı süresi (`gizlilik.html`)
 - Karşılaştırmada doğrulanamayanlar: GNOME Builder LLDB, Cambalache placeholder, Workbench/Qt Designer sandbox
 - `baslangic.html`'deki menü adları ("Yeni Proje penceresi", "SDK Kur") gerçek uygulamayla karşılaştırılmalı
 
@@ -190,8 +195,8 @@ Erişilebilirlik → Katkı → Destek → Footer.
 
 ## BAŞLAMADAN SOR
 
-1. Lisans nedir?
-2. GitHub deposu ve diğer topluluk linkleri neler?
+1. Lisans GPL-3.0; "or later" mı yoksa yalnız sürüm 3 mü?
+2. Örnek GitHub, Matrix, bağış ve e-posta adreslerinin gerçekleri neler?
 3. Gerçek bir sürüm yayımlandı mı? Dosya adları ve sürüm numarası ne?
 4. Ekran görüntüleri/GIF'ler hazır mı?
 5. Fontlar Google Fonts'tan mı gelsin, yerel mi barındırılsın?
