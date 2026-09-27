@@ -128,6 +128,23 @@ En iyi ücretsiz seçenek NVIDIA'daki Kimi, DeepSeek V4 ya da GLM'dir; en iyi ye
 
 Yerel küçük modellere tek dosya ve tek fonksiyon ver; çok dosyalı işleri bulut modellerine bırak. Değişiklikten sonra kodu her zaman kendin derle ve çalıştır.
 
+## Eklentiler: Ponytail ve Caveman
+
+İki eklenti OpenCode'un davranışını değiştirir: Ponytail daha az ve daha basit kod yazdırır, Caveman cevapları kısaltıp token harcamasını azaltır.
+
+```bash
+bash araclar/opencode-eklentiler.sh            # menü
+bash araclar/opencode-eklentiler.sh --hepsi    # ikisini de kur
+bash araclar/opencode-eklentiler.sh --kaldir   # ikisini de kaldır
+```
+
+| Eklenti | Paket | OpenCode'da |
+| --- | --- | --- |
+| [Ponytail](https://github.com/DietrichGebert/ponytail) | `@dietrichgebert/ponytail` | `/ponytail lite\|full\|ultra\|off`, `/ponytail-review`, `/ponytail-audit` |
+| [Caveman](https://github.com/dantesCode/caveman-opencode-plugin) | `caveman-opencode-plugin` | Kısa cevap modu; proje ayarı `caveman.json` |
+
+Betik config'i yedekler, eklentiyi `plugin` listesine ekler ve OpenCode'un hâlâ açıldığını `opencode models` ile kontrol eder; açılmazsa yedeği geri yükler. Resmi Caveman kurucusu menüde 3 numarada durur ama OpenCode'da bilinen sorunları var ([#422](https://github.com/JuliusBrussee/caveman/issues/422), [#482](https://github.com/JuliusBrussee/caveman/issues/482)). İki eklenti de her turda ek talimat gönderdiği için yerel küçük modellerde bağlamın bir kısmını kullanır; gerekirse `/ponytail off` ile kapat.
+
 ## Donanım ayarları (GTX 860M, 16 GB RAM)
 
 GTX 860M'in 2 ya da 4 GB belleği modelin küçük bir kısmını alır; model büyük ölçüde işlemci ve RAM üzerinde çalışır. Bu yüzden yerel modeller yavaştır ve OpenCode'un ajan modu için bulut önerilir.
