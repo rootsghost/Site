@@ -392,3 +392,9 @@ td.unknown{color:var(--muted)}
 .release h2{font-size:1.35rem}
 .release time{font:600 .8rem var(--f-mono);color:var(--accent)}
 .release ul{margin:0;padding-left:1.2em;color:var(--muted);display:grid;gap:6px}
+
+/* Eklemeler: test durumu, footer ekosistem */
+.hero-status{font:600 .82rem var(--f-mono);color:var(--droid);margin:0}
+.footer-muted{color:var(--muted)}
+.footer-muted small{font-size:.8em}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}

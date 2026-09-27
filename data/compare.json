@@ -503,15 +503,15 @@
      "tr": "Sandbox'lı render süreci",
      "en": "Sandboxed render process",
      "values": {
-      "faw": "no",
+      "faw": "part",
       "camb": "yes",
       "glade": "no",
       "wb": "unknown",
       "qtd": "unknown"
      },
      "note": {
-      "tr": "Cambalache: tasarım alanı Merengue adlı ayrı bir süreçte çalışır.",
-      "en": "Cambalache: the workspace runs in a separate process called Merengue."
+      "tr": "Faw Designer: önizleme ayrı bir süreçte (faw-designer-preview). Cambalache: tasarım alanı Merengue adlı ayrı bir süreçte.",
+      "en": "Faw Designer: the preview runs in a separate process (faw-designer-preview). Cambalache: the workspace runs in a separate process called Merengue."
      }
     },
     {

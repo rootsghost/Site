@@ -29,6 +29,9 @@
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Linux",
   "description": "GTK4/libadwaita ile yazılmış native Linux C/C++ ve Android IDE'si.",
+  "url": "https://fawlibs.org/",
+  "softwareRequirements": "GTK4 >= 4.14, libadwaita >= 1.5, libpanel >= 1.6",
+  "releaseNotes": "https://fawlibs.org/surumler.html",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
 }
 </script>
@@ -69,6 +72,7 @@
 
 <nav class="side-toc" aria-label="Bölümler">
   <a href="#ozellikler" data-i18n="nav.features">Özellikler</a>
+  <a href="#kimler" data-i18n="nav.audience">Kimler için</a>
   <a href="#galeri" data-i18n="nav.gallery">Galeri</a>
   <a href="#android">Android</a>
   <a href="#designer">Designer</a>
@@ -108,6 +112,7 @@
         <li class="chip">GTK4</li><li class="chip">libadwaita</li><li class="chip">GtkSourceView 5</li>
         <li class="chip">C11</li><li class="chip">Meson</li><li class="chip">clangd</li>
       </ul>
+      <p class="hero-status"><span aria-hidden="true">✓</span> <span data-i18n="hero.tests">103/103 test geçiyor (GLib GTest, 2026-09-26)</span></p>
     </div>
 
     <div class="ide" role="figure" aria-label="Faw Builder editör penceresinin canlandırması" data-i18n-attr="aria-label:hero.ideLabel">
@@ -144,7 +149,7 @@
       <article class="card">
         <span class="glyph" aria-hidden="true">F12</span>
         <h3 data-i18n="features.lsp.title">LSP tabanlı akıllı düzenleme</h3>
-        <p data-i18n="features.lsp.body">Tanıma git, yeniden adlandırma (F2), dokümantasyon ve "N kullanım" gösteren hover penceresi, call hierarchy, sembol tarayıcı.</p>
+        <p data-i18n="features.lsp.body">Tanıma git (F12), yeniden adlandırma (F2), dokümantasyon ve "N kullanım" gösteren hover penceresi, call hierarchy, sembol tarayıcı. Tamamlama üç kaynaktan gelir: GIR kataloğu, dosyadaki kelimeler ve LSP.</p>
       </article>
       <article class="card">
         <span class="glyph" aria-hidden="true">▾</span>
@@ -154,24 +159,24 @@
       <article class="card">
         <span class="glyph" aria-hidden="true">.*</span>
         <h3 data-i18n="features.search.title">Proje geneli arama</h3>
-        <p data-i18n="features.search.body">Regex destekli arama ve geri alınabilir "tümünü değiştir". Komut paleti kayıtlı her komutu listeler.</p>
+        <p data-i18n="features.search.body">Regex destekli arama ve geri alınabilir "tümünü değiştir". Hızlı Aç (Ctrl+P) ve kayıtlı her komutu listeleyen komut paleti (Ctrl+Shift+P).</p>
       </article>
       <article class="card">
         <span class="glyph" aria-hidden="true">gdb</span>
         <h3 data-i18n="features.debug.title">Git, GDB ve LLDB</h3>
-        <p data-i18n="features.debug.body">Git durum ve diff paneli, patch inceleme aracı. GDB (MI) ve LLDB için ayrı hata ayıklama panelleri, VTE terminal.</p>
+        <p data-i18n="features.debug.body">Git durum, diff ve blame paneli, patch inceleme aracı. GDB (MI) ve LLDB için ayrı hata ayıklama panelleri, VTE terminal.</p>
         <a class="more-link" href="debugger.html" data-i18n="more.debugger">Hata ayıklama ayrıntıları</a>
 
       </article>
       <article class="card">
         <span class="glyph" aria-hidden="true">:w</span>
         <h3 data-i18n="features.editor.title">Split view, Vim modu, snippet'ler</h3>
-        <p data-i18n="features.editor.body">Çoklu imleç, Vim modu, snippet GUI editörü, Custom Tools menüsü, yazdırma/PDF, oturum yönetimi.</p>
+        <p data-i18n="features.editor.body">Çoklu imleç, Vim modu, minimap, TODO tarayıcı, struct envanteri, snippet GUI editörü, özel kısayollar, Custom Tools menüsü, yazdırma/PDF, oturum yönetimi. Native dosya G/Ç ve tema seçici.</p>
       </article>
       <article class="card">
         <span class="glyph" aria-hidden="true">⚙</span>
         <h3 data-i18n="features.build.title">Meson, Make, CMake, Flatpak</h3>
-        <p data-i18n="features.build.body">Çoklu çalıştırma hedefi, kaydedince derleme, tıklanabilir Sorunlar paneli, Sysprof profil entegrasyonu, GModule tabanlı eklenti API'si.</p>
+        <p data-i18n="features.build.body"><code>.faw-project</code> v2 ile adlandırılmış çalıştırma hedefleri, test komutu ve AddressSanitizer anahtarı. Kaydedince derleme, tıklanabilir Sorunlar paneli, Sysprof, GModule tabanlı eklenti API\'si.</p>
       </article>
     </div>
   </section>
@@ -195,6 +200,24 @@
         <h3 data-i18n="languages.ui">Arayüz dosyaları</h3>
         <ul class="chips"><li class="chip">.ui</li><li class="chip">.blp</li><li class="chip">layout/*.xml</li></ul>
       </div>
+    </div>
+  </section>
+
+  <!-- ───────── Kimler için ───────── -->
+  <section id="kimler" class="wrap section" style="padding-top:0">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="nav.audience">Kimler için</span>
+      <h2 data-i18n="aud.title">Kimin işine yarar?</h2>
+    </div>
+    <div class="grid grid-4">
+      <article class="card"><span class="glyph" aria-hidden="true">C</span><h3 data-i18n="aud.c.t">Linux C/C++ geliştiricileri</h3>
+        <p data-i18n="aud.c.b">Electron tabanlı editörlerden yorulan, native performans, daha az bellek ve sistemle uyum isteyenler.</p></article>
+      <article class="card"><span class="glyph" aria-hidden="true">kt</span><h3 data-i18n="aud.a.t">Android geliştiricileri</h3>
+        <p data-i18n="aud.a.b">Android Studio'nun ağırlığından kaçıp Gradle, ADB, JDWP ve profiler'ı daha hafif bir IDE'de isteyenler.</p></article>
+      <article class="card"><span class="glyph" aria-hidden="true">jni</span><h3 data-i18n="aud.x.t">İkisini birlikte yapanlar</h3>
+        <p data-i18n="aud.x.b">Gömülü sistem, JNI ve native kütüphane gibi hem C/C++ hem Android içeren işler.</p></article>
+      <article class="card"><span class="glyph" aria-hidden="true">{}</span><h3 data-i18n="aud.o.t">Açık kaynak savunucuları</h3>
+        <p data-i18n="aud.o.b">Şeffaflığa, değiştirilebilirliğe ve yerelde çalışan araçlara önem verenler.</p></article>
     </div>
   </section>
 
@@ -289,7 +312,7 @@
         <li><span data-i18n="designer.f2"><b>Yer tutuculu canvas.</b> GtkBox ve GtkGrid'e bırak, GtkFixed'te serbest konumla, kenarlara yapıştır.</span></li>
         <li><span data-i18n="designer.f3"><b>Denetçi.</b> Özellikler, yerleşim, sinyaller, erişilebilirlik etiketleri, çeviri işareti ve sıfırlama.</span></li>
         <li><span data-i18n="designer.f4"><b>Modern libadwaita.</b> Template widget'lar, GMenu editörü, Adw.Breakpoint, hedef GTK sürümüne göre deprecation uyarısı.</span></li>
-        <li><span data-i18n="designer.f5"><b>Canlı önizleme.</b> Tasarım gerçek GtkBuilder ile ayrı bir pencerede açılır. Undo/redo 100 adım.</span></li>
+        <li><span data-i18n="designer.f5"><b>Canlı önizleme.</b> Tasarım gerçek GtkBuilder ile ayrı bir süreçte açılır; tema, sağdan sola (RTL), ölçek ve dil varyantlarıyla denenir. Undo/redo 100 adım.</span></li>
         <li><span data-i18n="designer.f6"><b>Android tarafı.</b> Layout XML ağaç ve attribute editörü, Compose tasarımcı (tek yönlü kod üretimi).</span></li>
       </ul>
       <div class="convert">
@@ -483,6 +506,7 @@ packaging/windows/build-mingw.sh</pre>
         </div>
         <!-- TODO: Örnek indirme linkleri. Gerçek sürüm yayımlanınca dosya adlarını ve sürüm numarasını güncelle. -->
         <p class="dl-all"><a href="https://fawlibs.org/download/" data-i18n="install.all">Tüm sürümler</a> · <a href="https://fawlibs.org/download/SHA256SUMS">SHA256SUMS</a></p>
+        <p class="note" data-i18n="install.ci">Her değişiklik GitHub Actions'ta Linux'ta derlenip test edilir ve Windows için MSYS2 ile çapraz derlenir. <code>packaging/</code> klasöründe bir Docker betiği de var.</p>
         <p class="note" data-i18n="install.note">Betikler paketi kaynaktan üretir ve hiçbiri örtük olarak bir şey indirmez. İndirme bağlantıları şimdilik örnektir.</p>
       </div>
     </div>
@@ -517,10 +541,11 @@ packaging/windows/build-mingw.sh</pre>
           <h2 data-i18n="changelog.title">Son eklenenler</h2>
         </div>
         <ol class="timeline" reversed>
+          <li><time datetime="2026-09-27">2026-09-27</time><span data-i18n="log.6">Faw Designer: odak sırası editörü, önizleme varyantları (tema/RTL/ölçek/dil), GResource üretimi, CSS sınıfları ve yakınlaştırma.</span></li>
           <li><time datetime="2026-09-20">2026-09-20</time><span data-i18n="log.5">SDK Yönetimi penceresi: tüm sdkmanager paketlerini kur ve kaldır. Windows çapraz derlemesi 417 hedefle doğrulandı.</span></li>
           <li><time datetime="2026-09-19">2026-09-19</time><span data-i18n="log.4">Deneysel Network Inspector paneli (mitmdump).</span></li>
           <li><time datetime="2026-09-17">2026-09-17</time><span data-i18n="log.3">GDB'nin yanına ayrı LLDB paneli.</span></li>
-          <li><time datetime="2026-09-12">2026-09-12</time><span data-i18n="log.2">Faw Designer'a Android XML ve Compose tasarımcıları. Maven Central kütüphane arama.</span></li>
+          <li><time datetime="2026-09-12">2026-09-12</time><span data-i18n="log.2">Android araç seti genişledi: Compose Preview, Profiler, Layout Inspector, Resource Manager, Vector Asset Studio, ekran yansıtma. Faw Designer\'a Android XML ve Compose tasarımcıları.</span></li>
           <li><time datetime="2026-09-10">2026-09-10</time><span data-i18n="log.1">Faw Designer: template widget'lar, çeviri işareti, Adw.Breakpoint ve hedef sürüm uyarıları.</span></li>
           <li><time datetime="2026-09-09">2026-09-09</time><span data-i18n="log.0">Kod katlama, hover bilgi penceresi, native dosya G/Ç ve proje geneli regex arama.</span></li>
         </ol>
@@ -535,7 +560,7 @@ packaging/windows/build-mingw.sh</pre>
       <article class="card">
         <span class="eyebrow" data-i18n="nav.philosophy">Felsefe</span>
         <h3 style="font-size:1.5rem" data-i18n="philo.title">Neden açık kaynak?</h3>
-        <p data-i18n="philo.body">Geliştirici araçları şeffaf olmalı. Nasıl çalıştığını görebilmeli, ihtiyacına göre değiştirebilmeli, güvenip güvenmeyeceğine kendin karar verebilmelisin. Faw Builder'ın tüm kaynak kodu açık.</p>
+        <p data-i18n="philo.body">Geliştirici araçları şeffaf olmalı. Nasıl çalıştığını görebilmeli, ihtiyacına göre değiştirebilmeli, güvenip güvenmeyeceğine kendin karar verebilmelisin. Faw Builder\'ın tüm kaynak kodu açık ve yerelde çalışır; bulut hesabı gerektirmez.</p>
       </article>
       <article class="card" id="erisilebilirlik">
         <span class="eyebrow" data-i18n="a11y.eyebrow">Erişilebilirlik</span>
@@ -598,7 +623,13 @@ packaging/windows/build-mingw.sh</pre>
       <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
       <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
-      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a></div>
+      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a>
+      <!-- TODO: TERMS_URL --><a href="#" data-i18n="footer.terms">Kullanım şartları</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.eco">Ekosistem</span>
+      <a href="designer.html">Faw Designer</a>
+      <span class="footer-muted">Faw Circuit <small data-i18n="footer.circuit">· PCB ve şema</small></span>
+      <span class="footer-muted">Faw Voice Assistant <small data-i18n="footer.voice">· çevrimdışı ses asistanı</small></span>
+      <span class="footer-muted" data-i18n="footer.planned">Planlanan: Proje Takip, Not Alma, Görev Takip, Sağlıklı Beslenme</span></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
       <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
   </div>

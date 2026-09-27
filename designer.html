@@ -62,13 +62,14 @@
   <section class="wrap section">
     <div class="section-head">
       <span class="eyebrow" data-i18n="d.ph.e">Fazlar</span>
-      <h2 data-i18n="d.ph.h">Dört fazda neler yapıldı</h2>
+      <h2 data-i18n="d.ph.h">Dört faz ve son eklenenler</h2>
     </div>
     <div class="grid">
       <article class="card"><h3 data-i18n="d.f1.t">Faz 1 · Çekirdek</h3><p data-i18n="d.f1.b">GIR'den üretilen palet (151 sınıf) ve arama, GtkBox ve GtkGrid'de yer tutucular, GtkFixed'te serbest konum, hiyerarşi paneli, .ui içe/dışa aktarma ve .blp eşlikçisi.</p></article>
       <article class="card"><h3 data-i18n="d.f2.t">Faz 2 · Düzenleme</h3><p data-i18n="d.f2.b">Yerleşim bölümü, kardeşler arasında sürükleyerek sıralama, sinyal editörü, erişilebilirlik etiketleri, özellik sıfırlama, çoğalt ve sil, 100 adım undo/redo.</p></article>
       <article class="card"><h3 data-i18n="d.f3.t">Faz 3 · Ölçek</h3><p data-i18n="d.f3.b">Gerçek GtkBuilder ile canlı önizleme, tek dosyada birden çok üst-seviye pencere, GMenu editörü, çoklu seçim ve yapışma, Android cihaz ekran görüntüsü.</p></article>
       <article class="card"><h3 data-i18n="d.f4.t">Faz 4 · libadwaita</h3><p data-i18n="d.f4.b">CSS önizleme, template/composite widget'lar, çeviri işareti, hedef sürüme göre deprecation uyarısı, Adw.Breakpoint, GIR dışı kendi widget'ların için katalog.</p></article>
+      <article class="card"><h3 data-i18n="d.f5.t">Eylül sonu · 2026-09-27</h3><p data-i18n="d.f5.b">Odak sırası editörü, CSS sınıfları, GResource üretimi, uygulama sihirbazı, yakınlaştırma ve daha gerçekçi canvas. Önizleme ayrı bir süreçte (<code>faw-designer-preview</code>) tema, RTL, ölçek ve dil varyantlarıyla çalışır.</p></article>
     </div>
   </section>
 
@@ -89,7 +90,7 @@
           <tr><td class="v">5</td><td><span data-i18n="d.r5">Canlı önizleme penceresi</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
           <tr><td class="v">6</td><td><span data-i18n="d.r6">Kopyala/yapıştır/çoğalt</span><span class="row-note" data-i18n="d.r6n">Çoğalt ve sil var; Grid/Fixed içinde çoğaltma yok</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v part col-us"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td></tr>
           <tr><td class="v">7</td><td><span data-i18n="d.r7">GIR'den katalog</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v part"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
-          <tr><td class="v">8</td><td><span data-i18n="d.r8">Sandbox'lı render süreci</span><span class="row-note" data-i18n="d.r8n">Gerçek kararsızlık bildirilene kadar ertelendi</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v no col-us"><span aria-hidden="true">✗</span><span class="sr-only">yok</span></td></tr>
+          <tr><td class="v">8</td><td><span data-i18n="d.r8">Sandbox'lı render süreci</span><span class="row-note" data-i18n="d.r8n">Önizleme ayrı bir süreçte (faw-designer-preview); tasarım alanı ana süreçte</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v part col-us"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td></tr>
           <tr><td class="v">9</td><td><span data-i18n="d.r9">Canlı CSS önizleme</span><span class="row-note" data-i18n="d.r9n">Tüm ekrana uygulanır (GTK4 kısıtı)</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v part col-us"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td></tr>
           <tr><td class="v">10</td><td><span data-i18n="d.r10">Template/composite widget</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
           <tr><td class="v">11</td><td><span data-i18n="d.r11">Çevrilebilir metinler</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
@@ -134,7 +135,13 @@
       <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
       <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
-      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a></div>
+      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a>
+      <!-- TODO: TERMS_URL --><a href="#" data-i18n="footer.terms">Kullanım şartları</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.eco">Ekosistem</span>
+      <a href="designer.html">Faw Designer</a>
+      <span class="footer-muted">Faw Circuit <small data-i18n="footer.circuit">· PCB ve şema</small></span>
+      <span class="footer-muted">Faw Voice Assistant <small data-i18n="footer.voice">· çevrimdışı ses asistanı</small></span>
+      <span class="footer-muted" data-i18n="footer.planned">Planlanan: Proje Takip, Not Alma, Görev Takip, Sağlıklı Beslenme</span></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
       <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
   </div>
@@ -149,7 +156,7 @@
  "p.title": "Faw Designer",
  "p.intro": "A separate GTK4 and Android UI designer that ships with Faw Builder. Open it with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd>; it starts with your project root.",
  "d.ph.e": "Phases",
- "d.ph.h": "What was built in four phases",
+ "d.ph.h": "Four phases and the latest additions",
  "d.f1.t": "Phase 1 · Core",
  "d.f1.b": "Palette generated from GIR (151 classes) with search, placeholders in GtkBox and GtkGrid, free placement in GtkFixed, hierarchy panel, .ui import/export and a .blp sidecar.",
  "d.f2.t": "Phase 2 · Editing",
@@ -174,7 +181,9 @@
  "d.r6n": "Duplicate and delete; no duplicating inside Grid/Fixed",
  "d.r7": "Catalog generated from GIR",
  "d.r8": "Sandboxed render process",
- "d.r8n": "Postponed until real instability is reported",
+ "d.r8n": "Preview runs in a separate process (faw-designer-preview); the design canvas stays in the main process",
+ "d.f5.t": "Late September · 2026-09-27",
+ "d.f5.b": "Focus order editor, CSS classes, GResource generation, an app wizard, zoom and a more realistic canvas. The preview runs in a separate process (<code>faw-designer-preview</code>) with theme, RTL, scale and locale variants.",
  "d.r9": "Live CSS preview",
  "d.r9n": "Applies to the whole display (GTK4 limit)",
  "d.r10": "Template/composite widgets",

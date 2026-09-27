@@ -7,6 +7,20 @@
   <description>Faw Builder ve Faw Designer'daki değişiklikler</description>
   <language>tr</language>
   <item>
+    <title>2026-09-27 · Faw Designer: odak sırası, önizleme varyantları, GResource</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-27</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-27</guid>
+    <pubDate>Sun, 27 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Faw Designer: odak sırası editörü, CSS sınıfları, GResource üretimi, uygulama sihirbazı, yakınlaştırma. Önizleme ayrı bir süreçte tema, RTL, ölçek ve dil varyantlarıyla çalışıyor.</description>
+  </item>
+  <item>
+    <title>2026-09-26 · 103/103 test geçiyor</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-26</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-26</guid>
+    <pubDate>Sat, 26 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Test paketi: 103 testin 103'ü geçiyor (GLib GTest).</description>
+  </item>
+  <item>
     <title>2026-09-20 · SDK Yönetimi penceresi</title>
     <link>https://fawlibs.org/surumler.html#d-2026-09-20</link>
     <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-20</guid>
