@@ -142,8 +142,33 @@ bash araclar/opencode-eklentiler.sh --kaldir   # ikisini de kaldır
 | --- | --- | --- |
 | [Ponytail](https://github.com/DietrichGebert/ponytail) | `@dietrichgebert/ponytail` | `/ponytail lite\|full\|ultra\|off`, `/ponytail-review`, `/ponytail-audit` |
 | [Caveman](https://github.com/dantesCode/caveman-opencode-plugin) | `caveman-opencode-plugin` | Kısa cevap modu; proje ayarı `caveman.json` |
+| [OpenSlimedit](https://github.com/ASidorenkoCode/openslimedit) | `openslimedit` | Araç tanımlarını ve dosya okuma çıktısını kısaltır (menü 5) |
+| [opencode-snip](https://github.com/VincentHardouin/opencode-snip) | `opencode-snip` | git/make/gcc çıktısını süzer; `snip` programını da kurar (menü 6) |
+| [DCP](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning) | `@tarquinen/opencode-dcp` | Uzun oturumlarda eski çıktıları budar; önbelleği bozabilir (menü 7) |
 
 Betik config'i yedekler, eklentiyi `plugin` listesine ekler ve OpenCode'un hâlâ açıldığını `opencode models` ile kontrol eder; açılmazsa yedeği geri yükler. Resmi Caveman kurucusu menüde 3 numarada durur ama OpenCode'da bilinen sorunları var ([#422](https://github.com/JuliusBrussee/caveman/issues/422), [#482](https://github.com/JuliusBrussee/caveman/issues/482)). İki eklenti de her turda ek talimat gönderdiği için yerel küçük modellerde bağlamın bir kısmını kullanır; gerekirse `/ponytail off` ile kapat.
+
+## Claude Code eklentileri
+
+Aynı fikirler Claude Code için de var. Betik eklentileri resmi `claude plugin` komutlarıyla kurar ve her birinin her oturuma eklediği token maliyetini gösterir.
+
+```bash
+bash araclar/claude-code-eklentiler.sh              # menü
+bash araclar/claude-code-eklentiler.sh --onerilen   # Ponytail + clangd-lsp + snip
+bash araclar/claude-code-eklentiler.sh --kaldir     # hepsini kaldır
+```
+
+| Menü | Eklenti | Her oturuma eklenen | Ne işe yarar |
+| --- | --- | --- | --- |
+| 3 | `clangd-lsp` (resmi) | ~0 token | C/C++ tanıma git ve referanslar; model dosyaları baştan sona okumaz |
+| 4 | `kotlin-lsp` (resmi) | ~0 token | Kotlin/Android için aynısı; `kotlin-lsp` programı gerekir |
+| 7 | snip | ~0 token | Bash çıktısını süzer; Read/Grep araçlarını etkilemez |
+| 5 | `code-simplifier` (resmi) | ~64 token | Yazılan kodu sadeleştiren ajan |
+| 6 | `commit-commands` (resmi) | ~103 token | `/commit`, `/commit-push-pr` |
+| 1 | Ponytail | ~983 token | En az kodu yazdırır |
+| 2 | Caveman | ~1.830 token | Kısa cevaplar, daha az çıktı tokenı |
+
+Maliyetler 2026-09-27'de `claude plugin details` ile ölçüldü. clangd-lsp için clangd kurulu olmalı (betik kurar) ve `compile_commands.json` proje kökünde görünmeli: `ln -s build/compile_commands.json .`. snip ile RTK'yı birlikte kurma; ikisi de aynı Bash hook'unu kullanır.
 
 ## Donanım ayarları (GTX 860M, 16 GB RAM)
 

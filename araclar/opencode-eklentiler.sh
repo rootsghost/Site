@@ -9,12 +9,15 @@
 #               https://github.com/dantesCode/caveman-opencode-plugin
 #               İsteğe bağlı: resmi kurucu https://github.com/JuliusBrussee/caveman
 #               (resmi kurucunun OpenCode'da bilinen sorunları var: #422, #482)
+#   OpenSlimedit — araç tanımlarını ve dosya okuma çıktısını kısaltır (openslimedit)
+#   opencode-snip — kabuk çıktısını modele gitmeden süzer (opencode-snip + snip programı)
+#   DCP          — uzun oturumlarda eski araç çıktılarını budar (@tarquinen/opencode-dcp)
 #
 # Kullanım:
 #   bash opencode-eklentiler.sh                  # menü
 #   bash opencode-eklentiler.sh --hepsi          # ikisini de kur (global)
 #   bash opencode-eklentiler.sh --proje          # global yerine bu klasörün opencode.json'una kur
-#   bash opencode-eklentiler.sh --kaldir         # ikisini de kaldır
+#   bash opencode-eklentiler.sh --kaldir         # hepsini kaldır
 #
 # Her değişiklikten önce config yedeklenir. Kurulumdan sonra OpenCode açılmazsa
 # betik yedeği otomatik geri yükler.
@@ -23,6 +26,9 @@ set -euo pipefail
 
 PONYTAIL_PAKET="@dietrichgebert/ponytail"
 CAVEMAN_PAKET="caveman-opencode-plugin"
+SLIM_PAKET="openslimedit@latest"
+SNIP_PAKET="opencode-snip@latest"
+DCP_PAKET="@tarquinen/opencode-dcp@latest"
 
 bilgi()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 tamam()  { printf '\033[1;32m✓\033[0m   %s\n' "$*"; }
@@ -129,10 +135,27 @@ kur_caveman_resmi() {
   fi
 }
 
+kur_basit_eklenti() {   # kur_basit_eklenti <paket> <ad> <not>
+  bilgi "$2 ekleniyor ($1)"
+  eklenti_ekle "$1"
+  if opencode_calisiyor_mu; then tamam "$2 etkin. $3"; else geri_al; return 1; fi
+}
+
+kur_snip() {
+  if ! command -v snip >/dev/null 2>&1; then
+    bilgi "snip programı kuruluyor (https://github.com/edouard-claude/snip)"
+    curl -fsSL https://raw.githubusercontent.com/edouard-claude/snip/master/install.sh | sh
+    export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+  fi
+  command -v snip >/dev/null 2>&1 || { uyari "snip kurulamadı; eklenti eklenmedi."; return 1; }
+  kur_basit_eklenti "$SNIP_PAKET" "opencode-snip" "Desteklenen komutlar (git, make, gcc…) süzülür, diğerleri olduğu gibi geçer."
+}
+
 kaldir_hepsi() {
-  bilgi "Ponytail ve Caveman kaldırılıyor"
+  bilgi "Eklentiler kaldırılıyor"
   eklenti_cikar 'ponytail'
   eklenti_cikar 'caveman'
+  eklenti_cikar 'openslimedit|opencode-snip|opencode-dcp'
   if [[ -d $HOME/.config/opencode/plugins/caveman ]] && command -v npx >/dev/null 2>&1; then
     bilgi "Resmi Caveman kurulumu da bulundu, kaldırılıyor"
     npx -y github:JuliusBrussee/caveman -- --uninstall || uyari "Resmi kaldırıcı hata verdi; ~/.config/opencode/plugins/caveman'ı elle sil."
@@ -148,7 +171,10 @@ Ne yapmak istersin?
   1) Ponytail kur          — daha az ve daha basit kod
   2) Caveman kur           — kısa cevaplar, daha az token (topluluk eklentisi, önerilen)
   3) Caveman kur (resmi)   — resmi kurucu; bilinen sorunları var
-  4) Kaldır                — ikisini de kaldır
+  4) Kaldır                — bu betiğin kurduğu tüm eklentileri kaldır
+  5) OpenSlimedit          — araç tanımlarını kısaltır (%22–45 daha az token, geliştirici ölçümü)
+  6) opencode-snip         — git/make/gcc çıktısını süzer (+ snip programı)
+  7) DCP                   — uzun oturumlarda eski çıktıları budar (önbelleği bozabilir)
 
 MENU
   read -rp "Numaralar (boşlukla ayır) [1 2]: " SECIM
@@ -167,6 +193,9 @@ for s in $SECIM; do
     2) kur_caveman_topluluk || basarisiz=1 ;;
     3) kur_caveman_resmi || basarisiz=1 ;;
     4) kaldir_hepsi ;;
+    5) kur_basit_eklenti "$SLIM_PAKET" "OpenSlimedit" "Araç tanımları ve dosya okuma çıktısı kısaltıldı." || basarisiz=1 ;;
+    6) kur_snip || basarisiz=1 ;;
+    7) kur_basit_eklenti "$DCP_PAKET" "DCP" "Önbellekleme yapan sağlayıcılarda önbellek kaçırmalarını artırabilir." || basarisiz=1 ;;
     *) uyari "Bilinmeyen seçim: $s" ;;
   esac
 done
