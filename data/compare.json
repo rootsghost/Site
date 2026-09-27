@@ -1,0 +1,464 @@
+{
+ "updated": "2026-09-27",
+ "tables": [
+  {
+   "id": "ide",
+   "tr": "C/GTK IDE",
+   "en": "C/GTK IDE",
+   "columns": [
+    {
+     "id": "faw",
+     "name": "Faw Builder",
+     "url": null,
+     "checked": null,
+     "self": true
+    },
+    {
+     "id": "builder",
+     "name": "GNOME Builder",
+     "url": "https://apps.gnome.org/Builder/",
+     "checked": null,
+     "self": false
+    },
+    {
+     "id": "kdevelop",
+     "name": "KDevelop",
+     "url": "https://kdevelop.org/",
+     "checked": null,
+     "self": false
+    },
+    {
+     "id": "qtc",
+     "name": "Qt Creator",
+     "url": "https://www.qt.io/product/development-tools",
+     "checked": null,
+     "self": false
+    },
+    {
+     "id": "clion",
+     "name": "CLion",
+     "url": "https://www.jetbrains.com/clion/",
+     "checked": null,
+     "self": false
+    },
+    {
+     "id": "vscode",
+     "name": "VS Code + clangd",
+     "url": "https://code.visualstudio.com/",
+     "checked": null,
+     "self": false
+    }
+   ],
+   "rows": [
+    {
+     "tr": "Native arayüz (Electron değil)",
+     "en": "Native UI (not Electron)",
+     "values": {
+      "faw": "yes",
+      "builder": "yes",
+      "kdevelop": "yes",
+      "qtc": "yes",
+      "clion": "part",
+      "vscode": "no"
+     },
+     "note": {
+      "tr": "CLion JVM üzerinde çalışır.",
+      "en": "CLion runs on the JVM."
+     }
+    },
+    {
+     "tr": "Açık kaynak",
+     "en": "Open source",
+     "values": {
+      "faw": "yes",
+      "builder": "yes",
+      "kdevelop": "yes",
+      "qtc": "yes",
+      "clion": "no",
+      "vscode": "part"
+     }
+    },
+    {
+     "tr": "C/C++ LSP (tanıma git, rename, hover)",
+     "en": "C/C++ LSP (go to definition, rename, hover)",
+     "values": {
+      "faw": "yes",
+      "builder": "yes",
+      "kdevelop": "yes",
+      "qtc": "yes",
+      "clion": "yes",
+      "vscode": "yes"
+     }
+    },
+    {
+     "tr": "Meson projeleri",
+     "en": "Meson projects",
+     "values": {
+      "faw": "yes",
+      "builder": "yes",
+      "kdevelop": "yes",
+      "qtc": "part",
+      "clion": "part",
+      "vscode": "part"
+     }
+    },
+    {
+     "tr": "Flatpak ile derle ve çalıştır",
+     "en": "Build and run with Flatpak",
+     "values": {
+      "faw": "part",
+      "builder": "yes",
+      "kdevelop": "no",
+      "qtc": "no",
+      "clion": "no",
+      "vscode": "part"
+     },
+     "note": {
+      "tr": "Faw Builder: kod hazır, gerçek flatpak-builder ile elle denenmedi.",
+      "en": "Faw Builder: implemented, not yet tried by hand with a real flatpak-builder."
+     }
+    },
+    {
+     "tr": "GDB ve LLDB",
+     "en": "GDB and LLDB",
+     "values": {
+      "faw": "yes",
+      "builder": "part",
+      "kdevelop": "yes",
+      "qtc": "yes",
+      "clion": "yes",
+      "vscode": "yes"
+     }
+    },
+    {
+     "tr": "Kotlin/Android geliştirme",
+     "en": "Kotlin/Android development",
+     "values": {
+      "faw": "yes",
+      "builder": "no",
+      "kdevelop": "no",
+      "qtc": "no",
+      "clion": "no",
+      "vscode": "part"
+     }
+    },
+    {
+     "tr": "Entegre GTK4 arayüz tasarımcısı",
+     "en": "Integrated GTK4 UI designer",
+     "values": {
+      "faw": "yes",
+      "builder": "no",
+      "kdevelop": "no",
+      "qtc": "no",
+      "clion": "no",
+      "vscode": "no"
+     }
+    },
+    {
+     "tr": "Linux dışı platformlar",
+     "en": "Platforms other than Linux",
+     "values": {
+      "faw": "part",
+      "builder": "no",
+      "kdevelop": "part",
+      "qtc": "yes",
+      "clion": "yes",
+      "vscode": "yes"
+     },
+     "note": {
+      "tr": "Faw Builder: Windows çapraz derlemesi deneysel.",
+      "en": "Faw Builder: the Windows cross-build is experimental."
+     }
+    }
+   ],
+   "noteTr": "✓ var · ◐ kısmi ya da eklentiyle · ✗ yok · ? bilinmiyor. Faw Builder sütunu proje dokümanlarından alındı. Diğer sütunlar genel bilgiye dayanıyor ve yayından önce kaynaklarından doğrulanmalı.",
+   "noteEn": "✓ yes · ◐ partial or via extensions · ✗ no · ? unknown. The Faw Builder column comes from the project docs. The other columns are based on general knowledge and must be verified against their sources before publishing."
+  },
+  {
+   "id": "android",
+   "tr": "Android",
+   "en": "Android",
+   "columns": [
+    {
+     "id": "faw",
+     "name": "Faw Builder",
+     "url": null,
+     "checked": null,
+     "self": true
+    },
+    {
+     "id": "as",
+     "name": "Android Studio",
+     "url": "https://developer.android.com/studio",
+     "checked": null,
+     "self": false
+    }
+   ],
+   "rows": [
+    {
+     "tr": "Kotlin, Gradle Wrapper, Maven Central",
+     "en": "Kotlin, Gradle Wrapper, Maven Central",
+     "values": {
+      "faw": "yes",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "USB ve kablosuz ADB, AVD",
+     "en": "USB and wireless ADB, AVD",
+     "values": {
+      "faw": "yes",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "Kablosuz eşleştirme için QR kod",
+     "en": "QR code for wireless pairing",
+     "values": {
+      "faw": "part",
+      "as": "yes"
+     },
+     "note": {
+      "tr": "Faw Builder yalnız QR kodu üretir, eşleştirme sunucusu yok.",
+      "en": "Faw Builder only generates the QR code; there is no pairing server."
+     }
+    },
+    {
+     "tr": "JDWP kesme noktalı debugger",
+     "en": "JDWP debugger with breakpoints",
+     "values": {
+      "faw": "yes",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "XML layout görsel editörü",
+     "en": "Visual XML layout editor",
+     "values": {
+      "faw": "yes",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "Compose önizleme",
+     "en": "Compose preview",
+     "values": {
+      "faw": "part",
+      "as": "yes"
+     },
+     "note": {
+      "tr": "Faw Builder: tek yönlü, ağaçtan Kotlin kodu üretir.",
+      "en": "Faw Builder: one-way, generates Kotlin code from a tree."
+     }
+    },
+    {
+     "tr": "Profiler, Layout ve Database Inspector",
+     "en": "Profiler, Layout and Database Inspector",
+     "values": {
+      "faw": "yes",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "Network Inspector",
+     "en": "Network Inspector",
+     "values": {
+      "faw": "part",
+      "as": "yes"
+     },
+     "note": {
+      "tr": "Faw Builder: deneysel, gerçek mitmproxy ile denenmedi.",
+      "en": "Faw Builder: experimental, not tried with a real mitmproxy."
+     }
+    },
+    {
+     "tr": "Release imzalama ve .aab",
+     "en": "Release signing and .aab",
+     "values": {
+      "faw": "yes",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "Play Console entegrasyonu",
+     "en": "Play Console integration",
+     "values": {
+      "faw": "no",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "Google Maven otomatik sürüm çözümleme",
+     "en": "Automatic Google Maven version resolution",
+     "values": {
+      "faw": "no",
+      "as": "yes"
+     }
+    },
+    {
+     "tr": "Aynı IDE'de C/GTK geliştirme",
+     "en": "C/GTK development in the same IDE",
+     "values": {
+      "faw": "yes",
+      "as": "no"
+     }
+    }
+   ],
+   "noteTr": "Faw Builder sütunu ANDROID_AGENTS.md ve FEATURE_ROADMAP.md'den. Android Studio sütunu yayından önce doğrulanmalı.",
+   "noteEn": "The Faw Builder column comes from ANDROID_AGENTS.md and FEATURE_ROADMAP.md. The Android Studio column must be verified before publishing."
+  },
+  {
+   "id": "designer",
+   "tr": "Arayüz tasarımcısı",
+   "en": "UI designer",
+   "columns": [
+    {
+     "id": "faw",
+     "name": "Faw Designer",
+     "url": null,
+     "checked": null,
+     "self": true
+    },
+    {
+     "id": "camb",
+     "name": "Cambalache",
+     "url": "https://gitlab.gnome.org/jpu/cambalache",
+     "checked": null,
+     "self": false
+    },
+    {
+     "id": "glade",
+     "name": "Glade",
+     "url": "https://glade.gnome.org/",
+     "checked": null,
+     "self": false
+    },
+    {
+     "id": "wb",
+     "name": "Workbench",
+     "url": "https://apps.gnome.org/Workbench/",
+     "checked": null,
+     "self": false
+    },
+    {
+     "id": "qtd",
+     "name": "Qt Designer",
+     "url": "https://doc.qt.io/qt-6/qtdesigner-manual.html",
+     "checked": null,
+     "self": false
+    }
+   ],
+   "rows": [
+    {
+     "tr": "GTK4 arayüzleri",
+     "en": "GTK4 interfaces",
+     "values": {
+      "faw": "yes",
+      "camb": "yes",
+      "glade": "no",
+      "wb": "yes",
+      "qtd": "no"
+     },
+     "note": {
+      "tr": "Glade GTK3'e kadar destekler, Qt Designer Qt içindir.",
+      "en": "Glade supports up to GTK3; Qt Designer is for Qt."
+     }
+    },
+    {
+     "tr": "Sürükle-bırak canvas",
+     "en": "Drag-and-drop canvas",
+     "values": {
+      "faw": "yes",
+      "camb": "yes",
+      "glade": "yes",
+      "wb": "no",
+      "qtd": "yes"
+     },
+     "note": {
+      "tr": "Workbench kod yazıp canlı önizleme gösterir.",
+      "en": "Workbench shows a live preview of code you write."
+     }
+    },
+    {
+     "tr": "GIR'den otomatik palet",
+     "en": "Palette generated from GIR",
+     "values": {
+      "faw": "yes",
+      "camb": "yes",
+      "glade": "part",
+      "wb": "no",
+      "qtd": "no"
+     }
+    },
+    {
+     "tr": "Placeholder ile container doldurma",
+     "en": "Filling containers with placeholders",
+     "values": {
+      "faw": "yes",
+      "camb": "no",
+      "glade": "yes",
+      "wb": "no",
+      "qtd": "unknown"
+     }
+    },
+    {
+     "tr": "Blueprint (.blp)",
+     "en": "Blueprint (.blp)",
+     "values": {
+      "faw": "yes",
+      "camb": "no",
+      "glade": "no",
+      "wb": "yes",
+      "qtd": "no"
+     }
+    },
+    {
+     "tr": "Sinyal editörü",
+     "en": "Signal editor",
+     "values": {
+      "faw": "yes",
+      "camb": "yes",
+      "glade": "yes",
+      "wb": "part",
+      "qtd": "yes"
+     }
+    },
+    {
+     "tr": "Adw.Breakpoint",
+     "en": "Adw.Breakpoint",
+     "values": {
+      "faw": "yes",
+      "camb": "yes",
+      "glade": "no",
+      "wb": "yes",
+      "qtd": "no"
+     }
+    },
+    {
+     "tr": "Sandbox'lı render süreci",
+     "en": "Sandboxed render process",
+     "values": {
+      "faw": "no",
+      "camb": "yes",
+      "glade": "no",
+      "wb": "unknown",
+      "qtd": "unknown"
+     }
+    },
+    {
+     "tr": "Android layout XML",
+     "en": "Android layout XML",
+     "values": {
+      "faw": "yes",
+      "camb": "no",
+      "glade": "no",
+      "wb": "no",
+      "qtd": "no"
+     }
+    }
+   ],
+   "noteTr": "Faw Designer sütunu ve Cambalache ile Glade hücrelerinin çoğu UI_DESIGNER_PLAN.md karşılaştırmasından. Geri kalanı genel bilgiye dayanıyor, doğrulanmalı.",
+   "noteEn": "The Faw Designer column and most Cambalache and Glade cells come from the comparison in UI_DESIGNER_PLAN.md. The rest is based on general knowledge and must be verified."
+  }
+ ]
+}

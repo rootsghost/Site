@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Faw Builder Hata Ayıklama</title>
+<meta name="description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
+<meta property="og:title" content="Faw Builder Hata Ayıklama">
+<meta property="og:description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
+<meta property="og:url" content="https://fawlibs.org/debugger.html">
+<meta property="og:image" content="https://fawlibs.org/og-image.png">
+<link rel="canonical" href="https://fawlibs.org/debugger.html">
+<link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
+<meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+  <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
+  <button type="button" data-skin="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
+  <button type="button" data-skin="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
+  <button type="button" data-skin="gradient" aria-pressed="false">Gradient</button>
+  <button type="button" data-skin="hacker" aria-pressed="false">Hacker</button>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5h10v3H6.5v2.5H12v3H6.5v4.5H3z" style="fill:var(--accent-ink)"/></svg></span>
+      Faw Builder
+    </a>
+    <div class="header-tools">
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Ana menü">
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a>
+      <a href="android.html">Android</a>
+      <a href="designer.html">Designer</a>
+      <a href="index.html#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a>
+      <a href="surumler.html" data-i18n="nav.releases">Sürümler</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <a href="index.html#kurulum" class="btn btn-primary btn-sm" data-i18n="hero.download">İndir</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap page-hero">
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Hata ayıklama</span></p>
+    <h1 data-i18n="p.title">Hata ayıklama</h1>
+    <p class="section-intro" data-i18n="p.intro">Üç tür proje için üç debugger: C/C++ için GDB ve LLDB, Android için JDWP. Hepsi isteğe bağlı; aracı yoksa panel pasif kalır.</p>
+  </div>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="g.e">Debugger'lar</span>
+      <h2 data-i18n="g.h">Hangisi ne yapar</h2>
+    </div>
+    <div class="grid">
+      <article class="card"><span class="glyph" aria-hidden="true">gdb</span><h3>GDB</h3><p data-i18n="g.gdb.b">Native C/C++ projeleri için. <code>gdb --interpreter=mi3</code> ile makine arayüzü üzerinden konuşur. Kesme noktaları editör oluğundan konur.</p></article>
+      <article class="card"><span class="glyph" aria-hidden="true">lldb</span><h3>LLDB</h3><p data-i18n="g.lldb.b">GDB'nin yanında ayrı bir panel. Makine arayüzü yerine LLDB'nin düz komut satırı çıktısını ayrıştırır.</p></article>
+      <article class="card"><span class="glyph" aria-hidden="true">jdb</span><h3>JDWP</h3><p data-i18n="g.jdwp.b">Android uygulamaları için. Debug panelinden Devam, Adım ve Durdur, oluktan kesme noktaları. İsteğe bağlı <code>jdb</code> gerekir.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="g.ch.e" lang="en">Android</span>
+      <h2 data-i18n="g.ch.h">“Hata ayıkla”ya basınca ne olur</h2>
+    </div>
+    <ol class="steps">
+      <li><div><h3 data-i18n="g.s1.t">Derle ve yükle</h3><p data-i18n="g.s1.b">assembleDebug, ardından seçili cihaza <code>adb install -r</code>.</p></div></li>
+      <li><div><h3 data-i18n="g.s2.t">Debugger beklemeye başlat</h3><p data-i18n="g.s2.b">Uygulama <code>am start -D</code> ile açılır ve debugger bağlanmasını bekler.</p></div></li>
+      <li><div><h3 data-i18n="g.s3.t">Süreci bul</h3><p data-i18n="g.s3.b">Uygulamanın PID'i <code>pidof</code> ile bulunur.</p></div></li>
+      <li><div><h3 data-i18n="g.s4.t">Portu yönlendir</h3><p data-i18n="g.s4.b"><code>adb forward</code> cihazdaki JDWP portunu yerel bir porta bağlar.</p></div></li>
+      <li><div><h3 data-i18n="g.s5.t">jdb'yi bağla</h3><p data-i18n="g.s5.b"><code>jdb</code> bağlanır; oluktaki kesme noktaları sınıflara eşlenip gönderilir.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="g.lim.e">Açık liste</span>
+      <h2 data-i18n="g.lim.h">Bilinen sınırlar</h2>
+    </div>
+    <ul class="limits">
+      <li data-i18n="g.l1">JDWP değişken/izleme arayüzü yapısal kod olarak var, ama gerçek SDK ve Gradle ile elle doğrulanmadı.</li>
+      <li data-i18n="g.l2">LLDB desteği makine arayüzünü değil düz metin çıktısını ayrıştırır; alışılmadık çıktı biçimleri tanınmayabilir.</li>
+      <li data-i18n="g.l3">Android Studio tarzı tam bir debugger yok; temel jdb'nin metin çıktısı.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.product">Ürün</span>
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a><a href="android.html">Android</a><a href="designer.html">Faw Designer</a><a href="debugger.html" data-i18n="nav.debugger">Hata ayıklama</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.res">Kaynaklar</span>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a><a href="surumler.html" data-i18n="nav.releases">Sürümler</a><a href="index.html#sss" data-i18n="nav.faq">SSS</a><a href="feed.xml">RSS</a>
+      <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
+      <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
+      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
+      <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>
+    <span data-i18n="footer.made">GTK4 ile, Linux için yapıldı.</span>
+  </div>
+</footer>
+
+<script>window.FAW_PAGE_EN = {
+ "p.crumb": "Debugging",
+ "p.title": "Debugging",
+ "p.intro": "Three debuggers for three kinds of projects: GDB and LLDB for C/C++, JDWP for Android. Each one is optional; if its tool is missing, the panel stays inactive.",
+ "g.e": "Debuggers",
+ "g.h": "Which one does what",
+ "g.gdb.b": "For native C/C++ projects. Talks to <code>gdb --interpreter=mi3</code> over the machine interface. Breakpoints are set from the editor gutter.",
+ "g.lldb.b": "A separate panel next to GDB. It parses LLDB's plain command-line output instead of a machine interface.",
+ "g.jdwp.b": "For Android apps. Continue, Step and Stop from the Debug panel, breakpoints from the gutter. Needs the optional <code>jdb</code>.",
+ "g.ch.e": "Android",
+ "g.ch.h": "What happens when you press “Debug”",
+ "g.s1.t": "Build and install",
+ "g.s1.b": "assembleDebug, then <code>adb install -r</code> to the selected device.",
+ "g.s2.t": "Start waiting for the debugger",
+ "g.s2.b": "The app is launched with <code>am start -D</code> and waits for a debugger to attach.",
+ "g.s3.t": "Find the process",
+ "g.s3.b": "The app's PID is found with <code>pidof</code>.",
+ "g.s4.t": "Forward the port",
+ "g.s4.b": "<code>adb forward</code> connects the device's JDWP port to a local port.",
+ "g.s5.t": "Attach jdb",
+ "g.s5.b": "<code>jdb</code> attaches; gutter breakpoints are mapped to classes and sent.",
+ "g.lim.e": "Honest list",
+ "g.lim.h": "Known limits",
+ "g.l1": "The JDWP variables/watch UI exists as structural code but has not been verified by hand with a real SDK and Gradle.",
+ "g.l2": "LLDB support parses plain text output, not a machine interface, so unusual output formats may not be recognized.",
+ "g.l3": "There is no full Android Studio-style debugger; jdb's text output is the basis."
+};</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

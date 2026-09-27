@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Faw Builder sürümleri</title>
+  <link>https://fawlibs.org/surumler.html</link>
+  <atom:link href="https://fawlibs.org/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Faw Builder ve Faw Designer'daki değişiklikler</description>
+  <language>tr</language>
+  <item>
+    <title>2026-09-20 · SDK Yönetimi penceresi</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-20</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-20</guid>
+    <pubDate>Sun, 20 Sep 2026 12:00:00 +0000</pubDate>
+    <description>SDK Yönetimi penceresi: kurulu ve kurulabilir tüm sdkmanager paketleri, her biri kendi Kur/Kaldır butonuyla. Windows çapraz derlemesi: fetch-mingw-gtk4-stack.py GTK4 yığınını MSYS2 deposundan çözer; 417 hedefin tamamı derlendi, .exe Wine altında çalıştı.</description>
+  </item>
+  <item>
+    <title>2026-09-19 · Deneysel Network Inspector</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-19</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-19</guid>
+    <pubDate>Sat, 19 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Deneysel Network Inspector: mitmdump satır akışı, otomatik adb reverse tcp:8080 ve cihaz proxy&#x27;si. Popüler Android araçları denetlendi: Profiler, Layout Inspector, Database Inspector, Lint ve Baseline Profile zaten mevcuttu.</description>
+  </item>
+  <item>
+    <title>2026-09-18 · JDWP değişken/izleme arayüzü (yapısal kod, elle doğrulanmadı)</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-18</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-18</guid>
+    <pubDate>Fri, 18 Sep 2026 12:00:00 +0000</pubDate>
+    <description>JDWP değişken/izleme arayüzü (yapısal kod, elle doğrulanmadı). Kablosuz ADB eşleştirmesi için QR kod üretimi (önizleme; eşleştirme sunucusu yok).</description>
+  </item>
+  <item>
+    <title>2026-09-17 · GDB&#x27;nin yanına ayrı LLDB paneli</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-17</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-17</guid>
+    <pubDate>Thu, 17 Sep 2026 12:00:00 +0000</pubDate>
+    <description>GDB&#x27;nin yanına ayrı LLDB paneli.</description>
+  </item>
+  <item>
+    <title>2026-09-12 · Faw Designer</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-12</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-12</guid>
+    <pubDate>Sat, 12 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Faw Designer: Android XML görsel tasarımcı ve Compose tasarımcı (tek yönlü kod üretimi). Maven Central kütüphane arama ve ekleme.</description>
+  </item>
+  <item>
+    <title>2026-09-10 · Faw Designer Faz 4</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-10</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-10</guid>
+    <pubDate>Thu, 10 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Faw Designer Faz 4: CSS önizleme, template widget&#x27;lar, çeviri işareti, hedef sürüm uyarıları, Adw.Breakpoint, projeye özel widget kataloğu.</description>
+  </item>
+  <item>
+    <title>2026-09-09 · Kod katlama (18 test), hover bilgi penceresi, native dosya G/Ç ve proje geneli regex arama</title>
+    <link>https://fawlibs.org/surumler.html#d-2026-09-09</link>
+    <guid isPermaLink="true">https://fawlibs.org/surumler.html#d-2026-09-09</guid>
+    <pubDate>Wed, 09 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Kod katlama (18 test), hover bilgi penceresi, native dosya G/Ç ve proje geneli regex arama. Komut paleti artık kayıtlı her komutu listeliyor. Faw Designer Faz 1–3: GIR paleti, yer tutuculu canvas, canlı önizleme, çoklu ekran, GMenu editörü, undo/redo.</description>
+  </item>
+</channel>
+</rss>

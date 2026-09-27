@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Faw Designer</title>
+<meta name="description" content="Faw Designer: GTK4 ve Android için görsel arayüz tasarımcısı. Fazlar, Cambalache/Glade karşılaştırması ve bilinen sınırlar.">
+<meta property="og:title" content="Faw Designer">
+<meta property="og:description" content="Faw Designer: GTK4 ve Android için görsel arayüz tasarımcısı. Fazlar, Cambalache/Glade karşılaştırması ve bilinen sınırlar.">
+<meta property="og:url" content="https://fawlibs.org/designer.html">
+<meta property="og:image" content="https://fawlibs.org/og-image.png">
+<link rel="canonical" href="https://fawlibs.org/designer.html">
+<link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
+<meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+  <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
+  <button type="button" data-skin="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
+  <button type="button" data-skin="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
+  <button type="button" data-skin="gradient" aria-pressed="false">Gradient</button>
+  <button type="button" data-skin="hacker" aria-pressed="false">Hacker</button>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5h10v3H6.5v2.5H12v3H6.5v4.5H3z" style="fill:var(--accent-ink)"/></svg></span>
+      Faw Builder
+    </a>
+    <div class="header-tools">
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Ana menü">
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a>
+      <a href="android.html">Android</a>
+      <a href="designer.html" aria-current="page">Designer</a>
+      <a href="index.html#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a>
+      <a href="surumler.html" data-i18n="nav.releases">Sürümler</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <a href="index.html#kurulum" class="btn btn-primary btn-sm" data-i18n="hero.download">İndir</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap page-hero">
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Faw Designer</span></p>
+    <h1 data-i18n="p.title">Faw Designer</h1>
+    <p class="section-intro" data-i18n="p.intro">Faw Builder ile gelen ayrı bir GTK4 ve Android arayüz tasarımcısı. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd> ile açılır, proje kökünle başlar.</p>
+  </div>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="d.ph.e">Fazlar</span>
+      <h2 data-i18n="d.ph.h">Dört fazda neler yapıldı</h2>
+    </div>
+    <div class="grid">
+      <article class="card"><h3 data-i18n="d.f1.t">Faz 1 · Çekirdek</h3><p data-i18n="d.f1.b">GIR'den üretilen palet (151 sınıf) ve arama, GtkBox ve GtkGrid'de yer tutucular, GtkFixed'te serbest konum, hiyerarşi paneli, .ui içe/dışa aktarma ve .blp eşlikçisi.</p></article>
+      <article class="card"><h3 data-i18n="d.f2.t">Faz 2 · Düzenleme</h3><p data-i18n="d.f2.b">Yerleşim bölümü, kardeşler arasında sürükleyerek sıralama, sinyal editörü, erişilebilirlik etiketleri, özellik sıfırlama, çoğalt ve sil, 100 adım undo/redo.</p></article>
+      <article class="card"><h3 data-i18n="d.f3.t">Faz 3 · Ölçek</h3><p data-i18n="d.f3.b">Gerçek GtkBuilder ile canlı önizleme, tek dosyada birden çok üst-seviye pencere, GMenu editörü, çoklu seçim ve yapışma, Android cihaz ekran görüntüsü.</p></article>
+      <article class="card"><h3 data-i18n="d.f4.t">Faz 4 · libadwaita</h3><p data-i18n="d.f4.b">CSS önizleme, template/composite widget'lar, çeviri işareti, hedef sürüme göre deprecation uyarısı, Adw.Breakpoint, GIR dışı kendi widget'ların için katalog.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="d.t.e">Cambalache ve Glade ile</span>
+      <h2 data-i18n="d.t.h">19 özellik, tek tek</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only" data-i18n="d.t.cap">Faw Designer, Cambalache ve Glade karşılaştırması, 19 özellik</caption>
+        <thead><tr><th scope="col" class="v">#</th><th scope="col"><span data-i18n="d.t.c1">Özellik</span></th><th scope="col" class="v">Cambalache</th><th scope="col" class="v">Glade</th><th scope="col" class="v col-us"><span data-i18n="d.t.c4">Faw Designer</span></th></tr></thead>
+        <tbody>
+          <tr><td class="v">1</td><td><span data-i18n="d.r1">Hiyerarşi paneli</span><span class="row-note" data-i18n="d.r1n">Sıralama canvas'ta var, ağaçta yok</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v part col-us"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td></tr>
+          <tr><td class="v">2</td><td><span data-i18n="d.r2">Container yer tutucuları</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">3</td><td><span data-i18n="d.r3">Yerleşim/packing bölümü</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">4</td><td><span data-i18n="d.r4">Sinyal editörü</span><span class="row-note" data-i18n="d.r4n">Sinyal adı serbest metinle girilir</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">5</td><td><span data-i18n="d.r5">Canlı önizleme penceresi</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">6</td><td><span data-i18n="d.r6">Kopyala/yapıştır/çoğalt</span><span class="row-note" data-i18n="d.r6n">Çoğalt ve sil var; Grid/Fixed içinde çoğaltma yok</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v part col-us"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td></tr>
+          <tr><td class="v">7</td><td><span data-i18n="d.r7">GIR'den katalog</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v part"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">8</td><td><span data-i18n="d.r8">Sandbox'lı render süreci</span><span class="row-note" data-i18n="d.r8n">Gerçek kararsızlık bildirilene kadar ertelendi</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v no col-us"><span aria-hidden="true">✗</span><span class="sr-only">yok</span></td></tr>
+          <tr><td class="v">9</td><td><span data-i18n="d.r9">Canlı CSS önizleme</span><span class="row-note" data-i18n="d.r9n">Tüm ekrana uygulanır (GTK4 kısıtı)</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v part col-us"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td></tr>
+          <tr><td class="v">10</td><td><span data-i18n="d.r10">Template/composite widget</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">11</td><td><span data-i18n="d.r11">Çevrilebilir metinler</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">12</td><td><span data-i18n="d.r12">Hedef sürüm farkındalığı</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v part"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">13</td><td><span data-i18n="d.r13">Dosya başına birden çok üst-seviye nesne</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">14</td><td><span data-i18n="d.r14">Palet arama</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">15</td><td><span data-i18n="d.r15">Erişilebilirlik bölümü</span><span class="row-note" data-i18n="d.r15n">Etiket ve açıklama; ilişkiler yok</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v part col-us"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td></tr>
+          <tr><td class="v">16</td><td><span data-i18n="d.r16">Özellik sıfırlama</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">17</td><td><span data-i18n="d.r17">GMenu editörü</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">18</td><td><span data-i18n="d.r18">Adw.Breakpoint</span><span class="row-note" data-i18n="d.r18n">Undo/redo kapsamında değil</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v no"><span aria-hidden="true">—</span><span class="sr-only">yok</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+          <tr><td class="v">19</td><td><span data-i18n="d.r19">Projeye özel widget kataloğu</span><span class="row-note" data-i18n="d.r19n">Etiketli bir GtkFrame yer tutucusuyla gösterilir</span></td><td class="v part"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td class="v yes col-us"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note" data-i18n="d.src">Kaynak: UI_DESIGNER_PLAN.md'deki karşılaştırma tablosu.</p>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="d.lim.e">Açık liste</span>
+      <h2 data-i18n="d.lim.h">Bilinen sınırlar</h2>
+    </div>
+    <ul class="limits">
+      <li data-i18n="d.l1">Özellik denetçisi metin, mantıksal ve tamsayı tiplerini düzenler; halign/valign için enum editörü var. Diğer enum, nesne ve renk tipleri salt okunur.</li>
+      <li data-i18n="d.l2">Hiyerarşi ağacında sürükleyerek sıralama yok.</li>
+      <li data-i18n="d.l3">Ebeveyni Grid ya da Fixed olan bir widget'ı çoğaltmak desteklenmiyor.</li>
+      <li data-i18n="d.l4">Birden çok ekran tek dosyaya kaydedilince otomatik id'ler (ör. button1) ekranlar arasında tekrarlanabilir.</li>
+      <li data-i18n="d.l5">Breakpoint, CSS ve hedef sürüm değişiklikleri undo/redo kapsamında değil.</li>
+      <li data-i18n="d.l6">Alt ağaçlı bir widget'ı çoğaltmak, düğüm sayısı kadar Ctrl+Z gerektirir.</li>
+      <li data-i18n="d.l7">Android ekran görüntüsü cihazda o an ne varsa onu gösterir; düzenlenen XML'i derleyip çalıştırmaz.</li>
+      <li data-i18n="d.l8">Birçok fare etkileşimi (sağ tık menüleri, dosya seçiciler, Ctrl+tık) gerçek fareyle değil, işleyicileri çağrılarak test edildi.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.product">Ürün</span>
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a><a href="android.html">Android</a><a href="designer.html">Faw Designer</a><a href="debugger.html" data-i18n="nav.debugger">Hata ayıklama</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.res">Kaynaklar</span>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a><a href="surumler.html" data-i18n="nav.releases">Sürümler</a><a href="index.html#sss" data-i18n="nav.faq">SSS</a><a href="feed.xml">RSS</a>
+      <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
+      <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
+      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
+      <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>
+    <span data-i18n="footer.made">GTK4 ile, Linux için yapıldı.</span>
+  </div>
+</footer>
+
+<script>window.FAW_PAGE_EN = {
+ "p.crumb": "Faw Designer",
+ "p.title": "Faw Designer",
+ "p.intro": "A separate GTK4 and Android UI designer that ships with Faw Builder. Open it with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd>; it starts with your project root.",
+ "d.ph.e": "Phases",
+ "d.ph.h": "What was built in four phases",
+ "d.f1.t": "Phase 1 · Core",
+ "d.f1.b": "Palette generated from GIR (151 classes) with search, placeholders in GtkBox and GtkGrid, free placement in GtkFixed, hierarchy panel, .ui import/export and a .blp sidecar.",
+ "d.f2.t": "Phase 2 · Editing",
+ "d.f2.b": "Layout section, reordering by dragging between siblings, signal editor, accessibility labels, property reset, duplicate and delete, 100 steps of undo/redo.",
+ "d.f3.t": "Phase 3 · Scale",
+ "d.f3.b": "Live preview through the real GtkBuilder, multiple top-level windows in one file, GMenu editor, multi-select and snapping, Android device screenshots.",
+ "d.f4.t": "Phase 4 · libadwaita",
+ "d.f4.b": "CSS preview, template/composite widgets, translatable flags, target-version deprecation warnings, Adw.Breakpoint, a catalog for your own non-GIR widgets.",
+ "d.t.e": "Compared with Cambalache and Glade",
+ "d.t.h": "19 features, one by one",
+ "d.t.cap": "Faw Designer compared with Cambalache and Glade, 19 features",
+ "d.t.c1": "Feature",
+ "d.t.c4": "Faw Designer",
+ "d.r1": "Hierarchy panel",
+ "d.r1n": "Reorder on the canvas, not in the tree",
+ "d.r2": "Container placeholders",
+ "d.r3": "Layout/packing section",
+ "d.r4": "Signal editor",
+ "d.r4n": "Signal names typed as free text",
+ "d.r5": "Live preview window",
+ "d.r6": "Copy/paste/duplicate",
+ "d.r6n": "Duplicate and delete; no duplicating inside Grid/Fixed",
+ "d.r7": "Catalog generated from GIR",
+ "d.r8": "Sandboxed render process",
+ "d.r8n": "Postponed until real instability is reported",
+ "d.r9": "Live CSS preview",
+ "d.r9n": "Applies to the whole display (GTK4 limit)",
+ "d.r10": "Template/composite widgets",
+ "d.r11": "Translatable strings",
+ "d.r12": "Target version awareness",
+ "d.r13": "Several top-level objects per file",
+ "d.r14": "Palette search",
+ "d.r15": "Accessibility section",
+ "d.r15n": "Label and description; no relations",
+ "d.r16": "Property reset",
+ "d.r17": "GMenu editor",
+ "d.r18": "Adw.Breakpoint",
+ "d.r18n": "Not part of undo/redo",
+ "d.r19": "Project-specific widget catalog",
+ "d.r19n": "Shown as a labeled GtkFrame placeholder",
+ "d.src": "Source: the comparison table in UI_DESIGNER_PLAN.md.",
+ "d.lim.e": "Honest list",
+ "d.lim.h": "Known limits",
+ "d.l1": "The property inspector edits text, boolean and integer types; halign/valign have an enum editor. Other enums, objects and colors are read-only.",
+ "d.l2": "No drag-to-reorder in the hierarchy tree.",
+ "d.l3": "Duplicating a widget whose parent is a Grid or Fixed is not supported.",
+ "d.l4": "When several screens are saved into one file, auto-generated ids (e.g. button1) can repeat across screens.",
+ "d.l5": "Breakpoints, CSS and target version changes are not part of undo/redo.",
+ "d.l6": "Duplicating a subtree takes as many Ctrl+Z presses as it has nodes.",
+ "d.l7": "The Android screenshot shows whatever is on the device screen right now; it does not build and run the edited XML.",
+ "d.l8": "Many mouse interactions (context menus, file choosers, Ctrl+click) were tested by calling their handlers, not with a real mouse."
+};</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

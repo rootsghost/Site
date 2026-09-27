@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Faw Builder Android</title>
+<meta name="description" content="Faw Builder ile Kotlin Android geliştirme: SDK kurulumu, araç zinciri, IDE özellikleri ve bilinen sınırlar.">
+<meta property="og:title" content="Faw Builder Android">
+<meta property="og:description" content="Faw Builder ile Kotlin Android geliştirme: SDK kurulumu, araç zinciri, IDE özellikleri ve bilinen sınırlar.">
+<meta property="og:url" content="https://fawlibs.org/android.html">
+<meta property="og:image" content="https://fawlibs.org/og-image.png">
+<link rel="canonical" href="https://fawlibs.org/android.html">
+<link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
+<meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+  <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
+  <button type="button" data-skin="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
+  <button type="button" data-skin="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
+  <button type="button" data-skin="gradient" aria-pressed="false">Gradient</button>
+  <button type="button" data-skin="hacker" aria-pressed="false">Hacker</button>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5h10v3H6.5v2.5H12v3H6.5v4.5H3z" style="fill:var(--accent-ink)"/></svg></span>
+      Faw Builder
+    </a>
+    <div class="header-tools">
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Ana menü">
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a>
+      <a href="android.html" aria-current="page">Android</a>
+      <a href="designer.html">Designer</a>
+      <a href="index.html#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a>
+      <a href="surumler.html" data-i18n="nav.releases">Sürümler</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <a href="index.html#kurulum" class="btn btn-primary btn-sm" data-i18n="hero.download">İndir</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap page-hero">
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Android</span></p>
+    <h1 data-i18n="p.title">Android geliştirme</h1>
+    <p class="section-intro" data-i18n="p.intro">Gradle Wrapper, Maven Central ve Google Maven ile native Kotlin. USB ya da kablosuz ADB ile fiziksel telefon ve AVD. Her araç isteğe bağlı: yoksa ilgili panel pasif kalır ve neyin eksik olduğunu söyler.</p>
+  </div>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="a.sdk.e">Kurulum</span>
+      <h2 data-i18n="a.sdk.h">SDK'yı IDE içinden kur</h2>
+    </div>
+    <ol class="steps">
+      <li><div><h3 data-i18n="a.s1.t">SDK yolunu seç</h3><p data-i18n="a.s1.b">Tercihler → <code>android-sdk-path</code>. Boşsa sırasıyla <code>ANDROID_HOME</code>, <code>ANDROID_SDK_ROOT</code> ve <code>~/Android/Sdk</code> denenir.</p></div></li>
+      <li><div><h3 data-i18n="a.s2.t">“SDK Kur”a bas</h3><p data-i18n="a.s2.b">Gerekirse cmdline-tools'u indirir (<code>curl</code> ya da <code>wget</code> ve <code>unzip</code> ile), sonra <code>sdkmanager</code> ile temel paketleri kurar:</p>
+          <div class="code-block"><pre id="cmd-a-s2">platform-tools
+platforms;android-34
+build-tools;34.0.0</pre>
+            <button type="button" class="copy-btn" data-copy="cmd-a-s2" data-i18n="install.copy">Kopyala</button></div></div></li>
+      <li><div><h3 data-i18n="a.s3.t">Gerisini yönet</h3><p data-i18n="a.s3.b">SDK Yönetimi penceresi kurulu ve kurulabilir her sdkmanager paketini kendi Kur/Kaldır butonuyla listeler.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="a.mod.e">Mimari</span>
+      <h2 data-i18n="a.mod.h">Araç zinciri modülleri</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only" data-i18n="a.mod.cap">Android araç zinciri modülleri</caption>
+        <thead><tr><th scope="col"><span data-i18n="a.mod.c1">Modül</span></th><th scope="col"><span data-i18n="a.mod.c2">Rol</span></th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><code>faw-android-sdk</code></th><td><span data-i18n="a.m1">Probe, cmdline-tools bootstrap, sdkmanager paket kurulumu</span></td></tr>
+          <tr><th scope="row"><code>faw-adb</code></th><td><span data-i18n="a.m2">devices, connect/pair, install, launch, logcat, JDWP forward/pidof</span></td></tr>
+          <tr><th scope="row"><code>faw-gradle-runner</code></th><td><span data-i18n="a.m3">assembleDebug/Release, sync, clean, bundleRelease, installDebug</span></td></tr>
+          <tr><th scope="row"><code>faw-android-template</code></th><td><span data-i18n="a.m4">XML View ve Compose şablonları</span></td></tr>
+          <tr><th scope="row"><code>faw-android-deps</code></th><td><span data-i18n="a.m5">libs.versions.toml</span></td></tr>
+          <tr><th scope="row"><code>faw-android-apk</code></th><td><span data-i18n="a.m6">APK inceleme</span></td></tr>
+          <tr><th scope="row"><code>faw-android-avd</code></th><td><span data-i18n="a.m7">AVD listele ve başlat</span></td></tr>
+          <tr><th scope="row"><code>faw-android-workspace</code></th><td><span data-i18n="a.m8">Arayüz panelleri ve debug hazırlık zinciri</span></td></tr>
+          <tr><th scope="row"><code>faw-lsp-client</code></th><td><span data-i18n="a.m9">clangd ve Kotlin Language Server (çift istemci)</span></td></tr>
+          <tr><th scope="row"><code>faw-jdwp · faw-jdwp-debugger</code></th><td><span data-i18n="a.m10">Sınıf eşlemesi, jdb ayrıştırma, attach oturumu</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="a.mx.e">Editörde</span>
+      <h2 data-i18n="a.mx.h">Android projelerinde IDE özellikleri</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only" data-i18n="a.mx.cap">Android projelerinde IDE özellikleri</caption>
+        <thead><tr><th scope="col"><span data-i18n="a.mx.c1">Özellik</span></th><th scope="col" class="v"><span data-i18n="a.mx.c2">Android'de</span></th><th scope="col"><span data-i18n="a.mx.c3">Not</span></th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span data-i18n="a.x1">Sözdizimi vurgulama (.kt / .xml)</span></th><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td style="color:var(--muted)"></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x2">Kotlin Language Server</span></th><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td style="color:var(--muted)"><span data-i18n="a.x2n">İsteğe bağlı: PATH'te <code>kotlin-language-server</code></span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x3">GIR katalog tamamlama</span></th><td class="v no"><span aria-hidden="true">✗</span><span class="sr-only">yok</span></td><td style="color:var(--muted)"><span data-i18n="a.x3n">Bilinçli olarak yalnız C/GTK</span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x4">clangd, F12, outline</span></th><td class="v no"><span aria-hidden="true">✗</span><span class="sr-only">yok</span></td><td style="color:var(--muted)"><span data-i18n="a.x4n">Yalnız C/C++ dosyaları</span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x5">Gradle sync → Sorunlar</span></th><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td style="color:var(--muted)"><span data-i18n="a.x5n">Kotlin <code>e:</code> satırları Sorunlar paneline</span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x6">Logcat filtreleri</span></th><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td style="color:var(--muted)"><span data-i18n="a.x6n">paket/etiket, seviye, metin</span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x7">Release imzalama</span></th><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td style="color:var(--muted)"><span data-i18n="a.x7n">Keystore sihirbazı → AGP injected signing</span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x8">JDWP debugger</span></th><td class="v yes"><span aria-hidden="true">✓</span><span class="sr-only">var</span></td><td style="color:var(--muted)"><span data-i18n="a.x8n">İsteğe bağlı <code>jdb</code>, oluk kesme noktaları</span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x9">Kaydedince derleme</span></th><td class="v part"><span aria-hidden="true">◐</span><span class="sr-only">kısmi</span></td><td style="color:var(--muted)"><span data-i18n="a.x9n">Derle, Gradle assembleDebug çalıştırır</span></td></tr>
+          <tr><th scope="row"><span data-i18n="a.x10">XML yorum aç/kapa</span></th><td class="v no"><span aria-hidden="true">✗</span><span class="sr-only">yok</span></td><td style="color:var(--muted)"><span data-i18n="a.x10n">Kotlin <code>//</code> çalışır</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="a.lim.e">Açık liste</span>
+      <h2 data-i18n="a.lim.h">Bilinen sınırlar</h2>
+    </div>
+    <ul class="limits">
+      <li data-i18n="a.l1">Play Console entegrasyonu yok.</li>
+      <li data-i18n="a.l2">Google Maven (androidx.*) indeksinden otomatik sürüm çözümleme yok. Koordinat her zaman elle girilebilir.</li>
+      <li data-i18n="a.l3">QR kodla kablosuz eşleştirme: yalnız QR kodu üretiliyor. Eşleştirme sunucusu bilerek yazılmadı.</li>
+      <li data-i18n="a.l4">Network Inspector gerçek mitmdump ile denenmedi. Alt süreç zinciri sahte bir betikle test edildi.</li>
+      <li data-i18n="a.l5">JDWP değişken/izleme arayüzü yapısal kod olarak eklendi, elle doğrulanmadı.</li>
+      <li data-i18n="a.l6">SDK Yönetimi penceresinin ayrıştırıcısı ve bağlantıları test edildi. Gerçek <code>sdkmanager --list</code>/<code>--uninstall</code> çalıştırılmadı.</li>
+    </ul>
+    <a class="more-link" href="baslangic.html#android" data-i18n="a.next">Altı adımda ilk Android uygulaman</a>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.product">Ürün</span>
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a><a href="android.html">Android</a><a href="designer.html">Faw Designer</a><a href="debugger.html" data-i18n="nav.debugger">Hata ayıklama</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.res">Kaynaklar</span>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a><a href="surumler.html" data-i18n="nav.releases">Sürümler</a><a href="index.html#sss" data-i18n="nav.faq">SSS</a><a href="feed.xml">RSS</a>
+      <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
+      <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
+      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
+      <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>
+    <span data-i18n="footer.made">GTK4 ile, Linux için yapıldı.</span>
+  </div>
+</footer>
+
+<script>window.FAW_PAGE_EN = {
+ "p.crumb": "Android",
+ "p.title": "Android development",
+ "p.intro": "Native Kotlin with the Gradle Wrapper, Maven Central and Google Maven. Physical phones over USB or wireless ADB, plus AVDs. Every tool is optional: if it is missing, its panel stays inactive and says what is missing.",
+ "a.sdk.e": "Setup",
+ "a.sdk.h": "Install the SDK from inside the IDE",
+ "a.s1.t": "Pick the SDK path",
+ "a.s1.b": "Preferences → <code>android-sdk-path</code>. If empty, <code>ANDROID_HOME</code>, <code>ANDROID_SDK_ROOT</code> and <code>~/Android/Sdk</code> are tried in that order.",
+ "a.s2.t": "Press “Install SDK”",
+ "a.s2.b": "If needed it downloads cmdline-tools (with <code>curl</code> or <code>wget</code> and <code>unzip</code>), then installs the essential packages with <code>sdkmanager</code>:",
+ "a.s3.t": "Manage the rest",
+ "a.s3.b": "The SDK Manager window lists every installed and installable sdkmanager package with its own Install/Remove button.",
+ "a.mod.e": "Architecture",
+ "a.mod.h": "Toolchain modules",
+ "a.mod.cap": "Android toolchain modules",
+ "a.mod.c1": "Module",
+ "a.mod.c2": "Role",
+ "a.m1": "Probe, cmdline-tools bootstrap, sdkmanager package install",
+ "a.m2": "devices, connect/pair, install, launch, logcat, JDWP forward/pidof",
+ "a.m3": "assembleDebug/Release, sync, clean, bundleRelease, installDebug",
+ "a.m4": "XML View and Compose templates",
+ "a.m5": "libs.versions.toml",
+ "a.m6": "APK inspection",
+ "a.m7": "List and start AVDs",
+ "a.m8": "UI panels and the debug preparation chain",
+ "a.m9": "clangd and Kotlin Language Server (two clients)",
+ "a.m10": "Class mapping, jdb parsing, attach session",
+ "a.mx.e": "In the editor",
+ "a.mx.h": "IDE features in Android projects",
+ "a.mx.cap": "IDE features in Android projects",
+ "a.mx.c1": "Feature",
+ "a.mx.c2": "In Android projects",
+ "a.mx.c3": "Note",
+ "a.x1": "Syntax highlighting (.kt / .xml)",
+ "a.x2": "Kotlin Language Server",
+ "a.x2n": "Optional: <code>kotlin-language-server</code> on PATH",
+ "a.x3": "GIR catalog completion",
+ "a.x3n": "Deliberately C/GTK only",
+ "a.x4": "clangd, F12, outline",
+ "a.x4n": "C/C++ files only",
+ "a.x5": "Gradle sync → Problems",
+ "a.x5n": "Kotlin <code>e:</code> lines go to the Problems panel",
+ "a.x6": "Logcat filters",
+ "a.x6n": "package/tag, level, text",
+ "a.x7": "Release signing",
+ "a.x7n": "Keystore wizard → AGP injected signing",
+ "a.x8": "JDWP debugger",
+ "a.x8n": "Optional <code>jdb</code>, gutter breakpoints",
+ "a.x9": "Build on save",
+ "a.x9n": "Build runs Gradle assembleDebug",
+ "a.x10": "XML comment toggle",
+ "a.x10n": "Kotlin <code>//</code> works",
+ "a.lim.e": "Honest list",
+ "a.lim.h": "Known limits",
+ "a.l1": "No Play Console integration.",
+ "a.l2": "No automatic version resolution from the Google Maven (androidx.*) index. Coordinates can always be typed by hand.",
+ "a.l3": "Wireless pairing by QR code: only the QR code is generated. The pairing server was deliberately not written.",
+ "a.l4": "Network Inspector has not been tried with a real mitmdump; the subprocess chain was tested with a fake script.",
+ "a.l5": "The JDWP variables/watch UI was added as structural code and has not been verified by hand.",
+ "a.l6": "The SDK Manager window's parser and wiring are tested; real <code>sdkmanager --list</code>/<code>--uninstall</code> runs have not been.",
+ "a.next": "Your first Android app in six steps"
+};</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

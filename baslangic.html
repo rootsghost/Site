@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Faw Builder Rehberi</title>
+<meta name="description" content="Faw Builder ile ilk GTK4 uygulaman ve ilk Kotlin Android uygulaman, adım adım.">
+<meta property="og:title" content="Faw Builder Rehberi">
+<meta property="og:description" content="Faw Builder ile ilk GTK4 uygulaman ve ilk Kotlin Android uygulaman, adım adım.">
+<meta property="og:url" content="https://fawlibs.org/baslangic.html">
+<meta property="og:image" content="https://fawlibs.org/og-image.png">
+<link rel="canonical" href="https://fawlibs.org/baslangic.html">
+<link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
+<meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+  <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
+  <button type="button" data-skin="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
+  <button type="button" data-skin="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
+  <button type="button" data-skin="gradient" aria-pressed="false">Gradient</button>
+  <button type="button" data-skin="hacker" aria-pressed="false">Hacker</button>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5h10v3H6.5v2.5H12v3H6.5v4.5H3z" style="fill:var(--accent-ink)"/></svg></span>
+      Faw Builder
+    </a>
+    <div class="header-tools">
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Ana menü">
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a>
+      <a href="android.html">Android</a>
+      <a href="designer.html">Designer</a>
+      <a href="index.html#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
+      <a href="baslangic.html" aria-current="page" data-i18n="nav.guide">Rehber</a>
+      <a href="surumler.html" data-i18n="nav.releases">Sürümler</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <a href="index.html#kurulum" class="btn btn-primary btn-sm" data-i18n="hero.download">İndir</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap page-hero">
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Rehber</span></p>
+    <h1 data-i18n="p.title">İlk projen</h1>
+    <p class="section-intro" data-i18n="p.intro">İki kısa yol: C ile yazılmış bir GTK4 masaüstü uygulaması ve bir Kotlin Android uygulaması. Bağımlılıklar kuruluysa her biri birkaç dakika sürer.</p>
+  </div>
+
+  <section class="wrap section" id="gtk">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="b.gtk.e">C + GTK4</span>
+      <h2 data-i18n="b.gtk.h">İlk GTK uygulaman</h2>
+    </div>
+    <ol class="steps">
+      <li><div><h3 data-i18n="b.g1.t">Faw Builder'ı kur</h3><p data-i18n="b.g1.b">Önce bağımlılıkları kontrol et, sonra kaynaktan derle ya da ana sayfadaki paketlerden birini kullan.</p>
+          <div class="code-block"><pre id="cmd-b-g1">packaging/check-env.sh
+meson setup build
+meson compile -C build
+meson install -C build</pre>
+            <button type="button" class="copy-btn" data-copy="cmd-b-g1" data-i18n="install.copy">Kopyala</button></div></div></li>
+      <li><div><h3 data-i18n="b.g2.t">Proje oluştur</h3><p data-i18n="b.g2.b">Yeni Proje penceresinde Meson'lu bir GTK4 şablonu seç. Git deposu oluşturmak isteğe bağlı.</p></div></li>
+      <li><div><h3 data-i18n="b.g3.t">Arayüzü tasarla</h3><p data-i18n="b.g3.b"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd> Faw Designer'ı açar. Paletten widget sürükle; her kayıt <code>.ui</code> dosyasını ve yanına bir <code>.blp</code> yazar.</p></div></li>
+      <li><div><h3 data-i18n="b.g4.t">Derle ve çalıştır</h3><p data-i18n="b.g4.b">Derle'ye bas. Hatalar Sorunlar panelinde görünür, tıklayınca satıra gider. Kaydedince derlemeyi tercihlerden açabilirsin.</p></div></li>
+      <li><div><h3 data-i18n="b.g5.t">Hata ayıkla</h3><p data-i18n="b.g5.b">Oluğa tıklayıp kesme noktası koy, sonra Hata ayıkla'ya bas. GDB paneli nerede durduğunu gösterir.</p></div></li>
+      <li><div><h3 data-i18n="b.g6.t">Paketle</h3><p data-i18n="b.g6.b"><code>packaging/</code> altındaki betiklerle .deb, AppImage ya da Flatpak üret.</p>
+          <div class="code-block"><pre id="cmd-b-g6">packaging/deb/build-deb.sh</pre>
+            <button type="button" class="copy-btn" data-copy="cmd-b-g6" data-i18n="install.copy">Kopyala</button></div></div></li>
+    </ol>
+  </section>
+
+  <section class="wrap section" id="android">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="b.and.e" lang="en">Kotlin + Android</span>
+      <h2 data-i18n="b.and.h">İlk Android uygulaman</h2>
+    </div>
+    <ol class="steps">
+      <li><div><h3 data-i18n="b.a1.t">SDK'yı kur</h3><p data-i18n="b.a1.b">Android panelinde “SDK Kur”a bas. Ağ erişimi, <code>curl</code> ya da <code>wget</code> ve <code>unzip</code> gerekir. Şu paketler kurulur:</p>
+          <div class="code-block"><pre id="cmd-b-a1">platform-tools
+platforms;android-34
+build-tools;34.0.0</pre>
+            <button type="button" class="copy-btn" data-copy="cmd-b-a1" data-i18n="install.copy">Kopyala</button></div></div></li>
+      <li><div><h3 data-i18n="b.a2.t">Proje oluştur</h3><p data-i18n="b.a2.b">Yeni Proje penceresinde Android Kotlin şablonunu seç: XML View ya da Compose. Gradle Wrapper şablonla gelir.</p></div></li>
+      <li><div><h3 data-i18n="b.a3.t">Cihaz bağla</h3><p data-i18n="b.a3.b">Telefonu USB ile tak ya da IP:port ile kablosuz bağlan (Android 11+ eşleştirme kodu ister). Listeden bir AVD de başlatabilirsin.</p></div></li>
+      <li><div><h3 data-i18n="b.a4.t">Derle ve yükle</h3><p data-i18n="b.a4.b">Derle <code>assembleDebug</code> çalıştırır; Çalıştır <code>adb install -r</code> ile yükleyip Activity'yi <code>am start</code> ile açar.</p></div></li>
+      <li><div><h3 data-i18n="b.a5.t">Logcat'i izle</h3><p data-i18n="b.a5.b">Paket, etiket, seviye ya da metne göre filtrele. Panel kapanınca akış durur.</p></div></li>
+      <li><div><h3 data-i18n="b.a6.t">Release imzala</h3><p data-i18n="b.a6.b">Keystore sihirbazı imzalamayı ayarlar; ardından assembleRelease ile APK ya da bundleRelease ile .aab üret.</p></div></li>
+    </ol>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.product">Ürün</span>
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a><a href="android.html">Android</a><a href="designer.html">Faw Designer</a><a href="debugger.html" data-i18n="nav.debugger">Hata ayıklama</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.res">Kaynaklar</span>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a><a href="surumler.html" data-i18n="nav.releases">Sürümler</a><a href="index.html#sss" data-i18n="nav.faq">SSS</a><a href="feed.xml">RSS</a>
+      <!-- TODO: GITHUB_URL --><a href="#" data-i18n="hero.source">Kaynak kodu</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
+      <!-- TODO: LICENSE --><span style="color:var(--muted)" data-i18n="footer.license">Lisans: belirlenecek</span>
+      <!-- TODO: PRIVACY_URL --><a href="#" data-i18n="footer.privacy">Gizlilik politikası</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
+      <!-- TODO: CONTACT --><a href="#">GitHub Issues</a><a href="#">Matrix</a></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>
+    <span data-i18n="footer.made">GTK4 ile, Linux için yapıldı.</span>
+  </div>
+</footer>
+
+<script>window.FAW_PAGE_EN = {
+ "p.crumb": "Guide",
+ "p.title": "Your first project",
+ "p.intro": "Two short paths: a GTK4 desktop app written in C, and a Kotlin Android app. Each takes a few minutes once the dependencies are installed.",
+ "b.gtk.e": "C + GTK4",
+ "b.gtk.h": "Your first GTK app",
+ "b.g1.t": "Install Faw Builder",
+ "b.g1.b": "Check the dependencies first, then build from source or use one of the packages on the home page.",
+ "b.g2.t": "Create a project",
+ "b.g2.b": "In the New Project window, pick a GTK4 template with Meson. Creating a Git repository is optional.",
+ "b.g3.t": "Design the interface",
+ "b.g3.b": "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd> opens Faw Designer. Drag widgets from the palette; every save writes the <code>.ui</code> file and a <code>.blp</code> next to it.",
+ "b.g4.t": "Build and run",
+ "b.g4.b": "Press Build. Errors appear in the Problems panel; clicking one jumps to the line. You can turn on build-on-save in the preferences.",
+ "b.g5.t": "Debug",
+ "b.g5.b": "Click the gutter to set a breakpoint, then press Debug. The GDB panel shows where it stopped.",
+ "b.g6.t": "Package",
+ "b.g6.b": "Build a .deb, AppImage or Flatpak with the scripts under <code>packaging/</code>.",
+ "b.and.e": "Kotlin + Android",
+ "b.and.h": "Your first Android app",
+ "b.a1.t": "Install the SDK",
+ "b.a1.b": "In the Android panel press “Install SDK”. It needs network access, <code>curl</code> or <code>wget</code>, and <code>unzip</code>. These packages are installed:",
+ "b.a2.t": "Create a project",
+ "b.a2.b": "Pick the Android Kotlin template in the New Project window: XML View or Compose. The Gradle Wrapper comes with it.",
+ "b.a3.t": "Connect a device",
+ "b.a3.b": "Plug in a phone over USB, or connect wirelessly with IP:port (Android 11+ uses a pairing code). You can also start an AVD from the list.",
+ "b.a4.t": "Build and install",
+ "b.a4.b": "Build runs <code>assembleDebug</code>; Run installs it with <code>adb install -r</code> and opens the Activity with <code>am start</code>.",
+ "b.a5.t": "Watch Logcat",
+ "b.a5.b": "Filter by package, tag, level or text. The stream stops when the panel closes.",
+ "b.a6.t": "Sign a release",
+ "b.a6.b": "The keystore wizard sets up signing; then build an APK with assembleRelease or an .aab with bundleRelease."
+};</script>
+<script src="assets/site.js"></script>
+</body>
+</html>
