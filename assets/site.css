@@ -12,7 +12,7 @@
   --radius:12px; --shadow:0 1px 2px rgb(0 0 0 / .06),0 12px 32px -12px rgb(0 0 0 / .18);
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
+  :root:not([data-theme="light"]):not([data-mode="light"]){
     color-scheme:dark;
     --ground:#1d1d20; --surface:#26262a; --surface-2:#303035; --ink:#f2f2f3; --muted:#a3a1aa;
     --line:#3a3a40; --accent:#78aeed; --accent-ink:#0d1b2e; --accent-soft:#1f3350;
@@ -22,7 +22,8 @@
     --shadow:0 1px 2px rgb(0 0 0 / .4),0 16px 40px -16px rgb(0 0 0 / .7);
   }
 }
-:root[data-theme="dark"]{
+:root[data-theme="dark"]:not([data-mode="light"]),
+:root[data-mode="dark"]{
   color-scheme:dark;
   --ground:#1d1d20; --surface:#26262a; --surface-2:#303035; --ink:#f2f2f3; --muted:#a3a1aa;
   --line:#3a3a40; --accent:#78aeed; --accent-ink:#0d1b2e; --accent-soft:#1f3350;
@@ -32,7 +33,7 @@
   --shadow:0 1px 2px rgb(0 0 0 / .4),0 16px 40px -16px rgb(0 0 0 / .7);
 }
 /* ───────── Site temaları (tema çubuğu) ───────── */
-:root[data-skin="ide"]{
+:root[data-skin="ide"][data-skin]{
   color-scheme:dark;
   --ground:#16161a; --surface:#1f1f24; --surface-2:#2a2a31; --ink:#e6e6ea; --muted:#9696a0;
   --line:#2f2f37; --accent:#62a0ea; --accent-ink:#0b1626; --accent-soft:#1c2c44;
@@ -41,7 +42,7 @@
   --c-st:#8fe0a6; --c-cm:#6e6e78; --c-mc:#ffa657; --radius:6px;
   --shadow:0 0 0 1px #2f2f37,0 20px 40px -20px rgb(0 0 0 / .8);
 }
-:root[data-skin="gradient"]{
+:root[data-skin="gradient"][data-skin]{
   color-scheme:dark;
   --ground:#0e1422; --surface:#151d30; --surface-2:#1d2740; --ink:#eef2fb; --muted:#a3adc6;
   --line:#26314d; --accent:#6fb3ff; --accent-ink:#081122; --accent-soft:#1b2c4d;
@@ -51,7 +52,7 @@
   --title-fill:linear-gradient(100deg,#6fb3ff 0%,#5fe3a1 55%,#ffcf70 100%);
   --shadow:0 24px 60px -24px rgb(40 120 255 / .45);
 }
-:root[data-skin="hacker"]{
+:root[data-skin="hacker"][data-skin]{
   color-scheme:dark;
   --ground:#050805; --surface:#0a110a; --surface-2:#0f1a10; --ink:#b8f5c4; --muted:#5fae70;
   --line:#153a1c; --accent:#39ff6a; --accent-ink:#031006; --accent-soft:#0f2a15;
@@ -398,3 +399,5 @@ td.unknown{color:var(--muted)}
 .footer-muted{color:var(--muted)}
 .footer-muted small{font-size:.8em}
 .grid-4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.theme-bar-sep{width:1px;height:18px;background:var(--line);margin:0 6px}
+.theme-bar button:disabled{opacity:.45;cursor:not-allowed}

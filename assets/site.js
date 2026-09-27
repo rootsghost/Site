@@ -121,6 +121,7 @@
     "donate.gh":"Monthly or one-time support.","donate.oc":"Transparent budget, suited to company donations.","donate.kofi":"A small one-time tip.","donate.cta":"Donate",
     "footer.product":"Product","footer.res":"Resources","footer.legal":"Legal","footer.license":"License: to be decided","footer.privacy":"Privacy policy","footer.contact":"Contact","footer.made":"Made with GTK4, for Linux."
   };  Object.assign(EN, {
+    "theme.mode":"Appearance","theme.system":"System","theme.light":"Light","theme.dark":"Dark",
     "hero.tests":"103/103 tests passing (GLib GTest, 2026-09-26)",
     "nav.audience":"Who it's for","aud.title":"Who is it for?",
     "aud.c.t":"Linux C/C++ developers","aud.c.b":"People tired of Electron-based editors who want native performance, less memory and system integration.",
@@ -292,15 +293,7 @@
     nav.addEventListener("click", function(e){ if(e.target.closest("a")){ nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false);} });
   }
 
-  /* ── Site teması ── */
-  var skinBtns = document.querySelectorAll("[data-skin]");
-  function setSkin(s){
-    if(s) root.setAttribute("data-skin", s); else root.removeAttribute("data-skin");
-    skinBtns.forEach(function(b){ b.setAttribute("aria-pressed", (b.dataset.skin||"")===(s||"")); });
-    store("faw-skin", s||"");
-  }
-  skinBtns.forEach(function(b){ b.addEventListener("click", function(){ setSkin(b.dataset.skin); }); });
-  var savedSkin = store("faw-skin"); if(savedSkin) setSkin(savedSkin);
+  /* Site teması: assets/tema.js (her sayfanın <head> bölümünde) */
 
   /* ── Yan içindekiler ── */
   var tocLinks = [].slice.call(document.querySelectorAll(".side-toc a"));

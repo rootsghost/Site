@@ -36,15 +36,21 @@
 }
 </script>
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/tema.js"></script>
 </head>
 <body>
 
 <div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
   <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
-  <button type="button" data-skin="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
-  <button type="button" data-skin="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
-  <button type="button" data-skin="gradient" aria-pressed="false">Gradient</button>
-  <button type="button" data-skin="hacker" aria-pressed="false">Hacker</button>
+  <button type="button" data-skin-sec="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
+  <button type="button" data-skin-sec="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
+  <button type="button" data-skin-sec="gradient" aria-pressed="false">Gradient</button>
+  <button type="button" data-skin-sec="hacker" aria-pressed="false">Hacker</button>
+  <span class="theme-bar-sep" aria-hidden="true"></span>
+  <span class="theme-bar-label" data-i18n="theme.mode">Görünüm</span>
+  <button type="button" data-mode-sec="" aria-pressed="true" data-i18n="theme.system">Sistem</button>
+  <button type="button" data-mode-sec="light" aria-pressed="false" data-i18n="theme.light">Açık</button>
+  <button type="button" data-mode-sec="dark" aria-pressed="false" data-i18n="theme.dark">Koyu</button>
 </div>
 
 <header class="site-header">
