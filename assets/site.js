@@ -87,12 +87,7 @@
     "designer.f4":"<b>Modern libadwaita.</b> Template widgets, a GMenu editor, Adw.Breakpoint, deprecation warnings for your target GTK version.",
     "designer.f5":"<b>Live preview.</b> The design opens in a separate process through the real GtkBuilder and can be tried with theme, right-to-left (RTL), scale and locale variants. 100 steps of undo/redo.",
     "designer.f6":"<b>Android side.</b> Layout XML tree and attribute editor, a Compose designer (one-way code generation).",
-    "designer.canon":"canonical","designer.auto":"generated on every save","designer.cmpCap":"Faw Designer compared with Cambalache and Glade","designer.cmpFeature":"Feature",
-    "designer.r1":"Palette generated from GIR","designer.r2":"Filling containers with placeholders","designer.r3":"Blueprint (.blp) output","designer.r4":"Adw.Breakpoint editing","designer.r5":"Android layout XML","designer.r6":"Sandboxed render process",
-    "compare.eyebrow":"Why Faw Builder","compare.title":"Against the alternatives","compare.filterLabel":"Compare with","compare.all":"All",
-    "compare.r1":"Native (not Electron)","compare.r2":"C/C++ LSP (go to definition, rename, hover)","compare.r3":"Android build, debug and profiler","compare.r4":"Visual GTK4 UI designer","compare.r5":"C/C++ and Android in one app","compare.r6":"Play Console integration","compare.r7":"Open source",
-    "compare.note":"◐ partial or through extensions. Android Studio supports C/C++ through the NDK, but its focus is Android. VS Code's core is MIT licensed; the distributed build includes closed-source components.",
-    "shortcuts.title":"Keep your hands on the keyboard",
+    "designer.canon":"canonical","designer.auto":"generated on every save","compare.eyebrow":"Why Faw Builder","compare.title":"Against the alternatives","compare.filterLabel":"Compare with","shortcuts.title":"Keep your hands on the keyboard",
     "sc.save":"Save","sc.palette":"Command palette","sc.quick":"Quick open","sc.search":"Search the project","sc.goto":"Go to definition","sc.rename":"Rename symbol","sc.format":"Format document","sc.doc":"Show documentation","sc.next":"Select next match","sc.designer":"Open Faw Designer",
     "install.title":"Build from source or package it","install.req":"System requirements","install.meson":"Meson ≥ 1.3.0, Ninja and blueprint-compiler","install.cc":"A C11 compiler","install.opt":"Optional: clangd, VTE, gdb, lldb, adb, java, jdb",
     "install.check":"Run <code>packaging/check-env.sh</code> first to see what your machine can build.","install.build":"Build from source","install.copy":"Copy","install.pkg":"Package formats",
@@ -115,8 +110,7 @@
     "log.0":"Code folding, hover window, native file I/O and project-wide regex search.",
     "philo.title":"Why open source?","philo.body":"Developer tools should be transparent. You should be able to see how they work, change them to fit your needs and decide for yourself whether to trust them. All of Faw Builder's source code is open, and it runs locally with no cloud account required.",
     "a11y.eyebrow":"Accessibility","a11y.title":"Screen reader support at the toolkit level","a11y.body":"Standard GTK4 widgets inherit AT-SPI support. Faw Designer's accessibility section lets you add labels and descriptions to your own interfaces. Custom-drawn parts such as the folding gutter have not been audited separately yet.",
-    "gh.title":"Contribute to the project","gh.body":"Report a bug, suggest a feature or send code. No new command counts as done until it shows up in the command palette, a menu or the preferences.",
-    "gh.star":"Star on GitHub","gh.issue":"Report an issue",
+    "gh.title":"Contribute to the project","gh.star":"Star on GitHub","gh.issue":"Report an issue",
     "donate.title":"Support the project","donate.intro":"Faw Builder is built by volunteers. Donations make the time spent on development sustainable.",
     "donate.gh":"Monthly or one-time support.","donate.oc":"Transparent budget, suited to company donations.","donate.kofi":"A small one-time tip.","donate.cta":"Donate",
     "footer.product":"Product","footer.res":"Resources","footer.legal":"Legal","footer.license":"License: GPL-3.0-or-later","footer.privacy":"Privacy policy","footer.contact":"Contact","footer.made":"Made with GTK4, for Linux."
@@ -130,7 +124,11 @@
     "aud.o.t":"Open-source advocates","aud.o.b":"People who value transparency, hackability and tools that run locally.",
     "install.ci":"Every change is built and tested on Linux in GitHub Actions and cross-compiled for Windows with MSYS2. <code>packaging/</code> also has a Docker script.",
     "log.6":"Faw Designer: focus order editor, preview variants (theme/RTL/scale/locale), GResource generation, CSS classes and zoom.",
-    "footer.terms":"Terms of use","footer.eco":"Ecosystem","footer.circuit":"· PCB and schematics","footer.voice":"· offline voice assistant",
+    "footer.terms":"Terms of use","footer.eco":"Ecosystem","skip":"Skip to content","perf.metric":"Metric","theme.region":"Site settings",
+    "eco.title":"Other apps in the Faw family","eco.intro":"All written in C11 as GLib-based Linux applications. Faw Designer and Faw Circuit share the same core library as Faw Builder.",
+    "eco.designer":"A UI designer for GTK4 (.ui, Blueprint) and Android (XML, Compose). Ships with Faw Builder.",
+    "eco.circuit":"Schematic and PCB design; DRC/ERC, Gerber and simulation with ngspice, simavr and gpsim.",
+    "eco.voice":"An offline voice assistant: recognition with pocketsphinx, whisper.cpp or Julius, spoken replies with espeak-ng.","eco.more":"Details","footer.circuit":"· PCB and schematics","footer.voice":"· offline voice assistant",
     "nav.guide":"Guide","nav.releases":"Releases","nav.gallery":"Gallery","nav.fit":"Which one?","nav.perf":"Performance","nav.contribute":"Contribute","nav.debugger":"Debugging",
     "hero.flathubSmall":"Get it on","hero.other":"Other options",
     "more.debugger":"Debugging details","more.android":"All Android features","more.designer":"Faw Designer details and known limits","more.releases":"All release notes",
@@ -262,12 +260,14 @@
     var os = /win/.test(plat) ? "win" : /mac|iphone|ipad/.test(plat) ? "mac" : /android/.test(navigator.userAgent.toLowerCase()) ? "android" : "linux";
     osBtn.dataset.os = os;
   }
+  /* Sürüm numarası tek yerde: index.html'deki <html data-surum>. Değiştirmek için: bash scripts/surum.sh YENI */
+  var SURUM = document.documentElement.getAttribute("data-surum") || "";
   function renderOs(){
     if(!osBtn) return;
     var os = osBtn.dataset.os, hint = document.getElementById("os-hint");
     var map = {
-      linux:  { href:"https://fawlibs.org/download/FawBuilder-0.1.0-x86_64.AppImage", label:t("Linux için indir","Download for Linux"), hint:t("AppImage · x86_64 · örnek sürüm 0.1.0","AppImage · x86_64 · sample version 0.1.0") },
-      win:    { href:"https://fawlibs.org/download/faw-builder-0.1.0-win64.zip", label:t("Windows için indir","Download for Windows"), hint:t("Deneysel · GTK DLL'leri elle eklenmeli","Experimental · GTK DLLs must be added by hand") },
+      linux:  { href:"https://fawlibs.org/download/FawBuilder-"+SURUM+"-x86_64.AppImage", label:t("Linux için indir","Download for Linux"), hint:t("AppImage · x86_64 · örnek sürüm "+SURUM,"AppImage · x86_64 · sample version "+SURUM) },
+      win:    { href:"https://fawlibs.org/download/faw-builder-"+SURUM+"-win64.zip", label:t("Windows için indir","Download for Windows"), hint:t("Deneysel · GTK DLL'leri elle eklenmeli","Experimental · GTK DLLs must be added by hand") },
       mac:    { href:"#kurulum", label:t("Kurulum seçenekleri","Install options"), hint:t("macOS desteklenmiyor. Linux makinede kullanabilirsin.","macOS is not supported. Use it on a Linux machine.") },
       android:{ href:"#kurulum", label:t("Kurulum seçenekleri","Install options"), hint:t("Faw Builder masaüstü uygulamasıdır. Linux bilgisayarda kur.","Faw Builder is a desktop app. Install it on a Linux computer.") }
     }[os];

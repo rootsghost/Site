@@ -1,0 +1,22 @@
+name: Kontrol
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  kontrol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bağlantılar, çeviriler, JSON ve sitemap
+        run: python3 scripts/kontrol.py
+      - name: JavaScript sözdizimi
+        run: |
+          node --check assets/site.js
+          node --check assets/ayarlar.js
+      - name: Kabuk betikleri
+        run: bash -n scripts/surum.sh araclar/*.sh

@@ -13,16 +13,37 @@
 <link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
 <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Faw Builder",
+      "item": "https://fawlibs.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Gizlilik",
+      "item": "https://fawlibs.org/gizlilik.html"
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/ayarlar.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#icerik" data-i18n="skip">İçeriğe atla</a>
 
-<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+<div class="theme-bar" role="region" aria-label="Site ayarları" data-i18n-attr="aria-label:theme.region">
   <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
   <button type="button" data-skin-sec="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
   <button type="button" data-skin-sec="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
@@ -58,7 +79,7 @@
   </div>
 </header>
 
-<main>
+<main id="icerik">
   <div class="wrap page-hero">
     <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Gizlilik</span></p>
     <h1 data-i18n="p.title">Gizlilik politikası</h1>
@@ -72,7 +93,7 @@
     <p data-i18n="l.yerel.1"><code>faw-skin</code>: site teması (Varsayılan, Koyu IDE, Gradient, Hacker) · <code>faw-mode</code>: görünüm (Sistem, Açık, Koyu) · <code>faw-lang</code>: dil (Türkçe, İngilizce).</p>
     <p data-i18n="l.yerel.2">Bunları silmek için tarayıcının site verilerini temizlemen yeterli. Depolama kapalıysa site yine çalışır, yalnız ayarların hatırlanmaz.</p>
     <h2 id="ucuncu" data-i18n="l.ucuncu.h">Üçüncü taraflar</h2>
-    <p data-i18n="l.ucuncu.0">Yazı tipleri Google Fonts'tan (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>) yüklenir. Bu istek sırasında Google IP adresini ve tarayıcı bilgisini görür; ayrıntılar için <a href="https://policies.google.com/privacy" rel="noopener">Google gizlilik politikası</a>.</p>
+    <p data-i18n="l.ucuncu.0">Site başka bir sunucudan kaynak yüklemez: yazı tipleri, simgeler ve betikler siteyle birlikte sunulur. Sayfayı açtığında yalnız bu sitenin sunucusuna istek gider.</p>
     <p data-i18n="l.ucuncu.1">Flathub gibi dış bağlantılara tıkladığında o sitenin kendi gizlilik politikası geçerli olur.</p>
     <h2 id="sunucu" data-i18n="l.sunucu.h">Sunucu kayıtları</h2>
     <p data-i18n="l.sunucu.0">Siteyi barındıran sunucu, çoğu web sunucusu gibi erişim kaydı (IP adresi, zaman, istenen sayfa) tutabilir. Barındırma sağlayıcısı ve kayıtların saklama süresi henüz belirlenmedi; belirlenince burada yazılacak.</p>
@@ -119,7 +140,7 @@
  "l.yerel.1": "<code>faw-skin</code>: site theme (Default, Dark IDE, Gradient, Hacker) · <code>faw-mode</code>: appearance (System, Light, Dark) · <code>faw-lang</code>: language (Turkish, English).",
  "l.yerel.2": "Clearing the site data in your browser removes them. If storage is disabled the site still works; your settings just aren't remembered.",
  "l.ucuncu.h": "Third parties",
- "l.ucuncu.0": "Fonts are loaded from Google Fonts (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>). Google sees your IP address and browser details for that request; see the <a href=\"https://policies.google.com/privacy\" rel=\"noopener\">Google privacy policy</a>.",
+ "l.ucuncu.0": "The site loads no resources from other servers: fonts, icons and scripts are served with the site. Opening a page only sends requests to this site's own server.",
  "l.ucuncu.1": "When you follow an external link such as Flathub, that site's own privacy policy applies.",
  "l.sunucu.h": "Server logs",
  "l.sunucu.0": "Like most web servers, the server hosting this site may keep access logs (IP address, time, requested page). The hosting provider and log retention period have not been decided yet; they will be listed here.",

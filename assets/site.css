@@ -1,10 +1,21 @@
+/* Yazı tipleri siteyle birlikte sunulur (SIL Open Font License; lisanslar assets/fonts/ içinde).
+   Yalnız latin ve latin-ext alt kümeleri: Türkçe karakterler latin-ext'te. */
+@font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-display: swap; font-weight: 200 800; src: url(fonts/bricolage-grotesque-latin-ext-opsz-normal.woff2) format('woff2-variations'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-display: swap; font-weight: 200 800; src: url(fonts/bricolage-grotesque-latin-opsz-normal.woff2) format('woff2-variations'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Cantarell'; font-style: normal; font-display: swap; font-weight: 400; src: url(fonts/cantarell-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Cantarell'; font-style: normal; font-display: swap; font-weight: 400; src: url(fonts/cantarell-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Cantarell'; font-style: normal; font-display: swap; font-weight: 700; src: url(fonts/cantarell-latin-ext-700-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Cantarell'; font-style: normal; font-display: swap; font-weight: 700; src: url(fonts/cantarell-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 100 800; src: url(fonts/jetbrains-mono-latin-ext-wght-normal.woff2) format('woff2-variations'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 100 800; src: url(fonts/jetbrains-mono-latin-wght-normal.woff2) format('woff2-variations'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
 /* ───────── Tokens: Varsayılan (açık) ───────── */
 :root{
   --ground:#f6f5f4; --surface:#ffffff; --surface-2:#ebeae8; --ink:#1b1b1f; --muted:#5e5c64;
-  --line:#deddda; --accent:#1c71d8; --accent-ink:#ffffff; --accent-soft:#dbe8fb;
-  --droid:#1f8a55; --droid-soft:#dcf3e6; --warn:#9c5a00; --warn-soft:#fdeccc;
+  --line:#deddda; --accent:#1a65c4; --accent-ink:#ffffff; --accent-soft:#dbe8fb;
+  --droid:#197447; --droid-soft:#dcf3e6; --warn:#9c5a00; --warn-soft:#fdeccc;
   --code-bg:#fafafa; --code-ink:#26262b; --c-kw:#a51d2d; --c-ty:#1a5fb4; --c-fn:#613583;
-  --c-st:#26a269; --c-cm:#77767b; --c-mc:#c64600;
+  --c-st:#1d7a4a; --c-cm:#6d6c71; --c-mc:#c64600;
   --title-fill:linear-gradient(var(--ink),var(--ink));
   --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --f-body:"Cantarell","Noto Sans",ui-sans-serif,system-ui,sans-serif;
@@ -39,7 +50,7 @@
   --line:#2f2f37; --accent:#62a0ea; --accent-ink:#0b1626; --accent-soft:#1c2c44;
   --droid:#57e389; --droid-soft:#15301f; --warn:#f8c46b; --warn-soft:#352812;
   --code-bg:#111114; --code-ink:#d4d4d8; --c-kw:#ff7b72; --c-ty:#79c0ff; --c-fn:#d2a8ff;
-  --c-st:#8fe0a6; --c-cm:#6e6e78; --c-mc:#ffa657; --radius:6px;
+  --c-st:#8fe0a6; --c-cm:#85858f; --c-mc:#ffa657; --radius:6px;
   --shadow:0 0 0 1px #2f2f37,0 20px 40px -20px rgb(0 0 0 / .8);
 }
 :root[data-skin="gradient"][data-skin]{
@@ -58,7 +69,7 @@
   --line:#153a1c; --accent:#39ff6a; --accent-ink:#031006; --accent-soft:#0f2a15;
   --droid:#39ff6a; --droid-soft:#0f2a15; --warn:#e6ff4d; --warn-soft:#262b08;
   --code-bg:#030603; --code-ink:#b8f5c4; --c-kw:#39ff6a; --c-ty:#9dffb2; --c-fn:#e6ff4d;
-  --c-st:#7dd99a; --c-cm:#3f7a4c; --c-mc:#e6ff4d; --radius:0px;
+  --c-st:#7dd99a; --c-cm:#4a9159; --c-mc:#e6ff4d; --radius:0px;
   --f-display:"JetBrains Mono",ui-monospace,monospace; --f-body:"JetBrains Mono",ui-monospace,monospace;
   --shadow:0 0 0 1px #153a1c,0 0 30px -10px rgb(57 255 106 / .35);
 }
@@ -202,7 +213,6 @@ p{margin:0}
 :root[data-skin="hacker"] .glyph{border-radius:0}
 .badge{justify-self:start;font:700 .66rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px}
 .badge-exp{background:var(--warn-soft);color:var(--warn)}
-.badge-droid{background:var(--droid-soft);color:var(--droid)}
 
 /* Diller */
 .lang-row{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));align-items:start}
@@ -410,3 +420,9 @@ html.dil-bekliyor body{visibility:hidden}
 .prose h2:first-child{margin-top:0}
 .prose p{margin:0 0 12px;color:var(--muted);line-height:1.65}
 .prose p:last-child{margin-bottom:0}
+
+/* Klavyeyle gezenler için: yalnız odaklanınca görünür */
+.skip-link{position:absolute;left:12px;top:-80px;z-index:100;background:var(--accent);color:var(--accent-ink);
+  padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none;transition:top .15s}
+.skip-link:focus{top:12px}
+main:focus{outline:none}

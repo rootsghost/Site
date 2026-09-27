@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-surum="0.1.0">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -17,10 +17,10 @@
 <link rel="alternate" hreflang="en" href="https://fawlibs.org/#en">
 <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,8 +41,9 @@
 <script src="assets/ayarlar.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#top" data-i18n="skip">İçeriğe atla</a>
 
-<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+<div class="theme-bar" role="region" aria-label="Site ayarları" data-i18n-attr="aria-label:theme.region">
   <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
   <button type="button" data-skin-sec="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
   <button type="button" data-skin-sec="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
@@ -84,6 +85,7 @@
   <a href="#galeri" data-i18n="nav.gallery">Galeri</a>
   <a href="#android">Android</a>
   <a href="#designer">Designer</a>
+  <a href="#ekosistem" data-i18n="footer.eco">Ekosistem</a>
   <a href="#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
   <a href="#hangisi" data-i18n="nav.fit">Hangisi?</a>
   <a href="#performans" data-i18n="nav.perf">Performans</a>
@@ -99,7 +101,7 @@
   <!-- ───────── Hero ───────── -->
   <section class="wrap hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <span class="eyebrow" data-i18n="hero.eyebrow">Açık kaynak · Linux <span lang="en">native</span></span>
+      <span class="eyebrow" data-i18n="hero.eyebrow">Açık kaynak · <span lang="en">Linux native</span></span>
       <h1 id="hero-title">Faw Builder</h1>
       <p class="tagline" data-i18n="hero.tagline">Linux için native <strong>C/C++ ve Android</strong> geliştirme ortamı. Electron değil, GTK4 ve libadwaita.</p>
       <div class="os-cta">
@@ -243,26 +245,26 @@
       <button role="tab" id="g-t5" aria-controls="g-p5" aria-selected="false" tabindex="-1">Git</button>
     </div>
     <!-- TODO: Her kareye gerçek ekran görüntüsü (WebP) ya da 5-10 sn'lik GIF/WebM ekle; dosya yolları kutuların içinde yazıyor -->
-    <figure class="shot" role="tabpanel" id="g-p1" aria-labelledby="g-t1">
+    <div role="tabpanel" id="g-p1" aria-labelledby="g-t1"><figure class="shot">
       <div class="shot-frame"><div><b data-i18n="gallery.pending">Görsel eklenecek</b><code>assets/shots/editor.webp</code></div></div>
       <figcaption data-i18n="gallery.c1">Split view, kod katlama ve hover penceresi açıkken bir GTK projesi.</figcaption>
-    </figure>
-    <figure class="shot" role="tabpanel" id="g-p2" aria-labelledby="g-t2" hidden>
+    </figure></div>
+    <div role="tabpanel" id="g-p2" aria-labelledby="g-t2" hidden><figure class="shot">
       <div class="shot-frame"><div><b data-i18n="gallery.pending">Görsel eklenecek</b><code>assets/shots/android.webm</code></div></div>
       <figcaption data-i18n="gallery.c2">Derle, telefona yükle ve Logcat'te filtrele: tek akışta 10 saniyelik kayıt.</figcaption>
-    </figure>
-    <figure class="shot" role="tabpanel" id="g-p3" aria-labelledby="g-t3" hidden>
+    </figure></div>
+    <div role="tabpanel" id="g-p3" aria-labelledby="g-t3" hidden><figure class="shot">
       <div class="shot-frame"><div><b data-i18n="gallery.pending">Görsel eklenecek</b><code>assets/shots/designer.webm</code></div></div>
       <figcaption data-i18n="gallery.c3">Paletten GtkGrid'e sürükle-bırak, ardından canlı önizleme penceresi.</figcaption>
-    </figure>
-    <figure class="shot" role="tabpanel" id="g-p4" aria-labelledby="g-t4" hidden>
+    </figure></div>
+    <div role="tabpanel" id="g-p4" aria-labelledby="g-t4" hidden><figure class="shot">
       <div class="shot-frame"><div><b data-i18n="gallery.pending">Görsel eklenecek</b><code>assets/shots/debugger.webp</code></div></div>
       <figcaption data-i18n="gallery.c4">Oluktaki kesme noktasında duran GDB oturumu ve değişken paneli.</figcaption>
-    </figure>
-    <figure class="shot" role="tabpanel" id="g-p5" aria-labelledby="g-t5" hidden>
+    </figure></div>
+    <div role="tabpanel" id="g-p5" aria-labelledby="g-t5" hidden><figure class="shot">
       <div class="shot-frame"><div><b data-i18n="gallery.pending">Görsel eklenecek</b><code>assets/shots/git.webp</code></div></div>
       <figcaption data-i18n="gallery.c5">Git durum paneli ve satır satır diff görünümü.</figcaption>
-    </figure>
+    </figure></div>
   </section>
 
   <!-- ───────── Android ───────── -->
@@ -310,7 +312,7 @@
   <!-- ───────── Faw Designer ───────── -->
   <section id="designer" class="wrap section">
     <div class="section-head">
-      <span class="eyebrow">Faw Designer</span>
+      <span class="eyebrow" lang="en">Faw Designer</span>
       <h2 data-i18n="designer.title">Arayüzü sürükle bırak, .ui ve .blp olarak kaydet</h2>
       <p class="section-intro" data-i18n="designer.intro">Faw Builder'dan <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd> ile açılan ayrı bir GTK4 ve Android arayüz tasarımcısı.</p>
     </div>
@@ -353,10 +355,30 @@
     <a class="more-link" href="designer.html" data-i18n="more.designer">Faw Designer ayrıntıları ve bilinen sınırlar</a>
   </section>
 
+  <!-- ───────── Ekosistem ───────── -->
+  <section id="ekosistem" class="wrap section" style="padding-top:0">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="footer.eco">Ekosistem</span>
+      <h2 data-i18n="eco.title">Faw ailesinin diğer uygulamaları</h2>
+      <p class="section-intro" data-i18n="eco.intro">Hepsi C11 ile yazılmış, GLib tabanlı Linux uygulamaları. Faw Designer ve Faw Circuit, Faw Builder ile aynı çekirdek kütüphaneyi kullanır.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><span class="glyph" aria-hidden="true">◧</span><h3>Faw Designer</h3>
+        <p data-i18n="eco.designer">GTK4 (.ui, Blueprint) ve Android (XML, Compose) arayüz tasarımcısı. Faw Builder ile birlikte gelir.</p>
+        <a class="more-link" href="designer.html" data-i18n="eco.more">Ayrıntılar</a></article>
+      <article class="card"><span class="glyph" aria-hidden="true">⌁</span><h3>Faw Circuit</h3>
+        <p data-i18n="eco.circuit">Şema ve PCB tasarımı; DRC/ERC, Gerber ve ngspice, simavr, gpsim ile simülasyon.</p>
+        <a class="more-link" href="circuit.html" data-i18n="eco.more">Ayrıntılar</a></article>
+      <article class="card"><span class="glyph" aria-hidden="true">◉</span><h3>Faw Voice Assistant</h3>
+        <p data-i18n="eco.voice">Çevrimdışı ses asistanı: pocketsphinx, whisper.cpp ya da Julius ile tanıma, espeak-ng ile sesli yanıt.</p>
+        <a class="more-link" href="ses-asistani.html" data-i18n="eco.more">Ayrıntılar</a></article>
+    </div>
+  </section>
+
   <!-- ───────── Karşılaştırma ───────── -->
   <section id="karsilastirma" class="wrap section" style="padding-top:0">
     <div class="section-head">
-      <span class="eyebrow" data-i18n="compare.eyebrow">Neden Faw Builder</span>
+      <span class="eyebrow" data-i18n="compare.eyebrow">Neden <span lang="en">Faw Builder</span></span>
       <h2 data-i18n="compare.title">Alternatiflere karşı</h2>
       <p class="section-intro" data-i18n="compare.intro">Neyle karşılaştırdığına göre üç tablo. Bir rakibe tıklayınca yalnız o sütun kalır.</p>
     </div>
@@ -403,7 +425,7 @@
         <table>
           <caption class="sr-only" data-i18n="perf.title">Açılış süresi ve bellek</caption>
           <!-- TODO: Ölçüm yapılınca doldur -->
-          <thead><tr><th></th><th class="v col-us">Faw Builder</th><th class="v">GNOME Builder</th><th class="v">VS Code + clangd</th></tr></thead>
+          <thead><tr><th scope="col"><span class="sr-only" data-i18n="perf.metric">Ölçüm</span></th><th class="v col-us">Faw Builder</th><th class="v">GNOME Builder</th><th class="v">VS Code + clangd</th></tr></thead>
           <tbody>
             <tr><td data-i18n="perf.r1">Soğuk açılış</td><td class="v col-us pending" data-i18n="perf.na">ölçülmedi</td><td class="v pending" data-i18n="perf.na">ölçülmedi</td><td class="v pending" data-i18n="perf.na">ölçülmedi</td></tr>
             <tr><td data-i18n="perf.r2">Bellek (RSS)</td><td class="v col-us pending" data-i18n="perf.na">ölçülmedi</td><td class="v pending" data-i18n="perf.na">ölçülmedi</td><td class="v pending" data-i18n="perf.na">ölçülmedi</td></tr>
@@ -509,7 +531,7 @@ packaging/windows/build-mingw.sh</pre>
             <button type="button" class="copy-btn" data-copy="cmd-win" data-i18n="install.copy">Kopyala</button></div>
           <div class="dl-row">
             <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/faw-builder-0.1.0-win64.zip"><span aria-hidden="true">↓</span> faw-builder-0.1.0-win64.zip</a>
-            <span class="dl-meta">Windows 10+ · x64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+            <span class="dl-meta">Windows · x64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
           </div>
         </div>
         <!-- TODO: Örnek indirme linkleri. Gerçek sürüm yayımlanınca dosya adlarını ve sürüm numarasını güncelle. -->

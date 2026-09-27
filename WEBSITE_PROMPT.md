@@ -51,7 +51,7 @@ baslangic.html    İlk GTK ve ilk Android uygulaması (6'şar adım)
 surumler.html     Tarihe göre sürüm notları
 circuit.html      Faw Circuit (PCB/şema, simülasyon)
 ses-asistani.html Faw Voice Assistant (çevrimdışı ses asistanı)
-gizlilik.html     Gizlilik politikası (taslak; yalnız localStorage + Google Fonts)
+gizlilik.html     Gizlilik politikası (taslak; yalnız localStorage, dış kaynak yok)
 kullanim-sartlari.html  Kullanım şartları (taslak; lisans belirlenince güncellenecek)
 404.html          Bulunamadı sayfası; yerel yollar kökten (/assets/…), noindex
 sitemap.xml, robots.txt  Arama motorları için (10 sayfa)
@@ -143,30 +143,20 @@ Erişilebilirlik → Katkı → Destek → Footer.
 - Rakip hakkında kaynaksız iddia yazma.
 - Örnek/yer tutucu değerler kodda `TODO` yorumuyla işaretlenir.
 
-## İNCELEMEDE BULUNAN SORUNLAR (öncelik sırasıyla düzelt)
+## İNCELEMEDE BULUNAN SORUNLAR
 
-1. **Dokümanda olmayan iddia:** `index.html` Windows indirme satırında
-   "Windows 10+" yazıyor. `PACKAGING.md`'de minimum Windows sürümü yok.
-   Kaldır ya da kaynağını sor.
-2. **Sürüm numarası iki yerde:** örnek sürüm `0.1.0` hem `index.html`'deki
-   indirme satırlarında hem `assets/site.js` `renderOs()` içinde. Tek
-   kaynağa indir (ör. `<html data-version>` ya da küçük bir `data/release.json`).
-3. **Başlık ve footer 6 sayfada kopya.** Alt sayfalar bir kez üretildi,
-   üretici betik depoda yok ve sonradan elle düzenlendi. HTML'i kaynak kabul
-   et. Tekrar üretmek istenirse önce betiği depoya ekleme kararını sor.
-4. **Ölü kod:** `site.js` `EN` sözlüğünde kullanılmayan 18 anahtar
-   (`compare.r1`–`r7`, `compare.all`, `compare.note`, `designer.cmpCap`,
-   `designer.cmpFeature`, `designer.r1`–`r6`, `gh.body`). CSS'te
-   `.badge-droid` kullanılmıyor. (`ide.popDoc` ve `ide.uses` kullanılıyor,
-   demo JS içinde basılıyor; silme.)
-5. **SEO:** `sitemap.xml` ve `robots.txt` eklendi. `hreflang="en"`
-   `#en` adresine gidiyor; gerçek bir İngilizce URL değil. Alt sayfalarda
-   JSON-LD yok.
-6. **Eksik altyapı:** README var ama deploy adımı yok; GitHub
-   Pages workflow'u yok, lint/format yok, Lighthouse/axe hiç çalıştırılmadı.
-7. **Gizlilik:** Yazı tipleri Google Fonts'tan yükleniyor. Gizlilik
-   politikası (`gizlilik.html`) bunu belirtiyor. Fontlar `assets/fonts/`
-   altına alınırsa o paragrafı güncelle (karar bana ait).
+Çözülenler: "Windows 10+" iddiası kaldırıldı; sürüm tek kaynakta (`<html data-surum>`,
+değiştirmek için `scripts/surum.sh`); 18 ölü `EN` anahtarı ve `.badge-droid` silindi;
+alt sayfalara JSON-LD (BreadcrumbList, ürün sayfalarında SoftwareApplication) eklendi;
+README, `scripts/kontrol.py`, GitHub Actions kontrol ve Pages yayın iş akışları eklendi;
+yazı tipleri `assets/fonts/` altında; axe denetimi 5 temada temiz (kontrast düzeltildi);
+"İçeriğe atla" bağlantısı ve simgeler/manifest eklendi.
+
+Açık kalanlar:
+1. **Başlık ve footer her sayfada kopya.** HTML kaynak kabul edilir; menü ya da altbilgi
+   değişince tüm sayfaları (404 dahil) güncelle. `scripts/kontrol.py` kırık bağlantıyı yakalar.
+2. **İngilizce adres:** `hreflang="en"` `#en` adresine gidiyor; ayrı `/en/` sayfaları yok.
+   Yapılacaksa önce yöntemi sor (elle kopya mı, derleme adımı mı).
 
 ## LİSANS VE ÖRNEK BAĞLANTILAR
 
@@ -189,7 +179,7 @@ Erişilebilirlik → Katkı → Destek → Footer.
 1. Değişiklikten önce ilgili dosyayı oku; mevcut sınıfları ve tokenları kullan.
 2. Yeni metin eklersen İngilizcesini aynı değişiklikte ekle. Kontrol:
    her `data-i18n` anahtarının `EN` ya da `FAW_PAGE_EN` içinde karşılığı olmalı.
-3. `python3 -m http.server` ile 6 sayfayı 1440px ve 390px'te aç:
+3. `python3 scripts/kontrol.py` çalıştır, sonra `python3 -m http.server` ile sayfaları 1440px ve 390px'te aç:
    konsol hatası yok, yatay taşma yok, karşılaştırma tablosu yükleniyor,
    TR/EN ve 4 tema çalışıyor.
 4. Sürüm notu eklersen `surumler.html` ve `feed.xml`'i birlikte güncelle.
@@ -200,4 +190,3 @@ Erişilebilirlik → Katkı → Destek → Footer.
 1. Örnek GitHub, Matrix, bağış ve e-posta adreslerinin gerçekleri neler?
 2. Gerçek bir sürüm yayımlandı mı? Dosya adları ve sürüm numarası ne?
 3. Ekran görüntüleri/GIF'ler hazır mı?
-4. Fontlar Google Fonts'tan mı gelsin, yerel mi barındırılsın?
