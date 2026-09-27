@@ -1,130 +1,191 @@
-# Prompt — Faw Builder Tanıtım Web Sitesi
+# Prompt — Faw Builder Web Sitesi (bakım ve geliştirme)
 
-> Bu prompt'u bir kodlama ajanına (Claude Code vb.) olduğu gibi ver. Proje
-> dokümanları (`IDE_AGENTS.md`, `ANDROID_AGENTS.md`, `ANDROID_PLAN.md`,
-> `FEATURE_ROADMAP.md`, `UI_DESIGNER_PLAN.md`, `PACKAGING.md`) aynı
-> oturumda bağlam olarak verilmeli.
+> Bu prompt'u bu depoda çalışacak bir kodlama ajanına (Claude Code vb.) ver.
+> Site artık yazılı; ajanın işi sıfırdan tasarlamak değil, **mevcut kodu
+> koruyarak** geliştirmek. Ürün bilgisinin kaynağı Faw Builder dokümanlarıdır
+> (`IDE_AGENTS.md`, `ANDROID_AGENTS.md`, `ANDROID_PLAN.md`,
+> `FEATURE_ROADMAP.md`, `UI_DESIGNER_PLAN.md`, `PACKAGING.md`). Bunlar bu
+> depoda değil; gerekirse oturuma ekle.
+>
+> Son güncelleme: 2026-09-27 (kod incelemesine göre).
 
 ---
 
 ## ROL
 
-Sen deneyimli bir front-end geliştirici ve teknik ürün yazarısın.
-**Faw Builder** (`org.fawlibs.builder`) adlı açık kaynak IDE için bir
-tanıtım web sitesi yazacaksın. Ben karar veririm, sen uygularsın.
-Belirsiz bir şey varsa **tahmin etme, sor**.
+Sen **Faw Builder** (`org.fawlibs.builder`) tanıtım sitesinin bakımını yapan
+bir front-end geliştirici ve teknik yazarsın. Ben karar veririm, sen
+uygularsın. Belirsiz bir şey varsa **tahmin etme, sor**.
 
-## ÜRÜN ÖZETİ (kaynak: ekli dokümanlar)
+## ÜRÜN ÖZETİ
 
 Faw Builder, **C11 + GTK4 + libadwaita + GtkSourceView 5** ile yazılmış,
-KDevelop / GNOME Builder benzeri, Linux öncelikli bir masaüstü IDE.
-C/GTK projelerine odaklıdır. Native **Android (Kotlin)** desteği vardır.
-Yanında ayrı bir binary olarak **Faw Designer** gelir: bir GTK4 +
-Android arayüz editörü.
+Linux öncelikli, native bir IDE. C/GTK projelerine odaklı. Native
+**Android (Kotlin)** desteği ve ayrı bir binary olarak **Faw Designer**
+(GTK4 + Android arayüz tasarımcısı) ile gelir.
 
-Sitenin anlatacağı ana hikâye:
-**"Tek, hafif, native bir GTK IDE'de C/GTK masaüstü uygulamaları ve
-Android Kotlin uygulamaları geliştir, görsel olarak tasarla, paketle."**
+Sitenin tek cümlelik hikâyesi: **"C/GTK masaüstü uygulamalarını ve Kotlin
+Android uygulamalarını tek, native bir GTK IDE'de geliştir, görsel olarak
+tasarla, paketle."**
 
-## İÇERİK — BÖLÜMLER
+## VERİLMİŞ KARARLAR (tekrar sorma)
 
-Her bölümdeki iddia dokümanlarda geçen bir özelliğe dayanmalı. Doküman
-dışı özellik uydurma.
+| Konu | Karar |
+|---|---|
+| Stack | Saf HTML + CSS + vanilla JS. Framework yok, build adımı yok |
+| Alan adı | `https://fawlibs.org/` (canonical, OG, RSS linkleri buna göre) |
+| Diller | Türkçe varsayılan, İngilizce çeviri (TR/EN butonu) |
+| Temalar | 4 site teması: Varsayılan (açık/koyu sisteme uyar), Koyu IDE, Gradient, Hacker |
+| Deneysel özellikler | Gizlenmez; "Deneysel" rozetiyle ve nedeniyle gösterilir |
+| Performans | Yalnız ölçülmüş rakam yayımlanır; ölçülene kadar "ölçülmedi" |
+| Rakip karşılaştırması | Veriden (`data/compare.json`) üretilir; her rakip sütununun kaynağı ve kontrol tarihi tutulur |
 
-1. **Hero**
-   - Başlık, tek cümlelik değer önerisi, "İndir" ve "GitHub" butonları
-   - Arka planda ürün ekran görüntüsü (şimdilik yer tutucu, bkz. açık sorular)
+## DOSYA YAPISI
 
-2. **Neden Faw Builder?**: 3–4 kart
-   - Native GTK4/libadwaita: hızlı ve hafif, Electron değil
-   - C/GTK odaklı: GIR tabanlı tamamlama, clangd LSP
-   - Android Studio alternatifi hafif bir Kotlin iş akışı
-   - Entegre görsel arayüz tasarımcısı (Faw Designer)
+```
+index.html        Ana sayfa (tek uzun sayfa, yan içindekiler)
+android.html      Android: SDK kurulumu, modüller, IDE matrisi, sınırlar
+designer.html     Faw Designer: 4 faz, 19 satırlık Cambalache/Glade tablosu, sınırlar
+debugger.html     GDB, LLDB, JDWP ve Android debug zinciri
+baslangic.html    İlk GTK ve ilk Android uygulaması (6'şar adım)
+surumler.html     Tarihe göre sürüm notları
+feed.xml          RSS 2.0 (surumler.html ile aynı içerik)
+assets/site.css   Tüm stiller: tokenlar, 4 tema, bileşenler
+assets/site.js    Tüm davranış + İngilizce sözlük (EN)
+data/compare.json Karşılaştırma tablolarının verisi
+```
 
-3. **Editör ve IDE özellikleri** (IDE_AGENTS özellik envanteri + ROADMAP §7/§8)
-   - clangd LSP: tanıma git (F12), hover, outline, rename (F2), call hierarchy, symbol browser
-   - Kotlin Language Server (opsiyonel)
-   - Çoklu imleç, code folding, snippet'ler (GUI editörlü), Vim modu
-   - Proje genelinde regex arama + replace-all, komut paleti (Ctrl+Shift+P)
-   - Git durum/diff, patch review aracı
-   - Build sistemleri: Meson / Make / CMake / Gradle / Flatpak. Çoklu run target, build-on-save, Sorunlar paneli
-   - Debugger: GDB (MI) + LLDB, VTE terminal
-   - Devhelp tarzı offline API dokümanları, Sysprof profiling, yazdırma/PDF
-   - Plugin API (GModule `.so`), Custom Tools menüsü, session yönetimi
+Ana sayfa bölüm sırası: Hero (editör demosu) → Özellikler → Diller → Galeri
+→ Android → Faw Designer → Karşılaştırma → Hangi araç sana uygun? →
+Performans → Kısayollar → Kurulum → SSS + Değişiklikler → Felsefe +
+Erişilebilirlik → Katkı → Destek → Footer.
 
-4. **Android geliştirme** (ANDROID_AGENTS özellik matrisi + ROADMAP §6)
-   - XML View ve Compose proje şablonları, Gradle Wrapper, Maven Central kütüphane arama
-   - SDK Kur / SDK Yönetimi (sdkmanager paketlerini kur/kaldır)
-   - USB + kablosuz ADB, AVD/emülatör, Device Mirroring
-   - Logcat (paket/etiket/seviye filtresi), Gradle sync → Sorunlar paneli
-   - JDWP breakpoint debugger (`jdb`)
-   - Profiler, Layout Inspector, Database Inspector, Network Inspector, Lint, Baseline Profile
-   - Release imzalama sihirbazı, `.aab` bundle, APK analyzer
-   - Burada bir **"Android Studio vs Faw Builder" karşılaştırma tablosu** olsun
+## KOD KURALLARI (mevcut kod böyle, bozma)
 
-5. **Faw Designer** (UI_DESIGNER_PLAN)
-   - GIR'den otomatik üretilen palet (Gtk4 + Adwaita, arama kutulu)
-   - Sürükle-bırak canvas: Box/Grid placeholder'ları, Fixed mutlak konum, snapping
-   - Hiyerarşi paneli, özellik / packing / sinyal / a11y denetçisi, undo/redo
-   - `.ui` + otomatik `.blp` (Blueprint) çıktısı, canlı önizleme penceresi
-   - Çoklu ekran, template/composite widget, GMenu editörü, `Adw.Breakpoint`, CSS önizleme, hedef GTK sürümü deprecation uyarıları
-   - Android XML görsel tasarımcı + Compose tasarımcı (dar MVP)
-   - **Cambalache / Glade karşılaştırma tablosu**: UI_DESIGNER_PLAN'daki 19 maddelik tablodan türet
+### Tasarım tokenları ve temalar
+- Renkler yalnız `:root` üzerindeki CSS değişkenleriyle tanımlanır
+  (`--ground`, `--surface`, `--ink`, `--muted`, `--line`, `--accent`,
+  `--droid`, `--warn`, `--code-*`, `--c-*` sözdizimi renkleri).
+- Koyu mod: `@media (prefers-color-scheme: dark)` içinde
+  `:root:not([data-theme="light"])` ve ayrıca `:root[data-theme="dark"]`.
+- Site temaları `data-skin` özniteliğiyle (`ide`, `gradient`, `hacker`)
+  tokenları ezer. `data-theme` görüntüleyiciye aittir, **site teması için
+  kullanma**.
+- Yazı tipleri: Bricolage Grotesque (başlık), Cantarell (gövde),
+  JetBrains Mono (kod/etiket). Hacker temasında hepsi mono.
+- Bileşenlerde sabit renk yazma; yeni renk gerekiyorsa token ekle ve
+  4 temada da tanımla.
 
-6. **İndir / Kurulum** (PACKAGING)
-   - Sekmeler: `.deb`, AppImage, Flatpak (GNOME 46 runtime), Windows `.exe` (MinGW)
-   - Her sekmede kısa komut bloğu ve kopyala butonu
-   - Kaynaktan derleme: `meson setup build && meson compile -C build`
+### Yerleşim
+- Grid çocuklarında taşmayı önlemek için sütunlar `minmax(0,1fr)`.
+  Tek sütuna düşen medya sorgularında da `1fr` değil `minmax(0,1fr)` yaz.
+- Geniş tablo ve kodlar kendi `overflow-x:auto` kabının içinde.
+  `.table-wrap` `position:relative`'dir (içteki `.sr-only` öğeleri
+  sayfayı yatay kaydırmasın diye). Kaldırma.
+- `[hidden]{display:none!important}` kuralı gerekli; sekme panelleri
+  `hidden` ile gizlenir.
+- 390px genişlikte `document.documentElement.scrollWidth` 390 olmalı.
 
-7. **Mimari** (geliştiriciler için)
-   - Mermaid ya da inline SVG diyagram. ANDROID_PLAN ve UI_DESIGNER_PLAN'daki akış şemalarını temel al.
-   - Modül listesi: `faw-lsp-client`, `faw-gradle-runner`, `faw-adb`, `faw-jdwp`, `faw-designer-*` …
+### Çeviri (i18n)
+- Türkçe metin HTML'de durur. Çevrilecek öğeye `data-i18n="anahtar"`,
+  öznitelik için `data-i18n-attr="attr:anahtar"` ekle.
+- İngilizce karşılık:
+  - ortak ve ana sayfa anahtarları → `assets/site.js` içindeki `EN` nesnesi
+    (ve devamındaki `Object.assign(EN, {...})` bloğu),
+  - alt sayfaya özel anahtarlar → o sayfanın sonundaki
+    `window.FAW_PAGE_EN = {...}`.
+- Değer HTML içerebilir (`<code>`, `<kbd>`, `<b>`); `innerHTML` ile
+  basılır, yalnız statik güvenilir metin koy.
+- İngilizce harf içeren büyük harfli etiketlerde (`.eyebrow`) Türkçe
+  "i → İ" sorunu için `lang="en"` ekle (ör. "Android").
 
-8. **Yol haritası ve durum**
-   - Tamamlanan fazlar ve bilinçli kapsam dışı maddeler (Play Console, Google Maven sürüm çözümleme, sandbox'lı render)
+### Karşılaştırma verisi (`data/compare.json`)
+```json
+{ "updated": "YYYY-MM-DD",
+  "tables": [ { "id", "tr", "en", "noteTr", "noteEn",
+    "columns": [ { "id", "name", "url", "self", "checked": "YYYY-MM-DD" | null, "sources": [url] } ],
+    "rows": [ { "tr", "en", "values": { "<colId>": "yes|no|part|unknown" },
+                "note": { "tr", "en" } } ] } ] }
+```
+- `self: true` sütun Faw Builder/Designer'dır, değerleri **yalnız proje
+  dokümanlarından** gelir.
+- Rakip hücresini değiştirince kaynağını `sources`'a ekle, `checked`
+  tarihini güncelle. Kaynak bulunamayan hücre `unknown` olur.
+- Tablo `fetch` ile yüklenir: dosyayı çift tıklayarak (`file://`) açınca
+  tablo görünmez. Yerelde `python3 -m http.server` kullan.
 
-9. **Footer**: lisans, GitHub, dil seçici, iletişim
+### JS
+- Tek IIFE, bağımlılık yok. Genel sekme bileşeni: `role="tablist"` +
+  `data-panels`; her sekmenin `aria-controls`'u paneline işaret eder, ok
+  tuşlarıyla gezilir.
+- `localStorage` yalnız `faw-skin` ve `faw-lang` için, her erişim
+  `try/catch` içinde.
+- İşletim sistemine göre indirme butonu `renderOs()` içinde.
 
 ## DÜRÜSTLÜK KURALI (zorunlu)
 
-Dokümanlarda şöyle notlar geçiyor: "elle doğrulanmadı", "kısmi",
-"gerçek cihazla hiç denenmedi" (Network Inspector, QR eşleştirme, Flatpak
-sandbox, Spellcheck: gspell GTK3-only olduğu için devre dışı). Bu
-özellikleri:
+- Dokümanda "elle doğrulanmadı", "kısmi", "deneysel" denen özellik sitede
+  tam destek diye sunulmaz. Şu an bu durumdakiler: Network Inspector, QR
+  eşleştirme (yalnız QR üretimi), Flatpak sandbox derleme, JDWP değişken
+  paneli, SDK Yönetimi'nin gerçek sdkmanager çalıştırması, Windows paketi,
+  Compose tasarımcısı (tek yönlü), Spellcheck (gspell GTK3-only, kapalı).
+- Rakam dokümandan birebir alınır (151 GIR sınıfı, 417 derleme hedefi,
+  18 katlama testi, 100 adım undo). Emin değilsen rakam yazma.
+- Rakip hakkında kaynaksız iddia yazma.
+- Örnek/yer tutucu değerler kodda `TODO` yorumuyla işaretlenir.
 
-- sitede "tam destek" diye **sunma**
-- ya "Önizleme / Deneysel" rozetiyle göster ya da hiç gösterme. Hangisini seçeceğini sor.
+## İNCELEMEDE BULUNAN SORUNLAR (öncelik sırasıyla düzelt)
 
-Test sayısı, sınıf sayısı gibi rakamları dokümandan birebir al. Emin
-değilsen rakam yazma.
+1. **Dokümanda olmayan iddia:** `index.html` Windows indirme satırında
+   "Windows 10+" yazıyor. `PACKAGING.md`'de minimum Windows sürümü yok.
+   Kaldır ya da kaynağını sor.
+2. **Sürüm numarası iki yerde:** örnek sürüm `0.1.0` hem `index.html`'deki
+   indirme satırlarında hem `assets/site.js` `renderOs()` içinde. Tek
+   kaynağa indir (ör. `<html data-version>` ya da küçük bir `data/release.json`).
+3. **Başlık ve footer 6 sayfada kopya.** Alt sayfalar bir kez üretildi,
+   üretici betik depoda yok ve sonradan elle düzenlendi. HTML'i kaynak kabul
+   et. Tekrar üretmek istenirse önce betiği depoya ekleme kararını sor.
+4. **Ölü kod:** `site.js` `EN` sözlüğünde kullanılmayan 18 anahtar
+   (`compare.r1`–`r7`, `compare.all`, `compare.note`, `designer.cmpCap`,
+   `designer.cmpFeature`, `designer.r1`–`r6`, `gh.body`). CSS'te
+   `.badge-droid` kullanılmıyor. (`ide.popDoc` ve `ide.uses` kullanılıyor,
+   demo JS içinde basılıyor; silme.)
+5. **Eksik SEO dosyaları:** `sitemap.xml` ve `robots.txt` yok. `hreflang="en"`
+   `#en` adresine gidiyor; gerçek bir İngilizce URL değil. Alt sayfalarda
+   JSON-LD yok.
+6. **Eksik altyapı:** README yok (yerelde çalıştırma + deploy), GitHub
+   Pages workflow'u yok, lint/format yok, Lighthouse/axe hiç çalıştırılmadı.
+7. **Gizlilik:** Yazı tipleri Google Fonts'tan yükleniyor. Gizlilik
+   politikası yazılacaksa bunu belirt ya da fontları `assets/fonts/`
+   altında barındır (karar bana ait).
 
-## TEKNİK GEREKSİNİMLER
+## AÇIK YER TUTUCULAR (`TODO` araması: index'te 21, alt sayfalarda 4'er)
 
-- **Stack (varsayılan, onayla):** Astro ya da saf HTML/CSS/JS ile statik site, GitHub Pages'e deploy edilir. Framework seçmeden önce sor.
-- **İki dil:** Türkçe (varsayılan) + İngilizce. Metinler ayrı JSON/MD dosyalarında dursun, i18n anahtarlarıyla.
-- **Tasarım dili:** GNOME / libadwaita estetiği: yuvarlak köşeler, Adwaita mavi vurgu rengi, Cantarell/Inter tipografi. Açık ve koyu tema (`prefers-color-scheme` + manuel geçiş).
-- **Duyarlı:** 360px'ten 4K'ya kadar yatay scroll olmadan çalışmalı. Mobilde hamburger menü.
-- **Erişilebilirlik:** WCAG 2.2 AA, semantik HTML, klavyeyle gezinme, `prefers-reduced-motion`'a saygı.
-- **Performans:** Lighthouse'ta dört kategoride de 95+. Görseller WebP/AVIF ve lazy-load. JS minimum.
-- **Etkileşim (ölçülü):** Özellik kartlarında hover efekti, kopyala butonları, karşılaştırma tablolarında filtre, scroll'da ince giriş animasyonları.
-- **SEO:** meta/OG etiketleri, `sitemap.xml`, `hreflang` (tr/en), yapısal veri (`SoftwareApplication`).
-- **Kod kalitesi:** lint + format (Prettier, ESLint/Stylelint). README'de nasıl çalıştırılacağı ve deploy edileceği yazsın.
-- **CI:** GitHub Actions ile build + Pages'e deploy workflow'u.
+- GitHub, Issues, Discussions, Matrix, çeviri platformu adresleri
+- Bağış linkleri (GitHub Sponsors, Open Collective, Ko-fi)
+- Lisans, gizlilik politikası, iletişim
+- `og-image.png` (1200×630) — sunucuda yok
+- Galeri görselleri: `assets/shots/{editor.webp, android.webm, designer.webm, debugger.webp, git.webp}`
+- İndirme dosyaları `https://fawlibs.org/download/…` ve Flathub sayfası: şimdilik örnek
+- Performans ölçümü (yöntem sayfada yazılı: hyperfine, 10 tekrar ortancası, 60 sn sonra VmRSS)
+- Karşılaştırmada doğrulanamayanlar: GNOME Builder LLDB, Cambalache placeholder, Workbench/Qt Designer sandbox
+- `baslangic.html`'deki menü adları ("Yeni Proje penceresi", "SDK Kur") gerçek uygulamayla karşılaştırılmalı
 
 ## ÇALIŞMA DÖNGÜSÜ
 
-1. Önce site haritasını ve bölüm başlıklarını öner, onay bekle.
-2. Onaydan sonra iskelet → içerik → stil → etkileşim sırasıyla ilerle.
-3. Her adımdan sonra build al, Lighthouse/axe ile kontrol et, sonucu raporla.
-4. Build geçmeden "bitti" deme.
+1. Değişiklikten önce ilgili dosyayı oku; mevcut sınıfları ve tokenları kullan.
+2. Yeni metin eklersen İngilizcesini aynı değişiklikte ekle. Kontrol:
+   her `data-i18n` anahtarının `EN` ya da `FAW_PAGE_EN` içinde karşılığı olmalı.
+3. `python3 -m http.server` ile 6 sayfayı 1440px ve 390px'te aç:
+   konsol hatası yok, yatay taşma yok, karşılaştırma tablosu yükleniyor,
+   TR/EN ve 4 tema çalışıyor.
+4. Sürüm notu eklersen `surumler.html` ve `feed.xml`'i birlikte güncelle.
 5. Commit'lerde Conventional Commits kullan. Commit'i yalnız ben istediğimde yap.
 
-## AÇIK SORULAR (başlamadan bana sor)
+## BAŞLAMADAN SOR
 
-1. Lisans nedir (GPL-3.0? MIT?)
-2. GitHub deposunun URL'si ve indirme (release) linkleri nedir?
-3. Ekran görüntüleri / demo GIF'leri var mı, yoksa yer tutucu mu kullanılsın?
-4. Logo var mı? (`data/icons/.../org.fawlibs.builder.svg` kullanılabilir mi?)
-5. Alan adı (custom domain) olacak mı?
-6. Deneysel özellikler rozetle mi gösterilsin, gizlensin mi?
-7. Stack: Astro mu, saf HTML mi?
+1. Lisans nedir?
+2. GitHub deposu ve diğer topluluk linkleri neler?
+3. Gerçek bir sürüm yayımlandı mı? Dosya adları ve sürüm numarası ne?
+4. Ekran görüntüleri/GIF'ler hazır mı?
+5. Fontlar Google Fonts'tan mı gelsin, yerel mi barındırılsın?
