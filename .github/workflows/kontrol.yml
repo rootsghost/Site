@@ -19,4 +19,4 @@ jobs:
           node --check assets/site.js
           node --check assets/ayarlar.js
       - name: Kabuk betikleri
-        run: bash -n scripts/surum.sh araclar/*.sh
+        run: bash -n scripts/*.sh araclar/*.sh

@@ -31,6 +31,7 @@ Sonra tarayıcıda <http://localhost:8000/> aç. Karşılaştırma tabloları `d
 | `data/compare.json` | Karşılaştırma tablolarının verisi, kaynak ve kontrol tarihleriyle |
 | `scripts/kontrol.py` | Statik kontroller: bağlantılar, çeviriler, JSON, sitemap, sürüm |
 | `scripts/surum.sh` | Örnek sürüm numarasını tek komutla değiştirir |
+| `scripts/test-durumu.sh` | Faw Builder'ı derleyip test eder, sitedeki "X/Y test geçiyor" ibaresini günceller |
 | `.github/workflows/` | Her push'ta kontrol; varsayılan dalda GitHub Pages'e yayın |
 | `araclar/` | OpenCode / Claude Code kurulum betikleri ve yapay zekâ kılavuzu (siteden bağımsız) |
 
@@ -39,7 +40,14 @@ Sonra tarayıcıda <http://localhost:8000/> aç. Karşılaştırma tabloları `d
 ```sh
 python3 scripts/kontrol.py        # bağlantı, çeviri, JSON, sitemap kontrolü
 bash scripts/surum.sh 0.2.0       # örnek sürüm numarasını değiştir
+bash scripts/test-durumu.sh ~/faw-builder              # derle, test et, ibareyi güncelle
+bash scripts/test-durumu.sh ~/faw-builder --kuru       # yalnız sonucu göster
+bash scripts/test-durumu.sh ~/faw-builder --surum-notu # sürüm notlarına ve RSS'e de ekle
 ```
+
+`test-durumu.sh` sonucu meson'un `build/meson-logs/testlog.json` kaydından sayar; atlanan (SKIP)
+testler toplama katılmaz. Test başarısız olursa ibare yine gerçeği yazar (ör. `! 98/103`) ve
+betik 1 ile çıkar. Ekran yoksa `xvfb-run` kullanır (`sudo apt install xvfb`).
 
 GitHub'da her push'ta `Kontrol` iş akışı çalışır. `Yayınla` iş akışı varsayılan dala gelen her
 push'ta siteyi GitHub Pages'e yükler. Bir kez yapılacak ayarlar (depo sahibi yapar):

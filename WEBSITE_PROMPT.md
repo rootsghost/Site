@@ -184,8 +184,10 @@ Açık kalanlar:
 3. `python3 scripts/kontrol.py` çalıştır, sonra `python3 -m http.server` ile sayfaları 1440px ve 390px'te aç:
    konsol hatası yok, yatay taşma yok, karşılaştırma tablosu yükleniyor,
    TR/EN ve 4 tema çalışıyor.
-4. Sürüm notu eklersen `surumler.html` ve `feed.xml`'i birlikte güncelle.
-5. Commit'lerde Conventional Commits kullan. Commit'i yalnız ben istediğimde yap.
+4. Test sayısını elle yazma: `bash scripts/test-durumu.sh <faw-builder dizini>` derleyip test eder ve
+   ana sayfadaki ibareyi günceller.
+5. Sürüm notu eklersen `surumler.html` ve `feed.xml`'i birlikte güncelle.
+6. Commit'lerde Conventional Commits kullan. Commit'i yalnız ben istediğimde yap.
 
 ## BAŞLAMADAN SOR
 
