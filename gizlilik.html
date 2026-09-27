@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Faw Builder Hata Ayıklama</title>
-<meta name="description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:title" content="Faw Builder Hata Ayıklama">
-<meta property="og:description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:url" content="https://fawlibs.org/debugger.html">
+<title>Gizlilik Politikası · Faw Builder</title>
+<meta name="description" content="Faw Builder sitesi çerez ve istatistik kullanmaz; yalnız tema ve dil ayarları tarayıcında saklanır.">
+<meta property="og:title" content="Gizlilik Politikası · Faw Builder">
+<meta property="og:description" content="Faw Builder sitesi çerez ve istatistik kullanmaz; yalnız tema ve dil ayarları tarayıcında saklanır.">
+<meta property="og:url" content="https://fawlibs.org/gizlilik.html">
 <meta property="og:image" content="https://fawlibs.org/og-image.png">
-<link rel="canonical" href="https://fawlibs.org/debugger.html">
+<link rel="canonical" href="https://fawlibs.org/gizlilik.html">
 <link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
 <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
@@ -60,47 +60,27 @@
 
 <main>
   <div class="wrap page-hero">
-    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Hata ayıklama</span></p>
-    <h1 data-i18n="p.title">Hata ayıklama</h1>
-    <p class="section-intro" data-i18n="p.intro">Üç tür proje için üç debugger: C/C++ için GDB ve LLDB, Android için JDWP. Hepsi isteğe bağlı; aracı yoksa panel pasif kalır.</p>
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Gizlilik</span></p>
+    <h1 data-i18n="p.title">Gizlilik politikası</h1>
+    <p class="section-intro" data-i18n="p.intro">Bu web sitesinin neyi sakladığı, neyi saklamadığı. Son güncelleme: 2026-09-27.</p>
   </div>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.e">Debugger'lar</span>
-      <h2 data-i18n="g.h">Hangisi ne yapar</h2>
-    </div>
-    <div class="grid">
-      <article class="card"><span class="glyph" aria-hidden="true">gdb</span><h3>GDB</h3><p data-i18n="g.gdb.b">Native C/C++ projeleri için. <code>gdb --interpreter=mi3</code> ile makine arayüzü üzerinden konuşur. Kesme noktaları editör oluğundan konur.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">lldb</span><h3>LLDB</h3><p data-i18n="g.lldb.b">GDB'nin yanında ayrı bir panel. Makine arayüzü yerine LLDB'nin düz komut satırı çıktısını ayrıştırır.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">jdb</span><h3>JDWP</h3><p data-i18n="g.jdwp.b">Android uygulamaları için. Debug panelinden Devam, Adım ve Durdur, oluktan kesme noktaları. İsteğe bağlı <code>jdb</code> gerekir.</p></article>
-    </div>
-  </section>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.ch.e" lang="en">Android</span>
-      <h2 data-i18n="g.ch.h">“Hata ayıkla”ya basınca ne olur</h2>
-    </div>
-    <ol class="steps">
-      <li><div><h3 data-i18n="g.s1.t">Derle ve yükle</h3><p data-i18n="g.s1.b">assembleDebug, ardından seçili cihaza <code>adb install -r</code>.</p></div></li>
-      <li><div><h3 data-i18n="g.s2.t">Debugger beklemeye başlat</h3><p data-i18n="g.s2.b">Uygulama <code>am start -D</code> ile açılır ve debugger bağlanmasını bekler.</p></div></li>
-      <li><div><h3 data-i18n="g.s3.t">Süreci bul</h3><p data-i18n="g.s3.b">Uygulamanın PID'i <code>pidof</code> ile bulunur.</p></div></li>
-      <li><div><h3 data-i18n="g.s4.t">Portu yönlendir</h3><p data-i18n="g.s4.b"><code>adb forward</code> cihazdaki JDWP portunu yerel bir porta bağlar.</p></div></li>
-      <li><div><h3 data-i18n="g.s5.t">jdb'yi bağla</h3><p data-i18n="g.s5.b"><code>jdb</code> bağlanır; oluktaki kesme noktaları sınıflara eşlenip gönderilir.</p></div></li>
-    </ol>
-  </section>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.lim.e">Açık liste</span>
-      <h2 data-i18n="g.lim.h">Bilinen sınırlar</h2>
-    </div>
-    <ul class="limits">
-      <li data-i18n="g.l1">JDWP değişken/izleme arayüzü yapısal kod olarak var, ama gerçek SDK ve Gradle ile elle doğrulanmadı.</li>
-      <li data-i18n="g.l2">LLDB desteği makine arayüzünü değil düz metin çıktısını ayrıştırır; alışılmadık çıktı biçimleri tanınmayabilir.</li>
-      <li data-i18n="g.l3">Android Studio tarzı tam bir debugger yok; temel jdb'nin metin çıktısı.</li>
-    </ul>
+  <section class="wrap section prose" style="padding-top:12px">
+    <h2 id="ozet" data-i18n="l.ozet.h">Kısaca</h2>
+    <p data-i18n="l.ozet.0">Bu site hesap açtırmaz, form içermez, çerez kullanmaz ve ziyaretçi istatistiği (analytics) toplamaz. Reklam ya da izleme kodu yoktur.</p>
+    <h2 id="yerel" data-i18n="l.yerel.h">Tarayıcında saklananlar</h2>
+    <p data-i18n="l.yerel.0">Seçtiğin ayarlar yalnız kendi tarayıcında, <code>localStorage</code> içinde saklanır ve hiçbir sunucuya gönderilmez:</p>
+    <p data-i18n="l.yerel.1"><code>faw-skin</code>: site teması (Varsayılan, Koyu IDE, Gradient, Hacker) · <code>faw-mode</code>: görünüm (Sistem, Açık, Koyu) · <code>faw-lang</code>: dil (Türkçe, İngilizce).</p>
+    <p data-i18n="l.yerel.2">Bunları silmek için tarayıcının site verilerini temizlemen yeterli. Depolama kapalıysa site yine çalışır, yalnız ayarların hatırlanmaz.</p>
+    <h2 id="ucuncu" data-i18n="l.ucuncu.h">Üçüncü taraflar</h2>
+    <p data-i18n="l.ucuncu.0">Yazı tipleri Google Fonts'tan (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>) yüklenir. Bu istek sırasında Google IP adresini ve tarayıcı bilgisini görür; ayrıntılar için <a href="https://policies.google.com/privacy" rel="noopener">Google gizlilik politikası</a>.</p>
+    <p data-i18n="l.ucuncu.1">Flathub gibi dış bağlantılara tıkladığında o sitenin kendi gizlilik politikası geçerli olur.</p>
+    <h2 id="sunucu" data-i18n="l.sunucu.h">Sunucu kayıtları</h2>
+    <p data-i18n="l.sunucu.0">Siteyi barındıran sunucu, çoğu web sunucusu gibi erişim kaydı (IP adresi, zaman, istenen sayfa) tutabilir. Barındırma sağlayıcısı ve kayıtların saklama süresi henüz belirlenmedi; belirlenince burada yazılacak.</p>
+    <h2 id="uygulama" data-i18n="l.uygulama.h">Faw Builder uygulaması</h2>
+    <p data-i18n="l.uygulama.0">Bu sayfa yalnız web sitesini kapsar. Faw Builder uygulamasının gizlilik davranışı (ör. yapay zekâ sağlayıcılarına gönderilen veriler) uygulamanın kendi belgelerinde anlatılır.</p>
+    <h2 id="iletisim" data-i18n="l.iletisim.h">İletişim</h2>
+    <p data-i18n="l.iletisim.0">Gizlilikle ilgili sorular için iletişim adresi henüz belirlenmedi.<!-- TODO: CONTACT --></p>
+    <p data-i18n="l.iletisim.1">Taslak: bu metin bir hukukçu tarafından incelenmedi. Proje lisansı ve iletişim adresi belirlenince güncellenecek.</p>
   </section>
 </main>
 
@@ -130,31 +110,25 @@
 </footer>
 
 <script>window.FAW_PAGE_EN = {
- "p.crumb": "Debugging",
- "p.title": "Debugging",
- "p.intro": "Three debuggers for three kinds of projects: GDB and LLDB for C/C++, JDWP for Android. Each one is optional; if its tool is missing, the panel stays inactive.",
- "g.e": "Debuggers",
- "g.h": "Which one does what",
- "g.gdb.b": "For native C/C++ projects. Talks to <code>gdb --interpreter=mi3</code> over the machine interface. Breakpoints are set from the editor gutter.",
- "g.lldb.b": "A separate panel next to GDB. It parses LLDB's plain command-line output instead of a machine interface.",
- "g.jdwp.b": "For Android apps. Continue, Step and Stop from the Debug panel, breakpoints from the gutter. Needs the optional <code>jdb</code>.",
- "g.ch.e": "Android",
- "g.ch.h": "What happens when you press “Debug”",
- "g.s1.t": "Build and install",
- "g.s1.b": "assembleDebug, then <code>adb install -r</code> to the selected device.",
- "g.s2.t": "Start waiting for the debugger",
- "g.s2.b": "The app is launched with <code>am start -D</code> and waits for a debugger to attach.",
- "g.s3.t": "Find the process",
- "g.s3.b": "The app's PID is found with <code>pidof</code>.",
- "g.s4.t": "Forward the port",
- "g.s4.b": "<code>adb forward</code> connects the device's JDWP port to a local port.",
- "g.s5.t": "Attach jdb",
- "g.s5.b": "<code>jdb</code> attaches; gutter breakpoints are mapped to classes and sent.",
- "g.lim.e": "Honest list",
- "g.lim.h": "Known limits",
- "g.l1": "The JDWP variables/watch UI exists as structural code but has not been verified by hand with a real SDK and Gradle.",
- "g.l2": "LLDB support parses plain text output, not a machine interface, so unusual output formats may not be recognized.",
- "g.l3": "There is no full Android Studio-style debugger; jdb's text output is the basis."
+ "p.crumb": "Privacy",
+ "p.title": "Privacy policy",
+ "p.intro": "What this website stores and what it does not. Last updated: 2026-09-27.",
+ "l.ozet.h": "In short",
+ "l.ozet.0": "This site has no accounts, no forms, no cookies and no visitor analytics. There are no ads or tracking scripts.",
+ "l.yerel.h": "Stored in your browser",
+ "l.yerel.0": "Your settings are stored only in your own browser, in <code>localStorage</code>, and are never sent to a server:",
+ "l.yerel.1": "<code>faw-skin</code>: site theme (Default, Dark IDE, Gradient, Hacker) · <code>faw-mode</code>: appearance (System, Light, Dark) · <code>faw-lang</code>: language (Turkish, English).",
+ "l.yerel.2": "Clearing the site data in your browser removes them. If storage is disabled the site still works; your settings just aren't remembered.",
+ "l.ucuncu.h": "Third parties",
+ "l.ucuncu.0": "Fonts are loaded from Google Fonts (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>). Google sees your IP address and browser details for that request; see the <a href=\"https://policies.google.com/privacy\" rel=\"noopener\">Google privacy policy</a>.",
+ "l.ucuncu.1": "When you follow an external link such as Flathub, that site's own privacy policy applies.",
+ "l.sunucu.h": "Server logs",
+ "l.sunucu.0": "Like most web servers, the server hosting this site may keep access logs (IP address, time, requested page). The hosting provider and log retention period have not been decided yet; they will be listed here.",
+ "l.uygulama.h": "The Faw Builder application",
+ "l.uygulama.0": "This page covers the website only. The privacy behaviour of the Faw Builder application (for example, data sent to AI providers) is described in the application's own documentation.",
+ "l.iletisim.h": "Contact",
+ "l.iletisim.0": "A contact address for privacy questions has not been set yet.",
+ "l.iletisim.1": "Draft: this text has not been reviewed by a lawyer. It will be updated once the project license and contact address are decided."
 };</script>
 <script src="assets/site.js"></script>
 </body>

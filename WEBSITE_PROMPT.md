@@ -49,8 +49,15 @@ designer.html     Faw Designer: 4 faz, 19 satırlık Cambalache/Glade tablosu, s
 debugger.html     GDB, LLDB, JDWP ve Android debug zinciri
 baslangic.html    İlk GTK ve ilk Android uygulaması (6'şar adım)
 surumler.html     Tarihe göre sürüm notları
+gizlilik.html     Gizlilik politikası (taslak; yalnız localStorage + Google Fonts)
+kullanim-sartlari.html  Kullanım şartları (taslak; lisans belirlenince güncellenecek)
+404.html          Bulunamadı sayfası; yerel yollar kökten (/assets/…), noindex
+sitemap.xml, robots.txt  Arama motorları için (8 sayfa)
+og-image.png      1200×630 paylaşım görseli
+README.md         Yerelde çalıştırma, yapı, yer tutucular
 feed.xml          RSS 2.0 (surumler.html ile aynı içerik)
 assets/site.css   Tüm stiller: tokenlar, 4 tema, bileşenler
+assets/ayarlar.js Tema/görünüm/dil ayarları (head'de yüklenir, tüm sayfalarda ortak)
 assets/site.js    Tüm davranış + İngilizce sözlük (EN)
 data/compare.json Karşılaştırma tablolarının verisi
 ```
@@ -150,21 +157,20 @@ Erişilebilirlik → Katkı → Destek → Footer.
    `designer.cmpFeature`, `designer.r1`–`r6`, `gh.body`). CSS'te
    `.badge-droid` kullanılmıyor. (`ide.popDoc` ve `ide.uses` kullanılıyor,
    demo JS içinde basılıyor; silme.)
-5. **Eksik SEO dosyaları:** `sitemap.xml` ve `robots.txt` yok. `hreflang="en"`
+5. **SEO:** `sitemap.xml` ve `robots.txt` eklendi. `hreflang="en"`
    `#en` adresine gidiyor; gerçek bir İngilizce URL değil. Alt sayfalarda
    JSON-LD yok.
-6. **Eksik altyapı:** README yok (yerelde çalıştırma + deploy), GitHub
+6. **Eksik altyapı:** README var ama deploy adımı yok; GitHub
    Pages workflow'u yok, lint/format yok, Lighthouse/axe hiç çalıştırılmadı.
 7. **Gizlilik:** Yazı tipleri Google Fonts'tan yükleniyor. Gizlilik
-   politikası yazılacaksa bunu belirt ya da fontları `assets/fonts/`
-   altında barındır (karar bana ait).
+   politikası (`gizlilik.html`) bunu belirtiyor. Fontlar `assets/fonts/`
+   altına alınırsa o paragrafı güncelle (karar bana ait).
 
 ## AÇIK YER TUTUCULAR (`TODO` araması: index'te 21, alt sayfalarda 4'er)
 
 - GitHub, Issues, Discussions, Matrix, çeviri platformu adresleri
 - Bağış linkleri (GitHub Sponsors, Open Collective, Ko-fi)
-- Lisans, gizlilik politikası, iletişim
-- `og-image.png` (1200×630) — sunucuda yok
+- Lisans, iletişim adresi; barındırma sağlayıcısı ve sunucu kaydı süresi (`gizlilik.html`)
 - Galeri görselleri: `assets/shots/{editor.webp, android.webm, designer.webm, debugger.webp, git.webp}`
 - İndirme dosyaları `https://fawlibs.org/download/…` ve Flathub sayfası: şimdilik örnek
 - Performans ölçümü (yöntem sayfada yazılı: hyperfine, 10 tekrar ortancası, 60 sn sonra VmRSS)

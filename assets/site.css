@@ -403,3 +403,10 @@ td.unknown{color:var(--muted)}
 .theme-bar button:disabled{opacity:.45;cursor:not-allowed}
 /* İngilizce seçiliyken çeviri uygulanana kadar Türkçe metni gösterme (ayarlar.js) */
 html.dil-bekliyor body{visibility:hidden}
+
+/* Metin ağırlıklı sayfalar (gizlilik, kullanım şartları) */
+.prose{display:block;max-width:760px}
+.prose h2{font-size:1.3rem;margin:28px 0 8px}
+.prose h2:first-child{margin-top:0}
+.prose p{margin:0 0 12px;color:var(--muted);line-height:1.65}
+.prose p:last-child{margin-bottom:0}

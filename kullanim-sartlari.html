@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Faw Builder Hata Ayıklama</title>
-<meta name="description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:title" content="Faw Builder Hata Ayıklama">
-<meta property="og:description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:url" content="https://fawlibs.org/debugger.html">
+<title>Kullanım Şartları · Faw Builder</title>
+<meta name="description" content="fawlibs.org web sitesinin kullanım şartları.">
+<meta property="og:title" content="Kullanım Şartları · Faw Builder">
+<meta property="og:description" content="fawlibs.org web sitesinin kullanım şartları.">
+<meta property="og:url" content="https://fawlibs.org/kullanim-sartlari.html">
 <meta property="og:image" content="https://fawlibs.org/og-image.png">
-<link rel="canonical" href="https://fawlibs.org/debugger.html">
+<link rel="canonical" href="https://fawlibs.org/kullanim-sartlari.html">
 <link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
 <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
@@ -60,47 +60,26 @@
 
 <main>
   <div class="wrap page-hero">
-    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Hata ayıklama</span></p>
-    <h1 data-i18n="p.title">Hata ayıklama</h1>
-    <p class="section-intro" data-i18n="p.intro">Üç tür proje için üç debugger: C/C++ için GDB ve LLDB, Android için JDWP. Hepsi isteğe bağlı; aracı yoksa panel pasif kalır.</p>
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Kullanım şartları</span></p>
+    <h1 data-i18n="p.title">Kullanım şartları</h1>
+    <p class="section-intro" data-i18n="p.intro">Bu web sitesini kullanma şartları. Son güncelleme: 2026-09-27.</p>
   </div>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.e">Debugger'lar</span>
-      <h2 data-i18n="g.h">Hangisi ne yapar</h2>
-    </div>
-    <div class="grid">
-      <article class="card"><span class="glyph" aria-hidden="true">gdb</span><h3>GDB</h3><p data-i18n="g.gdb.b">Native C/C++ projeleri için. <code>gdb --interpreter=mi3</code> ile makine arayüzü üzerinden konuşur. Kesme noktaları editör oluğundan konur.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">lldb</span><h3>LLDB</h3><p data-i18n="g.lldb.b">GDB'nin yanında ayrı bir panel. Makine arayüzü yerine LLDB'nin düz komut satırı çıktısını ayrıştırır.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">jdb</span><h3>JDWP</h3><p data-i18n="g.jdwp.b">Android uygulamaları için. Debug panelinden Devam, Adım ve Durdur, oluktan kesme noktaları. İsteğe bağlı <code>jdb</code> gerekir.</p></article>
-    </div>
-  </section>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.ch.e" lang="en">Android</span>
-      <h2 data-i18n="g.ch.h">“Hata ayıkla”ya basınca ne olur</h2>
-    </div>
-    <ol class="steps">
-      <li><div><h3 data-i18n="g.s1.t">Derle ve yükle</h3><p data-i18n="g.s1.b">assembleDebug, ardından seçili cihaza <code>adb install -r</code>.</p></div></li>
-      <li><div><h3 data-i18n="g.s2.t">Debugger beklemeye başlat</h3><p data-i18n="g.s2.b">Uygulama <code>am start -D</code> ile açılır ve debugger bağlanmasını bekler.</p></div></li>
-      <li><div><h3 data-i18n="g.s3.t">Süreci bul</h3><p data-i18n="g.s3.b">Uygulamanın PID'i <code>pidof</code> ile bulunur.</p></div></li>
-      <li><div><h3 data-i18n="g.s4.t">Portu yönlendir</h3><p data-i18n="g.s4.b"><code>adb forward</code> cihazdaki JDWP portunu yerel bir porta bağlar.</p></div></li>
-      <li><div><h3 data-i18n="g.s5.t">jdb'yi bağla</h3><p data-i18n="g.s5.b"><code>jdb</code> bağlanır; oluktaki kesme noktaları sınıflara eşlenip gönderilir.</p></div></li>
-    </ol>
-  </section>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.lim.e">Açık liste</span>
-      <h2 data-i18n="g.lim.h">Bilinen sınırlar</h2>
-    </div>
-    <ul class="limits">
-      <li data-i18n="g.l1">JDWP değişken/izleme arayüzü yapısal kod olarak var, ama gerçek SDK ve Gradle ile elle doğrulanmadı.</li>
-      <li data-i18n="g.l2">LLDB desteği makine arayüzünü değil düz metin çıktısını ayrıştırır; alışılmadık çıktı biçimleri tanınmayabilir.</li>
-      <li data-i18n="g.l3">Android Studio tarzı tam bir debugger yok; temel jdb'nin metin çıktısı.</li>
-    </ul>
+  <section class="wrap section prose" style="padding-top:12px">
+    <h2 id="kapsam" data-i18n="l.kapsam.h">Kapsam</h2>
+    <p data-i18n="l.kapsam.0">Bu şartlar fawlibs.org web sitesinin kullanımını kapsar. Faw Builder yazılımının kendisi, lisansı belirlendiğinde o lisansla dağıtılacak; lisans bu şartların yerine geçer.</p>
+    <h2 id="lisans" data-i18n="l.lisans.h">Yazılım lisansı</h2>
+    <p data-i18n="l.lisans.0">Faw Builder'ın lisansı henüz belirlenmedi.<!-- TODO: LICENSE --> Belirlenene kadar indirme bağlantılarındaki dosyalar yalnız deneme amaçlıdır.</p>
+    <h2 id="garanti" data-i18n="l.garanti.h">Garanti yok</h2>
+    <p data-i18n="l.garanti.0">Site ve indirilebilir dosyalar "olduğu gibi" sunulur. Faw Builder geliştirme aşamasındadır; bazı özellikler deneysel olarak işaretlenmiştir. Önemli projelerde kullanmadan önce yedek almanı öneririz.</p>
+    <h2 id="icerik" data-i18n="l.icerik.h">Sitedeki bilgiler</h2>
+    <p data-i18n="l.icerik.0">Karşılaştırma tablolarındaki bilgiler, tabloda yazan tarihte ilgili ürünlerin kendi belgelerinden derlendi. Ürünler değiştikçe bilgiler eskiyebilir; bir hata görürsen bildirmeni rica ederiz.</p>
+    <h2 id="marka" data-i18n="l.marka.h">Markalar</h2>
+    <p data-i18n="l.marka.0">Android, Kotlin, GTK, GNOME, Visual Studio Code, JetBrains ve sitede geçen diğer ürün adları sahiplerinin markalarıdır. Bu sitede yalnız karşılaştırma ve uyumluluk bilgisi vermek için anılırlar; bu, sahiplerinin Faw Builder'ı desteklediği anlamına gelmez.</p>
+    <h2 id="dis" data-i18n="l.dis.h">Dış bağlantılar</h2>
+    <p data-i18n="l.dis.0">Sitede başka sitelere bağlantılar vardır. Bu sitelerin içeriğinden ve gizlilik uygulamalarından onların sahipleri sorumludur.</p>
+    <h2 id="degisiklik" data-i18n="l.degisiklik.h">Değişiklikler</h2>
+    <p data-i18n="l.degisiklik.0">Bu şartlar güncellenebilir; güncel sürüm her zaman bu sayfadadır. Son güncelleme: 2026-09-27.</p>
+    <p data-i18n="l.degisiklik.1">Taslak: bu metin bir hukukçu tarafından incelenmedi. Proje lisansı ve iletişim adresi belirlenince güncellenecek.</p>
   </section>
 </main>
 
@@ -130,31 +109,24 @@
 </footer>
 
 <script>window.FAW_PAGE_EN = {
- "p.crumb": "Debugging",
- "p.title": "Debugging",
- "p.intro": "Three debuggers for three kinds of projects: GDB and LLDB for C/C++, JDWP for Android. Each one is optional; if its tool is missing, the panel stays inactive.",
- "g.e": "Debuggers",
- "g.h": "Which one does what",
- "g.gdb.b": "For native C/C++ projects. Talks to <code>gdb --interpreter=mi3</code> over the machine interface. Breakpoints are set from the editor gutter.",
- "g.lldb.b": "A separate panel next to GDB. It parses LLDB's plain command-line output instead of a machine interface.",
- "g.jdwp.b": "For Android apps. Continue, Step and Stop from the Debug panel, breakpoints from the gutter. Needs the optional <code>jdb</code>.",
- "g.ch.e": "Android",
- "g.ch.h": "What happens when you press “Debug”",
- "g.s1.t": "Build and install",
- "g.s1.b": "assembleDebug, then <code>adb install -r</code> to the selected device.",
- "g.s2.t": "Start waiting for the debugger",
- "g.s2.b": "The app is launched with <code>am start -D</code> and waits for a debugger to attach.",
- "g.s3.t": "Find the process",
- "g.s3.b": "The app's PID is found with <code>pidof</code>.",
- "g.s4.t": "Forward the port",
- "g.s4.b": "<code>adb forward</code> connects the device's JDWP port to a local port.",
- "g.s5.t": "Attach jdb",
- "g.s5.b": "<code>jdb</code> attaches; gutter breakpoints are mapped to classes and sent.",
- "g.lim.e": "Honest list",
- "g.lim.h": "Known limits",
- "g.l1": "The JDWP variables/watch UI exists as structural code but has not been verified by hand with a real SDK and Gradle.",
- "g.l2": "LLDB support parses plain text output, not a machine interface, so unusual output formats may not be recognized.",
- "g.l3": "There is no full Android Studio-style debugger; jdb's text output is the basis."
+ "p.crumb": "Terms",
+ "p.title": "Terms of use",
+ "p.intro": "Terms for using this website. Last updated: 2026-09-27.",
+ "l.kapsam.h": "Scope",
+ "l.kapsam.0": "These terms cover the use of the fawlibs.org website. The Faw Builder software itself will be distributed under its license once one is chosen; that license takes precedence over these terms.",
+ "l.lisans.h": "Software license",
+ "l.lisans.0": "The Faw Builder license has not been decided yet. Until it is, the files behind the download links are for evaluation only.",
+ "l.garanti.h": "No warranty",
+ "l.garanti.0": "The site and downloadable files are provided \"as is\". Faw Builder is under development and some features are marked experimental. Back up your work before using it on important projects.",
+ "l.icerik.h": "Information on this site",
+ "l.icerik.0": "The comparison tables were compiled from each product's own documentation on the date shown in the table. Products change, so information can go out of date; please report any mistake you find.",
+ "l.marka.h": "Trademarks",
+ "l.marka.0": "Android, Kotlin, GTK, GNOME, Visual Studio Code, JetBrains and other product names on this site are trademarks of their owners. They are mentioned only for comparison and compatibility information; this does not mean their owners endorse Faw Builder.",
+ "l.dis.h": "External links",
+ "l.dis.0": "This site links to other websites. Their owners are responsible for their content and privacy practices.",
+ "l.degisiklik.h": "Changes",
+ "l.degisiklik.0": "These terms may be updated; the current version is always on this page. Last updated: 2026-09-27.",
+ "l.degisiklik.1": "Draft: this text has not been reviewed by a lawyer. It will be updated once the project license and contact address are decided."
 };</script>
 <script src="assets/site.js"></script>
 </body>
