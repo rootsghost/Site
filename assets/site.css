@@ -401,3 +401,5 @@ td.unknown{color:var(--muted)}
 .grid-4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 .theme-bar-sep{width:1px;height:18px;background:var(--line);margin:0 6px}
 .theme-bar button:disabled{opacity:.45;cursor:not-allowed}
+/* İngilizce seçiliyken çeviri uygulanana kadar Türkçe metni gösterme (ayarlar.js) */
+html.dil-bekliyor body{visibility:hidden}

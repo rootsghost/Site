@@ -293,7 +293,7 @@
     nav.addEventListener("click", function(e){ if(e.target.closest("a")){ nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false);} });
   }
 
-  /* Site teması: assets/tema.js (her sayfanın <head> bölümünde) */
+  /* Site teması ve dil tercihi: assets/ayarlar.js (her sayfanın <head> bölümünde) */
 
   /* ── Yan içindekiler ── */
   var tocLinks = [].slice.call(document.querySelectorAll(".side-toc a"));
@@ -327,12 +327,17 @@
       renderCompare();
     }
     renderOs();
-    store("faw-lang", l);
   }
-  document.querySelectorAll("[data-lang-toggle]").forEach(function(b){ b.addEventListener("click", function(){ setLang(lang==="en"?"tr":"en"); }); });
+  /* Dil tercihi assets/ayarlar.js'te saklanır; tüm sayfalar ve açık sekmeler aynı dili kullanır. */
+  document.querySelectorAll("[data-lang-toggle]").forEach(function(b){ b.addEventListener("click", function(){
+    var yeni = lang==="en" ? "tr" : "en";
+    if(window.FawAyar) window.FawAyar.dilSec(yeni); else setLang(yeni);
+  }); });
+  if(window.FawAyar) window.FawAyar.dilDinle(function(l){ if(l !== lang) setLang(l); });
 
   if(editor) renderDemo("c");
   renderOs();
-  var savedLang = location.hash === "#en" ? "en" : store("faw-lang");
-  if(savedLang === "en") setLang("en");
+  var ilkDil = window.FawAyar ? window.FawAyar.dil() : (location.hash === "#en" ? "en" : store("faw-lang"));
+  if(ilkDil === "en") setLang("en");
+  if(window.FawAyar) window.FawAyar.ceviriHazir();
 })();
