@@ -161,6 +161,30 @@ kur_nvidia() {
       | grep -Ei 'coder|qwen3|kimi|glm|minimax|deepseek|gpt-oss|devstral|codestral|nemotron' \
       | grep -Eiv 'embed|safety|guard|reward|parse|rerank|starcoder' || true)
   ((${#SECILEN[@]})) || return
+
+  # NVIDIA kapattığı modelleri listede göstermeye devam ediyor; bunlara istek
+  # gönderilince HTTP 410 döner. Her modele 1 tokenlık bir deneme isteği gönder,
+  # çalışmayanları config'e ekleme.
+  local m kod govde calisan=()
+  govde=$(mktemp)
+  for m in "${SECILEN[@]}"; do
+    kod=$(curl -s -o "$govde" -w '%{http_code}' --max-time 60 "$url/chat/completions" \
+      -H "Authorization: Bearer $ANAHTAR" -H 'Content-Type: application/json' \
+      -d "$(jq -n --arg m "$m" '{model: $m, messages: [{role: "user", content: "hi"}], max_tokens: 1}')") || kod=000
+    case $kod in
+      200) tamam "$m çalışıyor"; calisan+=("$m") ;;
+      410) uyari "$m kapatılmış (HTTP 410), eklenmedi: $(head -c 160 "$govde")" ;;
+      429) uyari "$m şu an yoğun (HTTP 429); yine de eklendi"; calisan+=("$m") ;;
+      *)   uyari "$m denenemedi (HTTP $kod): $(head -c 160 "$govde")" ;;
+    esac
+  done
+  rm -f "$govde"
+  if ((${#calisan[@]} == 0)); then
+    uyari "Seçilen NVIDIA modellerinin hiçbiri çalışmadı. Hepsi 410 veriyorsa hesabında API erişimi"
+    uyari "kapalı olabilir: build.nvidia.com hesap ayarlarını kontrol et."
+    return
+  fi
+  SECILEN=("${calisan[@]}")
   config_saglayici nvidia "$(jq -n --arg u "$url" --argjson m "$(printf '%s\n' "${SECILEN[@]}" | modeller_json)" \
     '{"npm": "@ai-sdk/openai-compatible", "name": "NVIDIA NIM", "options": {"baseURL": $u}, "models": $m}')"
   auth_ekle nvidia "$ANAHTAR"

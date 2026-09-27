@@ -162,6 +162,7 @@ Modelin ne kadarının kartta çalıştığını görmek için model yüklüyken
 | NVIDIA modeli hata veriyor | OpenCode'un yeni sürümleri NVIDIA'nın reddettiği bir parametre gönderebiliyor (issue #49240) | `/models` ile başka bir NVIDIA modeline geç |
 | DeepSeek düşünen modeli takılıyor | Bilinen sorun (issue #24264) | Qwen Coder, Kimi ya da GLM kullan |
 | `429` ya da "rate limit" | Ücretsiz sınır doldu | `/models` ile başka sağlayıcıya geç |
+| `Provider request failed with HTTP 410` | NVIDIA modeli kapatmış ama listede göstermeye devam ediyor; her modelde 410 alıyorsan hesapta API erişimi kapalı olabilir | `/models` ile başka modele geç; betiği yeniden çalıştır (artık 410 veren modelleri eklemiyor); hepsi 410 ise build.nvidia.com hesap ayarlarını kontrol et |
 | Yerel model dosya değiştirmiyor | Model araç çağırmayı desteklemiyor | `qwen3:4b` ya da `qwen2.5-coder` kullan; kontrol: `ollama show <model>` çıktısında `tools` |
 | Yerel model saçmalıyor ya da talimatı unutuyor | Bağlam penceresi küçük | `OLLAMA_CONTEXT_LENGTH` en az 16384 olmalı |
 | Yerel model çok yavaş | Model işlemcide çalışıyor | Daha küçük model (3b) ya da bulut sağlayıcı |
