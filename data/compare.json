@@ -17,36 +17,58 @@
      "id": "builder",
      "name": "GNOME Builder",
      "url": "https://apps.gnome.org/Builder/",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://flathub.org/en/apps/org.gnome.Builder",
+      "https://en.wikipedia.org/wiki/GNOME_Builder",
+      "https://fedoramagazine.org/debugging-gnome-builder/"
+     ]
     },
     {
      "id": "kdevelop",
      "name": "KDevelop",
      "url": "https://kdevelop.org/",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://www.phoronix.com/news/KDevelop-5.4-Released",
+      "https://github.com/KDE/kdevelop/tree/master/plugins/lldb",
+      "https://jgrulich.cz/2018/09/03/flatpak-support-in-kdevelop/"
+     ]
     },
     {
      "id": "qtc",
      "name": "Qt Creator",
      "url": "https://www.qt.io/product/development-tools",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://doc.qt.io/qtcreator/creator-project-meson.html",
+      "https://github.com/qt-creator/qt-creator",
+      "https://en.wikipedia.org/wiki/Qt_Creator"
+     ]
     },
     {
      "id": "clion",
      "name": "CLion",
      "url": "https://www.jetbrains.com/clion/",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://www.jetbrains.com/help/clion/meson.html",
+      "https://blog.jetbrains.com/clion/2023/09/clion-2023-3-eap2-support-for-device-tree-files-and-meson/"
+     ]
     },
     {
      "id": "vscode",
      "name": "VS Code + clangd",
      "url": "https://code.visualstudio.com/",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://github.com/bilelmoussaoui/flatpak-vscode/"
+     ]
     }
    ],
    "rows": [
@@ -97,8 +119,8 @@
       "faw": "yes",
       "builder": "yes",
       "kdevelop": "yes",
-      "qtc": "part",
-      "clion": "part",
+      "qtc": "yes",
+      "clion": "yes",
       "vscode": "part"
      }
     },
@@ -108,14 +130,14 @@
      "values": {
       "faw": "part",
       "builder": "yes",
-      "kdevelop": "no",
+      "kdevelop": "yes",
       "qtc": "no",
       "clion": "no",
       "vscode": "part"
      },
      "note": {
-      "tr": "Faw Builder: kod hazır, gerçek flatpak-builder ile elle denenmedi.",
-      "en": "Faw Builder: implemented, not yet tried by hand with a real flatpak-builder."
+      "tr": "Faw Builder: kod hazır, gerçek flatpak-builder ile elle denenmedi. VS Code: flatpak-vscode eklentisiyle.",
+      "en": "Faw Builder: implemented, not yet tried by hand with a real flatpak-builder. VS Code: through the flatpak-vscode extension."
      }
     },
     {
@@ -127,7 +149,11 @@
       "kdevelop": "yes",
       "qtc": "yes",
       "clion": "yes",
-      "vscode": "yes"
+      "vscode": "part"
+     },
+     "note": {
+      "tr": "GNOME Builder: GDB doğrulandı, LLDB desteği net bir kaynakla doğrulanamadı. VS Code: eklentiyle.",
+      "en": "GNOME Builder: GDB confirmed; LLDB support could not be confirmed from a clear source. VS Code: through extensions."
      }
     },
     {
@@ -171,8 +197,8 @@
      }
     }
    ],
-   "noteTr": "✓ var · ◐ kısmi ya da eklentiyle · ✗ yok · ? bilinmiyor. Faw Builder sütunu proje dokümanlarından alındı. Diğer sütunlar genel bilgiye dayanıyor ve yayından önce kaynaklarından doğrulanmalı.",
-   "noteEn": "✓ yes · ◐ partial or via extensions · ✗ no · ? unknown. The Faw Builder column comes from the project docs. The other columns are based on general knowledge and must be verified against their sources before publishing."
+   "noteTr": "✓ var · ◐ kısmi ya da eklentiyle · ✗ yok · ? bilinmiyor. Faw Builder sütunu proje dokümanlarından. Rakip sütunları 27 Eylül 2026'da web aramasıyla, resmi dokümanlar ve sürüm duyuruları üzerinden kontrol edildi; kaynaklar data/compare.json içinde.",
+   "noteEn": "✓ yes · ◐ partial or via extensions · ✗ no · ? unknown. The Faw Builder column comes from the project docs. Competitor columns were checked on 27 September 2026 through web search against official docs and release announcements; sources are in data/compare.json."
   },
   {
    "id": "android",
@@ -190,8 +216,15 @@
      "id": "as",
      "name": "Android Studio",
      "url": "https://developer.android.com/studio",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://developer.android.com/studio/run/device",
+      "https://developer.android.com/studio/debug/app-quality-insights",
+      "https://googlesamples.github.io/android-custom-lint-rules/checks/NewerVersionAvailable.md.html",
+      "https://developer.android.com/studio/debug/layout-inspector",
+      "https://developer.android.com/develop/ui/compose/tooling"
+     ]
     }
    ],
    "rows": [
@@ -285,6 +318,10 @@
      "values": {
       "faw": "no",
       "as": "yes"
+     },
+     "note": {
+      "tr": "Android Studio: App Quality Insights, Play'in Android vitals verisini IDE'de gösterir.",
+      "en": "Android Studio: App Quality Insights shows Play's Android vitals data in the IDE."
      }
     },
     {
@@ -293,6 +330,10 @@
      "values": {
       "faw": "no",
       "as": "yes"
+     },
+     "note": {
+      "tr": "Android Studio: NewerVersionAvailable lint kontrolü daha yeni sürümleri önerir.",
+      "en": "Android Studio: the NewerVersionAvailable lint check suggests newer versions."
      }
     },
     {
@@ -304,8 +345,8 @@
      }
     }
    ],
-   "noteTr": "Faw Builder sütunu ANDROID_AGENTS.md ve FEATURE_ROADMAP.md'den. Android Studio sütunu yayından önce doğrulanmalı.",
-   "noteEn": "The Faw Builder column comes from ANDROID_AGENTS.md and FEATURE_ROADMAP.md. The Android Studio column must be verified before publishing."
+   "noteTr": "Faw Builder sütunu ANDROID_AGENTS.md ve FEATURE_ROADMAP.md'den. Android Studio sütunu 27 Eylül 2026'da developer.android.com dokümanlarından kontrol edildi.",
+   "noteEn": "The Faw Builder column comes from ANDROID_AGENTS.md and FEATURE_ROADMAP.md. The Android Studio column was checked on 27 September 2026 against developer.android.com docs."
   },
   {
    "id": "designer",
@@ -323,29 +364,45 @@
      "id": "camb",
      "name": "Cambalache",
      "url": "https://gitlab.gnome.org/jpu/cambalache",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://blogs.gnome.org/gtk/2026/03/20/cambalaches-first-major-milestone/",
+      "https://github.com/xjuan/cambalache/blob/main/CHANGELOG.md"
+     ]
     },
     {
      "id": "glade",
      "name": "Glade",
      "url": "https://glade.gnome.org/",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://discourse.gnome.org/t/plan-about-gtk4-support-of-glade/5965/2",
+      "https://en.wikipedia.org/wiki/Glade_Interface_Designer"
+     ]
     },
     {
      "id": "wb",
      "name": "Workbench",
      "url": "https://apps.gnome.org/Workbench/",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://apps.gnome.org/Workbench/",
+      "https://github.com/workbenchdev/Workbench"
+     ]
     },
     {
      "id": "qtd",
      "name": "Qt Designer",
      "url": "https://doc.qt.io/qt-6/qtdesigner-manual.html",
-     "checked": null,
-     "self": false
+     "checked": "2026-09-27",
+     "self": false,
+     "sources": [
+      "https://doc.qt.io/qt-6/qtdesigner-manual.html",
+      "https://en.wikipedia.org/wiki/Qt_Creator"
+     ]
     }
    ],
    "rows": [
@@ -360,8 +417,8 @@
       "qtd": "no"
      },
      "note": {
-      "tr": "Glade GTK3'e kadar destekler, Qt Designer Qt içindir.",
-      "en": "Glade supports up to GTK3; Qt Designer is for Qt."
+      "tr": "Glade GTK4'e taşınmayacak ve artık geliştirilmiyor. Qt Designer Qt içindir.",
+      "en": "Glade will not be ported to GTK4 and is no longer developed. Qt Designer is for Qt."
      }
     },
     {
@@ -395,10 +452,14 @@
      "en": "Filling containers with placeholders",
      "values": {
       "faw": "yes",
-      "camb": "no",
+      "camb": "unknown",
       "glade": "yes",
       "wb": "no",
       "qtd": "unknown"
+     },
+     "note": {
+      "tr": "Cambalache: UI_DESIGNER_PLAN.md yok diyordu; güncel sürümlerde yer tutucular arasında sürükle-bırak geliştirmesi var, net doğrulanamadı.",
+      "en": "Cambalache: UI_DESIGNER_PLAN.md said no; recent releases improved drag and drop between placeholders, not clearly confirmed."
      }
     },
     {
@@ -406,7 +467,7 @@
      "en": "Blueprint (.blp)",
      "values": {
       "faw": "yes",
-      "camb": "no",
+      "camb": "yes",
       "glade": "no",
       "wb": "yes",
       "qtd": "no"
@@ -419,7 +480,7 @@
       "faw": "yes",
       "camb": "yes",
       "glade": "yes",
-      "wb": "part",
+      "wb": "no",
       "qtd": "yes"
      }
     },
@@ -430,8 +491,12 @@
       "faw": "yes",
       "camb": "yes",
       "glade": "no",
-      "wb": "yes",
+      "wb": "part",
       "qtd": "no"
+     },
+     "note": {
+      "tr": "Workbench: görsel editör yok, Blueprint koduyla yazılır.",
+      "en": "Workbench: no visual editor; written in Blueprint code."
      }
     },
     {
@@ -443,6 +508,10 @@
       "glade": "no",
       "wb": "unknown",
       "qtd": "unknown"
+     },
+     "note": {
+      "tr": "Cambalache: tasarım alanı Merengue adlı ayrı bir süreçte çalışır.",
+      "en": "Cambalache: the workspace runs in a separate process called Merengue."
      }
     },
     {
@@ -457,8 +526,8 @@
      }
     }
    ],
-   "noteTr": "Faw Designer sütunu ve Cambalache ile Glade hücrelerinin çoğu UI_DESIGNER_PLAN.md karşılaştırmasından. Geri kalanı genel bilgiye dayanıyor, doğrulanmalı.",
-   "noteEn": "The Faw Designer column and most Cambalache and Glade cells come from the comparison in UI_DESIGNER_PLAN.md. The rest is based on general knowledge and must be verified."
+   "noteTr": "Faw Designer sütunu proje dokümanlarından. Diğer sütunlar 27 Eylül 2026'da web aramasıyla kontrol edildi; ? işaretli hücreler net bir kaynakla doğrulanamadı.",
+   "noteEn": "The Faw Designer column comes from the project docs. Other columns were checked on 27 September 2026 through web search; cells marked ? could not be confirmed from a clear source."
   }
  ]
 }
