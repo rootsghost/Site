@@ -500,7 +500,7 @@ meson install -C build</pre>
             <button type="button" class="copy-btn" data-copy="cmd-deb" data-i18n="install.copy">Kopyala</button></div>
           <div class="dl-row">
             <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/faw-builder_0.1.0_amd64.deb"><span aria-hidden="true">↓</span> faw-builder_0.1.0_amd64.deb</a>
-            <span class="dl-meta">Debian / Ubuntu · amd64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+            <span class="dl-meta">Debian / Ubuntu · amd64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0 · <!-- ÖRNEK: sürüm etiketi --><a href="https://github.com/fawlibs/faw-builder/archive/refs/tags/v0.1.0.tar.gz" data-i18n="install.src">kaynak kodu</a></span>
           </div>
         </div>
         <div class="tabpanel" role="tabpanel" id="p-app" aria-labelledby="t-app" hidden>
@@ -510,7 +510,7 @@ meson install -C build</pre>
             <button type="button" class="copy-btn" data-copy="cmd-app" data-i18n="install.copy">Kopyala</button></div>
           <div class="dl-row">
             <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/FawBuilder-0.1.0-x86_64.AppImage"><span aria-hidden="true">↓</span> FawBuilder-0.1.0-x86_64.AppImage</a>
-            <span class="dl-meta">x86_64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+            <span class="dl-meta">x86_64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0 · <!-- ÖRNEK: sürüm etiketi --><a href="https://github.com/fawlibs/faw-builder/archive/refs/tags/v0.1.0.tar.gz" data-i18n="install.src">kaynak kodu</a></span>
           </div>
         </div>
         <div class="tabpanel" role="tabpanel" id="p-flat" aria-labelledby="t-flat" hidden>
@@ -520,7 +520,7 @@ packaging/flatpak/build-flatpak.sh</pre>
             <button type="button" class="copy-btn" data-copy="cmd-flat" data-i18n="install.copy">Kopyala</button></div>
           <div class="dl-row">
             <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/org.fawlibs.builder.flatpak"><span aria-hidden="true">↓</span> org.fawlibs.builder.flatpak</a>
-            <span class="dl-meta">GNOME 46 runtime · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+            <span class="dl-meta">GNOME 46 runtime · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0 · <!-- ÖRNEK: sürüm etiketi --><a href="https://github.com/fawlibs/faw-builder/archive/refs/tags/v0.1.0.tar.gz" data-i18n="install.src">kaynak kodu</a></span>
           </div>
         </div>
         <div class="tabpanel" role="tabpanel" id="p-win" aria-labelledby="t-win" hidden>
@@ -531,11 +531,12 @@ packaging/windows/build-mingw.sh</pre>
             <button type="button" class="copy-btn" data-copy="cmd-win" data-i18n="install.copy">Kopyala</button></div>
           <div class="dl-row">
             <a class="btn btn-primary btn-sm" href="https://fawlibs.org/download/faw-builder-0.1.0-win64.zip"><span aria-hidden="true">↓</span> faw-builder-0.1.0-win64.zip</a>
-            <span class="dl-meta">Windows · x64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0</span>
+            <span class="dl-meta">Windows · x64 · <span data-i18n="install.sample">örnek sürüm</span> 0.1.0 · <!-- ÖRNEK: sürüm etiketi --><a href="https://github.com/fawlibs/faw-builder/archive/refs/tags/v0.1.0.tar.gz" data-i18n="install.src">kaynak kodu</a></span>
           </div>
         </div>
         <!-- TODO: Örnek indirme linkleri. Gerçek sürüm yayımlanınca dosya adlarını ve sürüm numarasını güncelle. -->
-        <p class="dl-all"><a href="https://fawlibs.org/download/" data-i18n="install.all">Tüm sürümler</a> · <a href="https://fawlibs.org/download/SHA256SUMS">SHA256SUMS</a></p>
+        <p class="dl-all"><a href="https://fawlibs.org/download/" data-i18n="install.all">Tüm sürümler</a> · <a href="https://fawlibs.org/download/SHA256SUMS">SHA256SUMS</a> · <a href="https://github.com/fawlibs/faw-builder/releases/tag/v0.1.0" data-i18n="install.srcAll">Bu sürümün kaynak kodu</a></p>
+        <p class="note" data-i18n="install.gpl">Faw Builder GPL-3.0-or-later ile dağıtılır. Her paketin tam kaynak kodu, aynı sürümün etiketinde indirilebilir; paketi dağıtırsan kaynak kodunu da sunman gerekir.</p>
         <p class="note" data-i18n="install.ci">Her değişiklik GitHub Actions'ta Linux'ta derlenip test edilir ve Windows için MSYS2 ile çapraz derlenir. <code>packaging/</code> klasöründe bir Docker betiği de var.</p>
         <p class="note" data-i18n="install.note">Betikler paketi kaynaktan üretir ve hiçbiri örtük olarak bir şey indirmez. İndirme bağlantıları şimdilik örnektir.</p>
       </div>
@@ -654,7 +655,8 @@ packaging/windows/build-mingw.sh</pre>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
       <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" data-i18n="footer.license">Lisans: GPL-3.0-or-later</a>
       <a href="gizlilik.html" data-i18n="footer.privacy">Gizlilik politikası</a>
-      <a href="kullanim-sartlari.html" data-i18n="footer.terms">Kullanım şartları</a></div>
+      <a href="kullanim-sartlari.html" data-i18n="footer.terms">Kullanım şartları</a>
+      <a href="kunye.html" data-i18n="footer.imprint">Künye</a></div>
     <div class="footer-col"><span class="footer-heading" data-i18n="footer.eco">Ekosistem</span>
       <a href="designer.html">Faw Designer</a>
       <a href="circuit.html">Faw Circuit <small class="footer-muted" data-i18n="footer.circuit">· PCB ve şema</small></a>
@@ -665,6 +667,7 @@ packaging/windows/build-mingw.sh</pre>
   <div class="wrap footer-bottom">
     <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>
     <span data-i18n="footer.made">GTK4 ile, Linux için yapıldı.</span>
+    <span data-i18n="footer.tm">Android, Google LLC'nin ticari markasıdır.</span>
   </div>
 </footer>
 

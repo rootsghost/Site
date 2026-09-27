@@ -20,7 +20,7 @@ Sonra tarayıcıda <http://localhost:8000/> aç. Karşılaştırma tabloları `d
 | `circuit.html`, `ses-asistani.html` | Ekosistem: Faw Circuit ve Faw Voice Assistant |
 | `baslangic.html` | İlk GTK ve Android uygulaması rehberi |
 | `surumler.html`, `feed.xml` | Sürüm notları ve RSS |
-| `gizlilik.html`, `kullanim-sartlari.html` | Yasal sayfalar (taslak) |
+| `gizlilik.html`, `kullanim-sartlari.html`, `kunye.html` | Yasal sayfalar (taslak): KVKK/GDPR aydınlatma metni, kullanım şartları, 5651 künye |
 | `404.html` | Bulunamadı sayfası (yollar köke göre, `/assets/…`) |
 | `sitemap.xml`, `robots.txt`, `og-image.png` | Arama motorları ve paylaşım görseli |
 | `assets/ayarlar.js` | Tema, görünüm ve dil ayarı; her sayfanın `<head>`'inde yüklenir |
@@ -86,9 +86,21 @@ Gerçek adresler belli olana kadar aşağıdaki **örnek** adresler kullanılıy
 | İletişim e-postası | `iletisim@fawlibs.org` |
 | İndirme dosyaları | `https://fawlibs.org/download/…` ve Flathub sayfası |
 
+## Yasal
+
+- **GPL-3.0-or-later:** Her indirme bağlantısının yanında aynı sürümün kaynak kodu bağlantısı var
+  (`…/archive/refs/tags/v<sürüm>.tar.gz`); `scripts/surum.sh` bunu da günceller. Paketlere gömülü
+  üçüncü taraf kütüphanelerin lisans metinleri paketin içinde olmalı (paketleme betiklerinin işi).
+- **Gizlilik (KVKK/GDPR):** veri sorumlusu, işlenen veriler, amaç ve hukuki sebep, yurt dışı aktarım
+  (GitHub Pages), saklama süresi, haklar ve başvuru yolu yazılı. Eksikler `(eklenecek)` olarak görünür.
+- **Künye (5651 m. 3):** yayıncı, iletişim, yer sağlayıcı.
+- Çerez ya da istatistik aracı yok; bu yüzden çerez onay kutusu gerekmiyor. Eklenirse gerekir.
+- Metinler bir hukukçu tarafından incelenmedi; yayından önce teyit ettir.
+
 ## Açık yer tutucular
 
 `TODO` diye aratınca çıkar:
 
 - Galeri görselleri (`assets/shots/`) ve performans ölçümleri
-- Barındırma sağlayıcısı ve sunucu kaydı süresi (`gizlilik.html`)
+- Veri sorumlusu / yayıncı adı ve adresi, e-posta sağlayıcısı, e-posta saklama süresi, yurt dışı
+  aktarım güvencesi (`gizlilik.html`, `kunye.html`; sayfada `(eklenecek)` yazar)

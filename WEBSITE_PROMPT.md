@@ -51,7 +51,8 @@ baslangic.html    İlk GTK ve ilk Android uygulaması (6'şar adım)
 surumler.html     Tarihe göre sürüm notları
 circuit.html      Faw Circuit (PCB/şema, simülasyon)
 ses-asistani.html Faw Voice Assistant (çevrimdışı ses asistanı)
-gizlilik.html     Gizlilik politikası (taslak; yalnız localStorage, dış kaynak yok)
+gizlilik.html     KVKK/GDPR aydınlatma metni (taslak; dış kaynak yok, barındırma GitHub Pages varsayıldı)
+kunye.html        Künye (5651 m. 3; yayıncı adı/adresi eklenecek)
 kullanim-sartlari.html  Kullanım şartları (taslak; lisans belirlenince güncellenecek)
 404.html          Bulunamadı sayfası; yerel yollar kökten (/assets/…), noindex
 sitemap.xml, robots.txt  Arama motorları için (10 sayfa)
@@ -170,7 +171,8 @@ Açık kalanlar:
 - Galeri görselleri: `assets/shots/{editor.webp, android.webm, designer.webm, debugger.webp, git.webp}`
 - İndirme dosyaları `https://fawlibs.org/download/…` ve Flathub sayfası: şimdilik örnek
 - Performans ölçümü (yöntem sayfada yazılı: hyperfine, 10 tekrar ortancası, 60 sn sonra VmRSS)
-- Barındırma sağlayıcısı ve sunucu kaydı süresi (`gizlilik.html`)
+- Veri sorumlusu/yayıncı adı ve adresi, e-posta sağlayıcısı ve saklama süresi, yurt dışı aktarım
+  güvencesi (`gizlilik.html`, `kunye.html`; sayfada `(eklenecek)` yazar). Uydurma; kullanıcıya sor.
 - Karşılaştırmada doğrulanamayanlar: GNOME Builder LLDB, Cambalache placeholder, Workbench/Qt Designer sandbox
 - `baslangic.html`'deki menü adları ("Yeni Proje penceresi", "SDK Kur") gerçek uygulamayla karşılaştırılmalı
 

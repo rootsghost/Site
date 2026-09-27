@@ -426,3 +426,5 @@ html.dil-bekliyor body{visibility:hidden}
   padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none;transition:top .15s}
 .skip-link:focus{top:12px}
 main:focus{outline:none}
+.prose ul{margin:0 0 12px;padding-left:1.2em;color:var(--muted);line-height:1.65;display:grid;gap:6px}
+.prose strong{color:var(--ink)}

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Faw Builder Hata Ayıklama</title>
-<meta name="description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:title" content="Faw Builder Hata Ayıklama">
-<meta property="og:description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:url" content="https://fawlibs.org/debugger.html">
+<title>Künye · Faw Builder</title>
+<meta name="description" content="fawlibs.org sitesinin tanıtıcı bilgileri: yayıncı, iletişim ve yer sağlayıcı.">
+<meta property="og:title" content="Künye · Faw Builder">
+<meta property="og:description" content="fawlibs.org sitesinin tanıtıcı bilgileri: yayıncı, iletişim ve yer sağlayıcı.">
+<meta property="og:url" content="https://fawlibs.org/kunye.html">
 <meta property="og:image" content="https://fawlibs.org/og-image.png">
-<link rel="canonical" href="https://fawlibs.org/debugger.html">
+<link rel="canonical" href="https://fawlibs.org/kunye.html">
 <link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
 <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
@@ -31,8 +31,8 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Hata ayıklama",
-      "item": "https://fawlibs.org/debugger.html"
+      "name": "Künye",
+      "item": "https://fawlibs.org/kunye.html"
     }
   ]
 }
@@ -81,47 +81,19 @@
 
 <main id="icerik">
   <div class="wrap page-hero">
-    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Hata ayıklama</span></p>
-    <h1 data-i18n="p.title">Hata ayıklama</h1>
-    <p class="section-intro" data-i18n="p.intro">Üç tür proje için üç debugger: C/C++ için GDB ve LLDB, Android için JDWP. Hepsi isteğe bağlı; aracı yoksa panel pasif kalır.</p>
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Künye</span></p>
+    <h1 data-i18n="p.title">Künye</h1>
+    <p class="section-intro" data-i18n="p.intro">Siteyi kimin yayımladığı ve nerede barındırıldığı.</p>
   </div>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.e">Debugger'lar</span>
-      <h2 data-i18n="g.h">Hangisi ne yapar</h2>
-    </div>
-    <div class="grid">
-      <article class="card"><span class="glyph" aria-hidden="true">gdb</span><h3>GDB</h3><p data-i18n="g.gdb.b">Native C/C++ projeleri için. <code>gdb --interpreter=mi3</code> ile makine arayüzü üzerinden konuşur. Kesme noktaları editör oluğundan konur.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">lldb</span><h3>LLDB</h3><p data-i18n="g.lldb.b">GDB'nin yanında ayrı bir panel. Makine arayüzü yerine LLDB'nin düz komut satırı çıktısını ayrıştırır.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">jdb</span><h3>JDWP</h3><p data-i18n="g.jdwp.b">Android uygulamaları için. Debug panelinden Devam, Adım ve Durdur, oluktan kesme noktaları. İsteğe bağlı <code>jdb</code> gerekir.</p></article>
-    </div>
-  </section>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.ch.e" lang="en">Android</span>
-      <h2 data-i18n="g.ch.h">“Hata ayıkla”ya basınca ne olur</h2>
-    </div>
-    <ol class="steps">
-      <li><div><h3 data-i18n="g.s1.t">Derle ve yükle</h3><p data-i18n="g.s1.b">assembleDebug, ardından seçili cihaza <code>adb install -r</code>.</p></div></li>
-      <li><div><h3 data-i18n="g.s2.t">Debugger beklemeye başlat</h3><p data-i18n="g.s2.b">Uygulama <code>am start -D</code> ile açılır ve debugger bağlanmasını bekler.</p></div></li>
-      <li><div><h3 data-i18n="g.s3.t">Süreci bul</h3><p data-i18n="g.s3.b">Uygulamanın PID'i <code>pidof</code> ile bulunur.</p></div></li>
-      <li><div><h3 data-i18n="g.s4.t">Portu yönlendir</h3><p data-i18n="g.s4.b"><code>adb forward</code> cihazdaki JDWP portunu yerel bir porta bağlar.</p></div></li>
-      <li><div><h3 data-i18n="g.s5.t">jdb'yi bağla</h3><p data-i18n="g.s5.b"><code>jdb</code> bağlanır; oluktaki kesme noktaları sınıflara eşlenip gönderilir.</p></div></li>
-    </ol>
-  </section>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.lim.e">Açık liste</span>
-      <h2 data-i18n="g.lim.h">Bilinen sınırlar</h2>
-    </div>
-    <ul class="limits">
-      <li data-i18n="g.l1">JDWP değişken/izleme arayüzü yapısal kod olarak var, ama gerçek SDK ve Gradle ile elle doğrulanmadı.</li>
-      <li data-i18n="g.l2">LLDB desteği makine arayüzünü değil düz metin çıktısını ayrıştırır; alışılmadık çıktı biçimleri tanınmayabilir.</li>
-      <li data-i18n="g.l3">Android Studio tarzı tam bir debugger yok; temel jdb'nin metin çıktısı.</li>
-    </ul>
+  <section class="wrap section prose" style="padding-top:12px">
+    <h2 id="yayinci" data-i18n="l.yayinci.h">Yayıncı</h2>
+    <ul data-i18n="l.yayinci.0"><li><strong>Site:</strong> fawlibs.org</li><li><strong>Sorumlu kişi ya da kurum:</strong> <em>(eklenecek)</em><!-- TODO: ad soyad ya da kurum --></li><li><strong>Adres:</strong> <em>(eklenecek)</em><!-- TODO: adres; ticari değilse gerekip gerekmediğini hukukçuya sor --></li><li><strong>E-posta:</strong> <a href="mailto:iletisim@fawlibs.org">iletisim@fawlibs.org</a><!-- ÖRNEK: CONTACT --></li></ul>
+    <h2 id="barindirma" data-i18n="l.barindirma.h">Yer sağlayıcı</h2>
+    <ul data-i18n="l.barindirma.0"><li><strong>Barındırma:</strong> GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, ABD<!-- ÖRNEK: barındırma GitHub Pages varsayıldı --></li><li><strong>Kaynak kodu:</strong> <a href="https://github.com/fawlibs/faw-builder" rel="noopener">github.com/fawlibs/faw-builder</a><!-- ÖRNEK: GITHUB_URL --></li></ul>
+    <h2 id="proje" data-i18n="l.proje.h">Proje</h2>
+    <p data-i18n="l.proje.0">Faw Builder gönüllüler tarafından geliştirilen, ticari olmayan bir açık kaynak projedir. Yazılım <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener">GPL-3.0-or-later</a> ile dağıtılır.</p>
+    <p data-i18n="l.proje.1">Bu bilgiler 5651 sayılı Kanun'un 3. maddesindeki tanıtıcı bilgi yükümlülüğü için yayımlanır.</p>
+    <p data-i18n="l.proje.2">Taslak: bu metin bir hukukçu tarafından incelenmedi. <em>(eklenecek)</em> yazan yerler, bilgiler belli olunca doldurulacak.</p>
   </section>
 </main>
 
@@ -152,31 +124,17 @@
 </footer>
 
 <script>window.FAW_PAGE_EN = {
- "p.crumb": "Debugging",
- "p.title": "Debugging",
- "p.intro": "Three debuggers for three kinds of projects: GDB and LLDB for C/C++, JDWP for Android. Each one is optional; if its tool is missing, the panel stays inactive.",
- "g.e": "Debuggers",
- "g.h": "Which one does what",
- "g.gdb.b": "For native C/C++ projects. Talks to <code>gdb --interpreter=mi3</code> over the machine interface. Breakpoints are set from the editor gutter.",
- "g.lldb.b": "A separate panel next to GDB. It parses LLDB's plain command-line output instead of a machine interface.",
- "g.jdwp.b": "For Android apps. Continue, Step and Stop from the Debug panel, breakpoints from the gutter. Needs the optional <code>jdb</code>.",
- "g.ch.e": "Android",
- "g.ch.h": "What happens when you press “Debug”",
- "g.s1.t": "Build and install",
- "g.s1.b": "assembleDebug, then <code>adb install -r</code> to the selected device.",
- "g.s2.t": "Start waiting for the debugger",
- "g.s2.b": "The app is launched with <code>am start -D</code> and waits for a debugger to attach.",
- "g.s3.t": "Find the process",
- "g.s3.b": "The app's PID is found with <code>pidof</code>.",
- "g.s4.t": "Forward the port",
- "g.s4.b": "<code>adb forward</code> connects the device's JDWP port to a local port.",
- "g.s5.t": "Attach jdb",
- "g.s5.b": "<code>jdb</code> attaches; gutter breakpoints are mapped to classes and sent.",
- "g.lim.e": "Honest list",
- "g.lim.h": "Known limits",
- "g.l1": "The JDWP variables/watch UI exists as structural code but has not been verified by hand with a real SDK and Gradle.",
- "g.l2": "LLDB support parses plain text output, not a machine interface, so unusual output formats may not be recognized.",
- "g.l3": "There is no full Android Studio-style debugger; jdb's text output is the basis."
+ "p.crumb": "Imprint",
+ "p.title": "Imprint",
+ "p.intro": "Who publishes this site and where it is hosted.",
+ "l.yayinci.h": "Publisher",
+ "l.yayinci.0": "<li><strong>Site:</strong> fawlibs.org</li><li><strong>Responsible person or organization:</strong> <em>(to be added)</em></li><li><strong>Address:</strong> <em>(to be added)</em></li><li><strong>Email:</strong> <a href=\"mailto:iletisim@fawlibs.org\">iletisim@fawlibs.org</a></li>",
+ "l.barindirma.h": "Hosting provider",
+ "l.barindirma.0": "<li><strong>Hosting:</strong> GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</li><li><strong>Source code:</strong> <a href=\"https://github.com/fawlibs/faw-builder\" rel=\"noopener\">github.com/fawlibs/faw-builder</a></li>",
+ "l.proje.h": "Project",
+ "l.proje.0": "Faw Builder is a non-commercial open source project developed by volunteers. The software is distributed under the <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\" rel=\"license noopener\">GPL-3.0-or-later</a>.",
+ "l.proje.1": "This information is published to meet the identification requirement in article 3 of Turkish Law No. 5651.",
+ "l.proje.2": "Draft: this text has not been reviewed by a lawyer. Items marked <em>(to be added)</em> will be filled in once the details are known."
 };</script>
 <script src="assets/site.js"></script>
 </body>
