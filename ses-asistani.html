@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Faw Voice Assistant · çevrimdışı ses asistanı</title>
+<meta name="description" content="Faw Voice Assistant: tamamen çevrimdışı ses asistanı. pocketsphinx, whisper.cpp ve Julius ile konuşma tanıma, espeak-ng ile seslendirme.">
+<meta property="og:title" content="Faw Voice Assistant · çevrimdışı ses asistanı">
+<meta property="og:description" content="Faw Voice Assistant: tamamen çevrimdışı ses asistanı. pocketsphinx, whisper.cpp ve Julius ile konuşma tanıma, espeak-ng ile seslendirme.">
+<meta property="og:url" content="https://fawlibs.org/ses-asistani.html">
+<meta property="og:image" content="https://fawlibs.org/og-image.png">
+<link rel="canonical" href="https://fawlibs.org/ses-asistani.html">
+<link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
+<meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c71d8'/%3E%3Cpath d='M10 8h13v4h-8.5v3.5H21v4h-6.5V25H10z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/ayarlar.js"></script>
+</head>
+<body>
+
+<div class="theme-bar" role="group" aria-label="Site teması" data-i18n-attr="aria-label:theme.label">
+  <span class="theme-bar-label" data-i18n="theme.label">Site teması</span>
+  <button type="button" data-skin-sec="" aria-pressed="true" data-i18n="theme.default">Varsayılan</button>
+  <button type="button" data-skin-sec="ide" aria-pressed="false" data-i18n="theme.ide">Koyu IDE</button>
+  <button type="button" data-skin-sec="gradient" aria-pressed="false">Gradient</button>
+  <button type="button" data-skin-sec="hacker" aria-pressed="false">Hacker</button>
+  <span class="theme-bar-sep" aria-hidden="true"></span>
+  <span class="theme-bar-label" data-i18n="theme.mode">Görünüm</span>
+  <button type="button" data-mode-sec="" aria-pressed="true" data-i18n="theme.system">Sistem</button>
+  <button type="button" data-mode-sec="light" aria-pressed="false" data-i18n="theme.light">Açık</button>
+  <button type="button" data-mode-sec="dark" aria-pressed="false" data-i18n="theme.dark">Koyu</button>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5h10v3H6.5v2.5H12v3H6.5v4.5H3z" style="fill:var(--accent-ink)"/></svg></span>
+      Faw Builder
+    </a>
+    <div class="header-tools">
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Ana menü">
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a>
+      <a href="android.html">Android</a>
+      <a href="designer.html">Designer</a>
+      <a href="index.html#karsilastirma" data-i18n="nav.compare">Karşılaştırma</a>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a>
+      <a href="surumler.html" data-i18n="nav.releases">Sürümler</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language">EN</button>
+      <a href="index.html#kurulum" class="btn btn-primary btn-sm" data-i18n="hero.download">İndir</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap page-hero">
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Faw Voice Assistant</span></p>
+    <h1 data-i18n="p.title">Faw Voice Assistant</h1>
+    <p class="section-intro" data-i18n="p.intro">Çevrimdışı çalışan bir ses asistanı. Konuşma tanıma, niyet çıkarma ve seslendirme kendi bilgisayarında yapılır.</p>
+  </div>
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="v.ak.e">Nasıl çalışır</span>
+      <h2 data-i18n="v.ak.h">Beş adım, hepsi bilgisayarında</h2>
+    </div>
+    <ol class="steps">
+      <li><div><h3 data-i18n="v.a1.t">Uyandırma kelimesi</h3><p data-i18n="v.a1.b">Asistan, uyandırma kelimesini duyunca dinlemeye başlar.</p></div></li>
+      <li><div><h3 data-i18n="v.a2.t">Konuşmadan metne</h3><p data-i18n="v.a2.b">Söylediğin, seçtiğin tanıma motoruyla yerelde metne çevrilir.</p></div></li>
+      <li><div><h3 data-i18n="v.a3.t">Niyet</h3><p data-i18n="v.a3.b">Metinden ne istediğin çıkarılır: bir uygulama açmak, bir dosya işlemi, bir hatırlatıcı…</p></div></li>
+      <li><div><h3 data-i18n="v.a4.t">Beceri</h3><p data-i18n="v.a4.b">İlgili beceri çalışır.</p></div></li>
+      <li><div><h3 data-i18n="v.a5.t">Sesli yanıt</h3><p data-i18n="v.a5.b">Sonuç espeak-ng ile seslendirilir.</p></div></li>
+    </ol>
+  </section>
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="v.oz.e">Özellikler</span>
+      <h2 data-i18n="v.oz.h">Neler var</h2>
+    </div>
+    <div class="grid">
+      <article class="card"><h3 data-i18n="v.oz.k1.t">Dört tanıma motoru</h3><p data-i18n="v.oz.k1.b">pocketsphinx, whisper.cpp, Julius komut satırı ve Julius kütüphanesi. Hangisinin kullanılacağı seçilebilir.</p></article>
+      <article class="card"><h3 data-i18n="v.oz.k2.t">Beceriler</h3><p data-i18n="v.oz.k2.b">Uygulama başlatma, dosya işlemleri, web araması, hatırlatıcılar ve Faw Builder entegrasyonu.</p></article>
+      <article class="card"><h3 data-i18n="v.oz.k3.t">Değiştirilebilir motorlar</h3><p data-i18n="v.oz.k3.b">Konuşma tanıma ve seslendirme bir soyutlama katmanının arkasında; yeni bir motor eklemek diğer kodu değiştirmez.</p></article>
+      <article class="card"><h3 data-i18n="v.oz.k4.t">Süreç yönetimi</h3><p data-i18n="v.oz.k4.b">Harici tanıma ve seslendirme programları asistan tarafından başlatılır ve izlenir.</p></article>
+    </div>
+  </section>
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="v.tek.e">Teknik</span>
+      <h2 data-i18n="v.tek.h">Altyapı ve durum</h2>
+    </div>
+    <ul class="limits">
+      <li data-i18n="v.tek.l1">C11, GLib/GIO, SQLite3, json-glib ve GStreamer. Konuşma tanıma için Julius, pocketsphinx ve whisper.cpp; seslendirme için espeak-ng.</li>
+      <li data-i18n="v.tek.l2">Testler: <code>va-intent</code> (niyet ayrıştırma) ve <code>va-skills-fawapp</code> (Faw Builder becerisi), GLib tabanlı.</li>
+      <li data-i18n="v.tek.l3">2026-09-17: Julius komut satırı ve kütüphane motorları eklendi, gerçek bir VoxForge grameriyle test edildi.</li>
+    </ul>
+    <p class="table-note" data-i18n="v.tek.not">Faw Voice Assistant aktif geliştirmede. Bu sitede henüz indirme paketi yok; kaynaktan derlenir.</p>
+  </section>
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="v.der.e">Derleme</span>
+      <h2 data-i18n="v.der.h">Kaynaktan derle</h2>
+      <p class="section-intro" data-i18n="v.der.b">Kendi klasöründe ayrı bir Meson projesi olarak derlenir.</p>
+    </div>
+    <div class="code-block"><pre id="cmd-voice">cd Faw_Voice_Assistant
+meson setup builddir
+meson compile -C builddir</pre>
+      <button type="button" class="copy-btn" data-copy="cmd-voice" data-i18n="install.copy">Kopyala</button></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.product">Ürün</span>
+      <a href="index.html#ozellikler" data-i18n="nav.features">Özellikler</a><a href="android.html">Android</a><a href="designer.html">Faw Designer</a><a href="debugger.html" data-i18n="nav.debugger">Hata ayıklama</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.res">Kaynaklar</span>
+      <a href="baslangic.html" data-i18n="nav.guide">Rehber</a><a href="surumler.html" data-i18n="nav.releases">Sürümler</a><a href="index.html#sss" data-i18n="nav.faq">SSS</a><a href="feed.xml">RSS</a>
+      <!-- ÖRNEK: GITHUB_URL --><a href="https://github.com/fawlibs/faw-builder" rel="noopener" data-i18n="hero.source">Kaynak kodu</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.legal">Yasal</span>
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="license noopener" data-i18n="footer.license">Lisans: GPL-3.0</a>
+      <a href="gizlilik.html" data-i18n="footer.privacy">Gizlilik politikası</a>
+      <a href="kullanim-sartlari.html" data-i18n="footer.terms">Kullanım şartları</a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.eco">Ekosistem</span>
+      <a href="designer.html">Faw Designer</a>
+      <a href="circuit.html">Faw Circuit <small class="footer-muted" data-i18n="footer.circuit">· PCB ve şema</small></a>
+      <a href="ses-asistani.html">Faw Voice Assistant <small class="footer-muted" data-i18n="footer.voice">· çevrimdışı ses asistanı</small></a></div>
+    <div class="footer-col"><span class="footer-heading" data-i18n="footer.contact">İletişim</span>
+      <!-- ÖRNEK: CONTACT --><a href="mailto:iletisim@fawlibs.org">iletisim@fawlibs.org</a><a href="https://github.com/fawlibs/faw-builder/issues" rel="noopener">GitHub Issues</a><a href="https://matrix.to/#/#faw-builder:matrix.org" rel="noopener">Matrix</a></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Faw Builder · <span style="font-family:var(--f-mono)">org.fawlibs.builder</span></span>
+    <span data-i18n="footer.made">GTK4 ile, Linux için yapıldı.</span>
+  </div>
+</footer>
+
+<script>window.FAW_PAGE_EN = {
+ "p.crumb": "Faw Voice Assistant",
+ "p.title": "Faw Voice Assistant",
+ "p.intro": "An offline voice assistant. Speech recognition, intent parsing and speech synthesis run on your own computer.",
+ "v.ak.e": "How it works",
+ "v.ak.h": "Five steps, all on your computer",
+ "v.a1.t": "Wake word",
+ "v.a1.b": "The assistant starts listening when it hears the wake word.",
+ "v.a2.t": "Speech to text",
+ "v.a2.b": "What you say is transcribed locally by the recognition engine you chose.",
+ "v.a3.t": "Intent",
+ "v.a3.b": "Your request is extracted from the text: open an app, a file operation, a reminder…",
+ "v.a4.t": "Skill",
+ "v.a4.b": "The matching skill runs.",
+ "v.a5.t": "Spoken reply",
+ "v.a5.b": "The result is spoken with espeak-ng.",
+ "v.oz.e": "Features",
+ "v.oz.h": "What's included",
+ "v.oz.k1.t": "Four recognition engines",
+ "v.oz.k1.b": "pocketsphinx, whisper.cpp, the Julius CLI and the Julius library. You can choose which one to use.",
+ "v.oz.k2.t": "Skills",
+ "v.oz.k2.b": "Launching apps, file operations, web search, reminders and Faw Builder integration.",
+ "v.oz.k3.t": "Swappable engines",
+ "v.oz.k3.b": "Speech recognition and synthesis sit behind an abstraction layer; adding an engine doesn't change the rest of the code.",
+ "v.oz.k4.t": "Process management",
+ "v.oz.k4.b": "External recognition and synthesis programs are started and supervised by the assistant.",
+ "v.tek.e": "Technical",
+ "v.tek.h": "Stack and status",
+ "v.tek.l1": "C11, GLib/GIO, SQLite3, json-glib and GStreamer. Julius, pocketsphinx and whisper.cpp for speech recognition; espeak-ng for speech synthesis.",
+ "v.tek.l2": "Tests: <code>va-intent</code> (intent parsing) and <code>va-skills-fawapp</code> (Faw Builder skill), GLib-based.",
+ "v.tek.l3": "2026-09-17: Julius CLI and library engines added and tested with a real VoxForge grammar.",
+ "v.tek.not": "Faw Voice Assistant is under active development. There is no download package on this site yet; build it from source.",
+ "v.der.e": "Build",
+ "v.der.h": "Build from source",
+ "v.der.b": "Built as a separate Meson project in its own folder."
+};</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

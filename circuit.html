@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Faw Builder Hata Ayıklama</title>
-<meta name="description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:title" content="Faw Builder Hata Ayıklama">
-<meta property="og:description" content="Faw Builder&#x27;da GDB, LLDB ve Android için JDWP ile hata ayıklama.">
-<meta property="og:url" content="https://fawlibs.org/debugger.html">
+<title>Faw Circuit · PCB ve şema tasarımı</title>
+<meta name="description" content="Faw Circuit: şema çizimi, PCB editörü, DRC/ERC, Gerber ve ngspice, simavr, gpsim ile simülasyon. GTK4 ile yazılmış.">
+<meta property="og:title" content="Faw Circuit · PCB ve şema tasarımı">
+<meta property="og:description" content="Faw Circuit: şema çizimi, PCB editörü, DRC/ERC, Gerber ve ngspice, simavr, gpsim ile simülasyon. GTK4 ile yazılmış.">
+<meta property="og:url" content="https://fawlibs.org/circuit.html">
 <meta property="og:image" content="https://fawlibs.org/og-image.png">
-<link rel="canonical" href="https://fawlibs.org/debugger.html">
+<link rel="canonical" href="https://fawlibs.org/circuit.html">
 <link rel="alternate" type="application/rss+xml" title="Faw Builder sürümleri" href="feed.xml">
 <meta name="theme-color" content="#f6f5f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d20" media="(prefers-color-scheme: dark)">
@@ -60,47 +60,58 @@
 
 <main>
   <div class="wrap page-hero">
-    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Hata ayıklama</span></p>
-    <h1 data-i18n="p.title">Hata ayıklama</h1>
-    <p class="section-intro" data-i18n="p.intro">Üç tür proje için üç debugger: C/C++ için GDB ve LLDB, Android için JDWP. Hepsi isteğe bağlı; aracı yoksa panel pasif kalır.</p>
+    <p class="crumb"><a href="index.html">Faw Builder</a> / <span data-i18n="p.crumb">Faw Circuit</span></p>
+    <h1 data-i18n="p.title">Faw Circuit</h1>
+    <p class="section-intro" data-i18n="p.intro">Simülasyonlu şema ve PCB tasarımı. Faw ekosisteminde ayrı bir GTK4 uygulaması; şema çiziminden Gerber çıktısına kadar.</p>
   </div>
-
   <section class="wrap section">
     <div class="section-head">
-      <span class="eyebrow" data-i18n="g.e">Debugger'lar</span>
-      <h2 data-i18n="g.h">Hangisi ne yapar</h2>
+      <span class="eyebrow" data-i18n="c.oz.e">Özellikler</span>
+      <h2 data-i18n="c.oz.h">Şemadan üretime</h2>
     </div>
     <div class="grid">
-      <article class="card"><span class="glyph" aria-hidden="true">gdb</span><h3>GDB</h3><p data-i18n="g.gdb.b">Native C/C++ projeleri için. <code>gdb --interpreter=mi3</code> ile makine arayüzü üzerinden konuşur. Kesme noktaları editör oluğundan konur.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">lldb</span><h3>LLDB</h3><p data-i18n="g.lldb.b">GDB'nin yanında ayrı bir panel. Makine arayüzü yerine LLDB'nin düz komut satırı çıktısını ayrıştırır.</p></article>
-      <article class="card"><span class="glyph" aria-hidden="true">jdb</span><h3>JDWP</h3><p data-i18n="g.jdwp.b">Android uygulamaları için. Debug panelinden Devam, Adım ve Durdur, oluktan kesme noktaları. İsteğe bağlı <code>jdb</code> gerekir.</p></article>
+      <article class="card"><h3 data-i18n="c.oz.k1.t">Şema çizimi</h3><p data-i18n="c.oz.k1.b">Semboller, hiyerarşik tasarım ve bus'lar. Mantık sembolleri arasında HD44780 LCD ve 4×4 tuş takımı var.</p></article>
+      <article class="card"><h3 data-i18n="c.oz.k2.t">PCB editörü</h3><p data-i18n="c.oz.k2.b">Footprint'ler, yol çizimi, teardrop, bakır bölgeleri (zone) ve kartın iki yüzü. Net sınıflarıyla kural tanımı.</p></article>
+      <article class="card"><h3 data-i18n="c.oz.k3.t">Denetim ve üretim</h3><p data-i18n="c.oz.k3.b">DRC ve ERC denetimleri, Gerber çıktısı, malzeme listesi (BOM) ve netlist.</p></article>
+      <article class="card"><h3 data-i18n="c.oz.k4.t">Analog simülasyon</h3><p data-i18n="c.oz.k4.b">ngspice ile AC, DC ve transient analiz; Bode ve DC tarama grafikleri.</p></article>
+      <article class="card"><h3 data-i18n="c.oz.k5.t">Dijital simülasyon</h3><p data-i18n="c.oz.k5.b">Mantık kapıları, bellek ve bus; test vektörleriyle doğrulama.</p></article>
+      <article class="card"><h3 data-i18n="c.oz.k6.t">Mikrodenetleyici ortak simülasyonu</h3><p data-i18n="c.oz.k6.b">simavr ile AVR, gpsim ile PIC. LCD ve tuş takımı devreyle birlikte simüle edilir.</p></article>
     </div>
   </section>
-
   <section class="wrap section">
     <div class="section-head">
-      <span class="eyebrow" data-i18n="g.ch.e" lang="en">Android</span>
-      <h2 data-i18n="g.ch.h">“Hata ayıkla”ya basınca ne olur</h2>
-    </div>
-    <ol class="steps">
-      <li><div><h3 data-i18n="g.s1.t">Derle ve yükle</h3><p data-i18n="g.s1.b">assembleDebug, ardından seçili cihaza <code>adb install -r</code>.</p></div></li>
-      <li><div><h3 data-i18n="g.s2.t">Debugger beklemeye başlat</h3><p data-i18n="g.s2.b">Uygulama <code>am start -D</code> ile açılır ve debugger bağlanmasını bekler.</p></div></li>
-      <li><div><h3 data-i18n="g.s3.t">Süreci bul</h3><p data-i18n="g.s3.b">Uygulamanın PID'i <code>pidof</code> ile bulunur.</p></div></li>
-      <li><div><h3 data-i18n="g.s4.t">Portu yönlendir</h3><p data-i18n="g.s4.b"><code>adb forward</code> cihazdaki JDWP portunu yerel bir porta bağlar.</p></div></li>
-      <li><div><h3 data-i18n="g.s5.t">jdb'yi bağla</h3><p data-i18n="g.s5.b"><code>jdb</code> bağlanır; oluktaki kesme noktaları sınıflara eşlenip gönderilir.</p></div></li>
-    </ol>
-  </section>
-
-  <section class="wrap section">
-    <div class="section-head">
-      <span class="eyebrow" data-i18n="g.lim.e">Açık liste</span>
-      <h2 data-i18n="g.lim.h">Bilinen sınırlar</h2>
+      <span class="eyebrow" data-i18n="c.son.e">2026-09-27</span>
+      <h2 data-i18n="c.son.h">Son eklenenler</h2>
     </div>
     <ul class="limits">
-      <li data-i18n="g.l1">JDWP değişken/izleme arayüzü yapısal kod olarak var, ama gerçek SDK ve Gradle ile elle doğrulanmadı.</li>
-      <li data-i18n="g.l2">LLDB desteği makine arayüzünü değil düz metin çıktısını ayrıştırır; alışılmadık çıktı biçimleri tanınmayabilir.</li>
-      <li data-i18n="g.l3">Android Studio tarzı tam bir debugger yok; temel jdb'nin metin çıktısı.</li>
+      <li data-i18n="c.son.l1">Test vektörleri ve net sınıfları.</li>
+      <li data-i18n="c.son.l2">LCD ve tuş takımı için ortak simülasyon.</li>
+      <li data-i18n="c.son.l3">Bode ve DC analizi, simülasyon grafikleri için ortak çizim bileşeni.</li>
+      <li data-i18n="c.son.l4">PCB'de teardrop desteği.</li>
     </ul>
+  </section>
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="c.tek.e">Teknik</span>
+      <h2 data-i18n="c.tek.h">Altyapı ve testler</h2>
+    </div>
+    <ul class="limits">
+      <li data-i18n="c.tek.l1">C11, GTK4 ≥ 4.14, libadwaita ≥ 1.5, json-glib ve cairo. Faw Builder ile aynı çekirdek kütüphaneyi (<code>src/</code>) kullanır.</li>
+      <li data-i18n="c.tek.l2">İsteğe bağlı: ngspice (analog), simavr (AVR) ve gpsim (PIC, C++ köprüsüyle).</li>
+      <li data-i18n="c.tek.l3">Testler: S-ifadesi ayrıştırma, sembol, şema, footprint, PCB, DRC, ERC, Gerber, pinler, mantık kapıları, zamanlama, test vektörleri, BOM, netlist, kart yüzleri, bölgeler, birimler ve ngspice.</li>
+    </ul>
+    <p class="table-note" data-i18n="c.tek.not">Faw Circuit aktif geliştirmede. Bu sitede henüz indirme paketi yok; kaynaktan derlenir.</p>
+  </section>
+  <section class="wrap section">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="c.der.e">Derleme</span>
+      <h2 data-i18n="c.der.h">Kaynaktan derle</h2>
+      <p class="section-intro" data-i18n="c.der.b">Depo kökünden, Faw Builder ile birlikte derlenir.</p>
+    </div>
+    <div class="code-block"><pre id="cmd-circuit">meson setup build
+meson compile -C build
+./build/faw-circuit/faw-circuit</pre>
+      <button type="button" class="copy-btn" data-copy="cmd-circuit" data-i18n="install.copy">Kopyala</button></div>
   </section>
 </main>
 
@@ -129,31 +140,38 @@
 </footer>
 
 <script>window.FAW_PAGE_EN = {
- "p.crumb": "Debugging",
- "p.title": "Debugging",
- "p.intro": "Three debuggers for three kinds of projects: GDB and LLDB for C/C++, JDWP for Android. Each one is optional; if its tool is missing, the panel stays inactive.",
- "g.e": "Debuggers",
- "g.h": "Which one does what",
- "g.gdb.b": "For native C/C++ projects. Talks to <code>gdb --interpreter=mi3</code> over the machine interface. Breakpoints are set from the editor gutter.",
- "g.lldb.b": "A separate panel next to GDB. It parses LLDB's plain command-line output instead of a machine interface.",
- "g.jdwp.b": "For Android apps. Continue, Step and Stop from the Debug panel, breakpoints from the gutter. Needs the optional <code>jdb</code>.",
- "g.ch.e": "Android",
- "g.ch.h": "What happens when you press “Debug”",
- "g.s1.t": "Build and install",
- "g.s1.b": "assembleDebug, then <code>adb install -r</code> to the selected device.",
- "g.s2.t": "Start waiting for the debugger",
- "g.s2.b": "The app is launched with <code>am start -D</code> and waits for a debugger to attach.",
- "g.s3.t": "Find the process",
- "g.s3.b": "The app's PID is found with <code>pidof</code>.",
- "g.s4.t": "Forward the port",
- "g.s4.b": "<code>adb forward</code> connects the device's JDWP port to a local port.",
- "g.s5.t": "Attach jdb",
- "g.s5.b": "<code>jdb</code> attaches; gutter breakpoints are mapped to classes and sent.",
- "g.lim.e": "Honest list",
- "g.lim.h": "Known limits",
- "g.l1": "The JDWP variables/watch UI exists as structural code but has not been verified by hand with a real SDK and Gradle.",
- "g.l2": "LLDB support parses plain text output, not a machine interface, so unusual output formats may not be recognized.",
- "g.l3": "There is no full Android Studio-style debugger; jdb's text output is the basis."
+ "p.crumb": "Faw Circuit",
+ "p.title": "Faw Circuit",
+ "p.intro": "Schematic and PCB design with simulation. A separate GTK4 application in the Faw ecosystem, from schematic capture to Gerber output.",
+ "c.oz.e": "Features",
+ "c.oz.h": "From schematic to fabrication",
+ "c.oz.k1.t": "Schematic capture",
+ "c.oz.k1.b": "Symbols, hierarchical design and buses. Logic symbols include an HD44780 LCD and a 4×4 keypad.",
+ "c.oz.k2.t": "PCB editor",
+ "c.oz.k2.b": "Footprints, routing, teardrops, copper zones and both board sides. Rules defined through net classes.",
+ "c.oz.k3.t": "Checks and fabrication",
+ "c.oz.k3.b": "DRC and ERC checks, Gerber export, bill of materials (BOM) and netlist.",
+ "c.oz.k4.t": "Analog simulation",
+ "c.oz.k4.b": "AC, DC and transient analysis with ngspice; Bode and DC sweep plots.",
+ "c.oz.k5.t": "Digital simulation",
+ "c.oz.k5.b": "Logic gates, memory and buses; verification with test vectors.",
+ "c.oz.k6.t": "Microcontroller co-simulation",
+ "c.oz.k6.b": "AVR through simavr, PIC through gpsim. The LCD and keypad are simulated together with the circuit.",
+ "c.son.e": "2026-09-27",
+ "c.son.h": "Recently added",
+ "c.son.l1": "Test vectors and net classes.",
+ "c.son.l2": "Co-simulation for the LCD and keypad.",
+ "c.son.l3": "Bode and DC analysis, and a shared plot widget for simulation graphs.",
+ "c.son.l4": "Teardrop support on the PCB.",
+ "c.tek.e": "Technical",
+ "c.tek.h": "Stack and tests",
+ "c.tek.l1": "C11, GTK4 ≥ 4.14, libadwaita ≥ 1.5, json-glib and cairo. Uses the same core library (<code>src/</code>) as Faw Builder.",
+ "c.tek.l2": "Optional: ngspice (analog), simavr (AVR) and gpsim (PIC, through a C++ bridge).",
+ "c.tek.l3": "Tests: S-expression parsing, symbols, schematics, footprints, PCB, DRC, ERC, Gerber, pins, logic gates, timing, test vectors, BOM, netlist, board sides, zones, units and ngspice.",
+ "c.tek.not": "Faw Circuit is under active development. There is no download package on this site yet; build it from source.",
+ "c.der.e": "Build",
+ "c.der.h": "Build from source",
+ "c.der.b": "Built from the repository root together with Faw Builder."
 };</script>
 <script src="assets/site.js"></script>
 </body>

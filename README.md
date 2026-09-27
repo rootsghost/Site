@@ -17,6 +17,7 @@ Sonra tarayıcıda <http://localhost:8000/> aç. Karşılaştırma tabloları `d
 |---|---|
 | `index.html` | Ana sayfa |
 | `android.html`, `designer.html`, `debugger.html` | Ürün alt sayfaları |
+| `circuit.html`, `ses-asistani.html` | Ekosistem: Faw Circuit ve Faw Voice Assistant |
 | `baslangic.html` | İlk GTK ve Android uygulaması rehberi |
 | `surumler.html`, `feed.xml` | Sürüm notları ve RSS |
 | `gizlilik.html`, `kullanim-sartlari.html` | Yasal sayfalar (taslak) |

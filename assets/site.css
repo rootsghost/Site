@@ -397,7 +397,7 @@ td.unknown{color:var(--muted)}
 /* Eklemeler: test durumu, footer ekosistem */
 .hero-status{font:600 .82rem var(--f-mono);color:var(--droid);margin:0}
 .footer-muted{color:var(--muted)}
-.footer-muted small{font-size:.8em}
+.footer-muted small,small.footer-muted{font-size:.8em}
 .grid-4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 .theme-bar-sep{width:1px;height:18px;background:var(--line);margin:0 6px}
 .theme-bar button:disabled{opacity:.45;cursor:not-allowed}

@@ -131,7 +131,6 @@
     "install.ci":"Every change is built and tested on Linux in GitHub Actions and cross-compiled for Windows with MSYS2. <code>packaging/</code> also has a Docker script.",
     "log.6":"Faw Designer: focus order editor, preview variants (theme/RTL/scale/locale), GResource generation, CSS classes and zoom.",
     "footer.terms":"Terms of use","footer.eco":"Ecosystem","footer.circuit":"· PCB and schematics","footer.voice":"· offline voice assistant",
-    "footer.planned":"Planned: Project Tracker, Notes, Tasks, Healthy Eating",
     "nav.guide":"Guide","nav.releases":"Releases","nav.gallery":"Gallery","nav.fit":"Which one?","nav.perf":"Performance","nav.contribute":"Contribute","nav.debugger":"Debugging",
     "hero.flathubSmall":"Get it on","hero.other":"Other options",
     "more.debugger":"Debugging details","more.android":"All Android features","more.designer":"Faw Designer details and known limits","more.releases":"All release notes",

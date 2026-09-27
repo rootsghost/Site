@@ -49,10 +49,12 @@ designer.html     Faw Designer: 4 faz, 19 satırlık Cambalache/Glade tablosu, s
 debugger.html     GDB, LLDB, JDWP ve Android debug zinciri
 baslangic.html    İlk GTK ve ilk Android uygulaması (6'şar adım)
 surumler.html     Tarihe göre sürüm notları
+circuit.html      Faw Circuit (PCB/şema, simülasyon)
+ses-asistani.html Faw Voice Assistant (çevrimdışı ses asistanı)
 gizlilik.html     Gizlilik politikası (taslak; yalnız localStorage + Google Fonts)
 kullanim-sartlari.html  Kullanım şartları (taslak; lisans belirlenince güncellenecek)
 404.html          Bulunamadı sayfası; yerel yollar kökten (/assets/…), noindex
-sitemap.xml, robots.txt  Arama motorları için (8 sayfa)
+sitemap.xml, robots.txt  Arama motorları için (10 sayfa)
 og-image.png      1200×630 paylaşım görseli
 README.md         Yerelde çalıştırma, yapı, yer tutucular
 feed.xml          RSS 2.0 (surumler.html ile aynı içerik)
