@@ -170,6 +170,25 @@ bash araclar/claude-code-eklentiler.sh --kaldir     # hepsini kaldır
 
 Maliyetler 2026-09-27'de `claude plugin details` ile ölçüldü. clangd-lsp için clangd kurulu olmalı (betik kurar) ve `compile_commands.json` proje kökünde görünmeli: `ln -s build/compile_commands.json .`. snip ile RTK'yı birlikte kurma; ikisi de aynı Bash hook'unu kullanır.
 
+## Kod grafı araçları: Graphify, CodeGraph, Serena
+
+Bu araçlar ajanın dosyaları baştan sona okumak yerine kodun yapısını (fonksiyonlar, çağrılar, struct'lar) sorgulamasını sağlar. Üçü de yerelde çalışır ve hem Claude Code'a hem OpenCode'a kurulur.
+
+```bash
+bash araclar/kod-grafi-araclari.sh              # menü, iki ajana birden
+bash araclar/kod-grafi-araclari.sh --claude     # yalnız Claude Code
+bash araclar/kod-grafi-araclari.sh --opencode   # yalnız OpenCode
+bash araclar/kod-grafi-araclari.sh --kaldir     # hepsini kaldır
+```
+
+| Menü | Araç | Türü | Ne yapar | Projede |
+| --- | --- | --- | --- | --- |
+| 1 | [Graphify](https://github.com/Graphify-Labs/graphify) | Skill | Tree-sitter ile kod grafı; kod için yapay zekâ çağrısı yok. C, C++, Kotlin destekli | `graphify update .` sonra `/graphify` |
+| 2 | [CodeGraph](https://github.com/colbymchenry/codegraph) | MCP | Önceden indekslenmiş sembol ve çağrı grafı, değişince eşitlenir | `codegraph init` |
+| 3 | [Serena](https://github.com/oraios/serena) | MCP | Dil sunucusuyla (clangd, Kotlin) sembol seviyesinde okuma ve düzenleme | `.git` olan klasörde kendiliğinden |
+
+Graphify ile önerilir: skill olduğu için yalnız çağrılınca bağlama girer; 16K bağlamlı yerel modellerde en hafifi. CodeGraph ve Serena MCP sunucusudur ve araç tanımlarını her isteğe ekler; birini seçmek yeterli. CodeGraph varsayılan olarak anonim kullanım istatistiği gönderir, betik bunu kapatır (`codegraph telemetry off`). Serena C/C++ için clangd ister (`sudo apt install clangd`). Claude Code'da clangd-lsp eklentisi kuruluysa Serena ile işlevleri kısmen örtüşür.
+
 ## Donanım ayarları (GTX 860M, 16 GB RAM)
 
 GTX 860M'in 2 ya da 4 GB belleği modelin küçük bir kısmını alır; model büyük ölçüde işlemci ve RAM üzerinde çalışır. Bu yüzden yerel modeller yavaştır ve OpenCode'un ajan modu için bulut önerilir.
